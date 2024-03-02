@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="HexType" load_steps=3 format=3 uid="uid://c04ays3asfc5"]
+
+[ext_resource type="Script" path="res://resources/HexTypes/HexType.gd" id="1_lidim"]
+[ext_resource type="Texture2D" uid="uid://cbjh23mawo4p8" path="res://sprites/tileDirt.png" id="2_epcri"]
+
+[resource]
+script = ExtResource("1_lidim")
+sprite = ExtResource("2_epcri")
+data_name = "dirt"

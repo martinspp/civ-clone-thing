@@ -1,0 +1,229 @@
+{
+  "map_name": "bleh",
+  "map_data": [
+    [
+      {
+        
+      },
+      {
+        
+      },
+      {
+        
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      }
+    ],
+    [
+      {
+        
+      },
+      {
+        
+      },
+      {
+        
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      }
+    ],
+    [
+      {
+        
+      },
+      {
+        
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        
+      }
+    ],
+    [
+      {
+        
+      },
+      {
+        
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        
+      }
+    ],
+    [
+      {
+        
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        
+      },
+      {
+        
+      }
+    ],
+    [
+      {
+        
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        
+      },
+      {
+        
+      }
+    ],
+    [
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        "hex_type": "grass"
+      },
+      {
+        
+      },
+      {
+        
+      },
+      {
+        
+      }
+    ]
+  ]
+}

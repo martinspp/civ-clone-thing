@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://c1ytqmqwun5fi"]
+
+[ext_resource type="Script" path="res://scripts/WorldManager.gd" id="1_o5rck"]
+[ext_resource type="PackedScene" uid="uid://c0r4cjyguhpli" path="res://scenes/hex.tscn" id="2_f1kye"]
+[ext_resource type="Script" path="res://scripts/CameraController.gd" id="3_45lbt"]
+[ext_resource type="Script" path="res://scripts/MapService.gd" id="4_c8qbf"]
+[ext_resource type="PackedScene" uid="uid://cther6q38cub5" path="res://scenes/ui.tscn" id="5_pqxj8"]
+[ext_resource type="PackedScene" uid="uid://dqhgdug3c7dcl" path="res://scenes/hexCursor.tscn" id="6_blydh"]
+[ext_resource type="Script" path="res://scripts/EditorService.gd" id="6_s2usr"]
+
+[node name="Main" type="Node2D"]
+
+[node name="World" type="Node2D" parent="."]
+script = ExtResource("1_o5rck")
+hex_scene = ExtResource("2_f1kye")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(498, 284)
+offset = Vector2(2.475, 0)
+zoom = Vector2(0.5, 0.5)
+script = ExtResource("3_45lbt")
+
+[node name="MapService" type="Node" parent="."]
+script = ExtResource("4_c8qbf")
+
+[node name="EditorService" type="Node" parent="." node_paths=PackedStringArray("world", "editor_ui")]
+script = ExtResource("6_s2usr")
+world = NodePath("../World")
+hex_scene = ExtResource("6_blydh")
+editor_ui = NodePath("../CanvasLayer/EditorUI")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="EditorUI" parent="CanvasLayer" instance=ExtResource("5_pqxj8")]
+top_level = true
+anchors_preset = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+size_flags_horizontal = 2
+size_flags_vertical = 2
+
+[connection signal="type_changed" from="CanvasLayer/EditorUI" to="EditorService" method="_on_editor_ui_type_changed"]

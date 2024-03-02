@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://cther6q38cub5"]
+
+[ext_resource type="Script" path="res://scripts/EditorUI.gd" id="1_edcfj"]
+
+[node name="UI" type="Container"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -648.0
+offset_right = -1152.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_edcfj")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="grass" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "GRASS"
+
+[node name="dirt" type="Button" parent="HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "DIRT"
+
+[node name="delete" type="Button" parent="HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "DELETE"
+
+[connection signal="pressed" from="HBoxContainer/grass" to="." method="_on_type_selected" binds= ["grass"]]
+[connection signal="pressed" from="HBoxContainer/dirt" to="." method="_on_type_selected" binds= ["dirt"]]
+[connection signal="pressed" from="HBoxContainer/delete" to="." method="_on_type_selected" binds= ["delete"]]

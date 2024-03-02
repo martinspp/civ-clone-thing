@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="HexType" load_steps=3 format=3 uid="uid://djmqsagbdyjau"]
+
+[ext_resource type="Script" path="res://resources/HexTypes/HexType.gd" id="1_fgrl1"]
+[ext_resource type="Texture2D" uid="uid://btys55s2wby8y" path="res://sprites/tileDelete.png" id="2_wr74a"]
+
+[resource]
+script = ExtResource("1_fgrl1")
+sprite = ExtResource("2_wr74a")
+data_name = "delete"
