@@ -4,9 +4,10 @@ class_name EditorService
 @export var world: World
 @export var hex_scene: PackedScene
 @export var settlement_scene: PackedScene
-@export var editor_ui: Container
+@export var editor_ui: EditorUI
 static var cursor: HexCursor
 static var selected_type: String = "grass"
+static var selected_settlement: Settlement
 
 func _ready() -> void:
 	cursor = hex_scene.instantiate()
@@ -27,6 +28,9 @@ func hex_clicked(hex: Hex):
 		var new_settlement: Settlement = settlement_scene.instantiate()
 		hex.add_child(new_settlement)
 		GameStateService.map_service.add_settlement(hex, new_settlement)
+	if selected_type == "select":
+		var selected_settlement = GameStateService.map_service.get_settlement_by_hex(hex)
+		editor_ui.set_settlement_info(selected_settlement)
 	else:
 		GameStateService.map_service.update_hex_type(hex, selected_type)
 	

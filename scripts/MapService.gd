@@ -47,6 +47,8 @@ func add_settlement(hex: Hex, settlement: Settlement):
 	#world_dict["map_data"][hex.r][hex.q]["settlement"]['pop_progress'] = settlement.pop_progress
 	#world_dict["map_data"][hex.r][hex.q]["settlement"]['influence_range'] = settlement.influence_range
 	
+func get_settlement_by_hex(hex: Hex) -> Settlement:
+	return world_dict["map_data"][hex.r][hex.q]['settlement']['ref']
 
 func _on_editor_ui_map_save_load(action: String) -> void:
 	if action == "save":

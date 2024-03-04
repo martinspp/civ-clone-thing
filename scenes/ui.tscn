@@ -14,47 +14,81 @@ grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("1_edcfj")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="grass" type="Button" parent="HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="grass" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "GRASS"
 
-[node name="dirt" type="Button" parent="HBoxContainer"]
+[node name="dirt" type="Button" parent="VBoxContainer/HBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
 text = "DIRT"
 
-[node name="water" type="Button" parent="HBoxContainer"]
+[node name="water" type="Button" parent="VBoxContainer/HBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
 text = "WATER"
 
-[node name="settlement" type="Button" parent="HBoxContainer"]
+[node name="settlement" type="Button" parent="VBoxContainer/HBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
 text = "SETTLEMENT"
 
-[node name="select" type="Button" parent="HBoxContainer"]
+[node name="select" type="Button" parent="VBoxContainer/HBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
 text = "SELECT"
 
-[node name="save" type="Button" parent="HBoxContainer"]
+[node name="save" type="Button" parent="VBoxContainer/HBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
 text = "SAVE"
 
-[node name="load" type="Button" parent="HBoxContainer"]
+[node name="load" type="Button" parent="VBoxContainer/HBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
 text = "LOAD"
 
-[connection signal="pressed" from="HBoxContainer/grass" to="." method="_on_type_selected" binds= ["grass"]]
-[connection signal="pressed" from="HBoxContainer/dirt" to="." method="_on_type_selected" binds= ["dirt"]]
-[connection signal="pressed" from="HBoxContainer/water" to="." method="_on_type_selected" binds= ["water"]]
-[connection signal="pressed" from="HBoxContainer/settlement" to="." method="_on_type_selected" binds= ["settlement"]]
-[connection signal="pressed" from="HBoxContainer/select" to="." method="_on_type_selected" binds= ["select"]]
-[connection signal="pressed" from="HBoxContainer/save" to="." method="_on_map_action" binds= ["save"]]
-[connection signal="pressed" from="HBoxContainer/load" to="." method="_on_map_action" binds= ["load"]]
+[node name="settlement_data" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/settlement_data"]
+layout_mode = 2
+text = "X"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/settlement_data"]
+layout_mode = 2
+
+[node name="s_name" type="Label" parent="VBoxContainer/settlement_data/VBoxContainer"]
+layout_mode = 2
+
+[node name="s_pop" type="Label" parent="VBoxContainer/settlement_data/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/settlement_data"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="s_progress" type="Label" parent="VBoxContainer/settlement_data/VBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="s_influence" type="Label" parent="VBoxContainer/settlement_data/VBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/grass" to="." method="_on_type_selected" binds= ["grass"]]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/dirt" to="." method="_on_type_selected" binds= ["dirt"]]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/water" to="." method="_on_type_selected" binds= ["water"]]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/settlement" to="." method="_on_type_selected" binds= ["settlement"]]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/select" to="." method="_on_type_selected" binds= ["select"]]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/save" to="." method="_on_map_action" binds= ["save"]]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/load" to="." method="_on_map_action" binds= ["load"]]
+[connection signal="pressed" from="VBoxContainer/settlement_data/Button" to="." method="_close_settlement_data"]
