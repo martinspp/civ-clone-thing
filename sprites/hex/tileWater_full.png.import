@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btys55s2wby8y"
-path="res://.godot/imported/tileDelete.png-2dcdb3d2ce3cb3398c4b39fb54c492cf.ctex"
+uid="uid://cv0mwebj3vm8o"
+path="res://.godot/imported/tileWater_full.png-b6708dae0a1ce35bf8c2b4c5f8e17062.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/tileDelete.png"
-dest_files=["res://.godot/imported/tileDelete.png-2dcdb3d2ce3cb3398c4b39fb54c492cf.ctex"]
+source_file="res://sprites/hex/tileWater_full.png"
+dest_files=["res://.godot/imported/tileWater_full.png-b6708dae0a1ce35bf8c2b4c5f8e17062.ctex"]
 
 [params]
 

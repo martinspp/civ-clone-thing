@@ -5,6 +5,7 @@ class_name World
 @onready var map_service: MapService = $"../MapService"
 
 @export var hex_scene: PackedScene
+@export var settlement_scene: PackedScene
 
 func _ready() -> void:
 	#generate_grid(30,15)
@@ -14,8 +15,10 @@ func _ready() -> void:
 	
 func hex_clicked(hex: Hex):
 	print("%s, %s" % [hex.q, hex.r])
-	map_service.delete_hex(hex)
+	#map_service.update_hex_type()
 	
+	
+#region World Generation from data
 func generate_grid(world_dict: Dictionary) -> void:
 	for r: int in len(world_dict["map_data"]):
 		if world_dict["map_data"][r].is_empty():
@@ -24,12 +27,27 @@ func generate_grid(world_dict: Dictionary) -> void:
 		for q: int in len(world_dict["map_data"][r]):
 			if world_dict["map_data"][r][q].is_empty():
 				continue
-			var hex: Hex = hex_scene.instantiate()
-			add_child(hex)
-			hex.world = self
-			hex.q = q
-			hex.r = r 
-			hex.name = "Hex (r %s, q %s)" % [r,q] 
-			hex.set_hex_type(world_dict["map_data"][r][q]["hex_type"])
-			world_dict["map_data"][r][q]["ref"] = hex
-			(hex.sprite as CanvasItem).z_index = r
+			place_hex(world_dict["map_data"][r][q], r, q)
+			if world_dict["map_data"][r][q].has("settlement"):
+				place_settlement(world_dict["map_data"][r][q]["settlement"], r, q)
+			
+func place_hex(hex_data: Dictionary, r: int, q: int):
+	var hex: Hex = hex_scene.instantiate()
+	add_child(hex)
+	hex.world = self
+	hex.q = q
+	hex.r = r 
+	hex.name = "Hex (r %s, q %s)" % [r,q] 
+	hex.set_hex_type(hex_data["hex_type"])
+	hex_data["ref"] = hex
+
+func place_settlement(settlement_data: Dictionary, r: int, q: int):
+	var settlement = settlement_scene.instanciate()
+	
+
+func place_decor(decor_data: Dictionary, r: int, q: int):
+	print("todo")
+
+func place_unit(unit_data: Dictionary, r: int, q: int):
+	print("todo")
+#endregion

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c0r4cjyguhpli"]
 
 [ext_resource type="Script" path="res://scripts/Hex.gd" id="1_4ullu"]
-[ext_resource type="Texture2D" uid="uid://cfinei4vv7t42" path="res://sprites/tileGrass.png" id="2_w4ssm"]
+[ext_resource type="Texture2D" uid="uid://cfinei4vv7t42" path="res://sprites/hex/tileGrass.png" id="2_w4ssm"]
 
 [node name="Hex" type="Area2D"]
 script = ExtResource("1_4ullu")
@@ -15,3 +15,4 @@ scale = Vector2(1.96923, 1.96923)
 texture = ExtResource("2_w4ssm")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

@@ -26,11 +26,29 @@ auto_translate_mode = 1
 layout_mode = 2
 text = "DIRT"
 
-[node name="delete" type="Button" parent="HBoxContainer"]
+[node name="water" type="Button" parent="HBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
-text = "DELETE"
+text = "WATER"
+
+[node name="settlement" type="Button" parent="HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "SETTLEMENT"
+
+[node name="save" type="Button" parent="HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "SAVE"
+
+[node name="load" type="Button" parent="HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "LOAD"
 
 [connection signal="pressed" from="HBoxContainer/grass" to="." method="_on_type_selected" binds= ["grass"]]
 [connection signal="pressed" from="HBoxContainer/dirt" to="." method="_on_type_selected" binds= ["dirt"]]
-[connection signal="pressed" from="HBoxContainer/delete" to="." method="_on_type_selected" binds= ["delete"]]
+[connection signal="pressed" from="HBoxContainer/water" to="." method="_on_type_selected" binds= ["water"]]
+[connection signal="pressed" from="HBoxContainer/settlement" to="." method="_on_type_selected" binds= ["settlement"]]
+[connection signal="pressed" from="HBoxContainer/save" to="." method="_on_map_action" binds= ["save"]]
+[connection signal="pressed" from="HBoxContainer/load" to="." method="_on_map_action" binds= ["load"]]

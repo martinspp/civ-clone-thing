@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c1ytqmqwun5fi"]
+[gd_scene load_steps=9 format=3 uid="uid://c1ytqmqwun5fi"]
 
 [ext_resource type="Script" path="res://scripts/WorldManager.gd" id="1_o5rck"]
 [ext_resource type="PackedScene" uid="uid://c0r4cjyguhpli" path="res://scenes/hex.tscn" id="2_f1kye"]
@@ -7,12 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://cther6q38cub5" path="res://scenes/ui.tscn" id="5_pqxj8"]
 [ext_resource type="PackedScene" uid="uid://dqhgdug3c7dcl" path="res://scenes/hexCursor.tscn" id="6_blydh"]
 [ext_resource type="Script" path="res://scripts/EditorService.gd" id="6_s2usr"]
+[ext_resource type="PackedScene" uid="uid://cqrax0qwe1dq3" path="res://scenes/settlement.tscn" id="7_puklf"]
 
 [node name="Main" type="Node2D"]
 
 [node name="World" type="Node2D" parent="."]
 script = ExtResource("1_o5rck")
 hex_scene = ExtResource("2_f1kye")
+settlement_scene = ExtResource("7_puklf")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(498, 284)
@@ -27,6 +29,7 @@ script = ExtResource("4_c8qbf")
 script = ExtResource("6_s2usr")
 world = NodePath("../World")
 hex_scene = ExtResource("6_blydh")
+settlement_scene = ExtResource("7_puklf")
 editor_ui = NodePath("../CanvasLayer/EditorUI")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -45,4 +48,5 @@ grow_vertical = 1
 size_flags_horizontal = 2
 size_flags_vertical = 2
 
+[connection signal="map_save_load" from="CanvasLayer/EditorUI" to="MapService" method="_on_editor_ui_map_save_load"]
 [connection signal="type_changed" from="CanvasLayer/EditorUI" to="EditorService" method="_on_editor_ui_type_changed"]

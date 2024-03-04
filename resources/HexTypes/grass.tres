@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="HexType" load_steps=3 format=3 uid="uid://cb04d5sck83sc"]
+[gd_resource type="Resource" script_class="HexType" load_steps=4 format=3 uid="uid://cb04d5sck83sc"]
 
+[ext_resource type="Texture2D" uid="uid://b2vv7sqpo6owh" path="res://sprites/hex/tileGrass_tile.png" id="1_45vxq"]
 [ext_resource type="Script" path="res://resources/HexTypes/HexType.gd" id="1_srym1"]
-[ext_resource type="Texture2D" uid="uid://cfinei4vv7t42" path="res://sprites/tileGrass.png" id="2_iq1i7"]
+[ext_resource type="Texture2D" uid="uid://cfinei4vv7t42" path="res://sprites/hex/tileGrass.png" id="2_iq1i7"]
 
 [resource]
 script = ExtResource("1_srym1")
-sprite = ExtResource("2_iq1i7")
+world_sprite = ExtResource("2_iq1i7")
+cursor_sprite = ExtResource("1_45vxq")
 data_name = "grass"

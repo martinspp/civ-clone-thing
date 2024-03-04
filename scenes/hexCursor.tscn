@@ -1,17 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://dqhgdug3c7dcl"]
 
-[ext_resource type="Script" path="res://scripts/Hex.gd" id="1_y77nb"]
-[ext_resource type="Texture2D" uid="uid://cfinei4vv7t42" path="res://sprites/tileGrass.png" id="2_gkmhn"]
+[ext_resource type="Script" path="res://scripts/HexCursor.gd" id="1_j60mh"]
+[ext_resource type="Texture2D" uid="uid://btys55s2wby8y" path="res://sprites/hex/tileDelete.png" id="2_l4i2v"]
 
-[node name="HexCursor" type="Area2D"]
-script = ExtResource("1_y77nb")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-64, -32, 0, -64, 64, -32, 64, 32, 0, 64, -64, 32)
+[node name="HexCursor" type="Node2D"]
+script = ExtResource("1_j60mh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(9.59635e-06, 23.0269)
 scale = Vector2(1.96923, 1.96923)
-texture = ExtResource("2_gkmhn")
-
-[connection signal="input_event" from="." to="." method="_on_input_event"]
+texture = ExtResource("2_l4i2v")

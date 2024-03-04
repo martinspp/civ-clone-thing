@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="HexType" load_steps=4 format=3 uid="uid://c54uy12w24ve4"]
+
+[ext_resource type="Texture2D" uid="uid://bvgsh4bjmjyt" path="res://sprites/hex/tileWater_tile.png" id="1_28qvw"]
+[ext_resource type="Script" path="res://resources/HexTypes/HexType.gd" id="1_godq5"]
+[ext_resource type="Texture2D" uid="uid://cv0mwebj3vm8o" path="res://sprites/hex/tileWater_full.png" id="3_40nnw"]
+
+[resource]
+script = ExtResource("1_godq5")
+world_sprite = ExtResource("3_40nnw")
+cursor_sprite = ExtResource("1_28qvw")
+data_name = "water"

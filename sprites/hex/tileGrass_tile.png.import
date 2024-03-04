@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbjh23mawo4p8"
-path="res://.godot/imported/tileDirt.png-a0ff4540f4513212fe8455ffc42bbe6e.ctex"
+uid="uid://b2vv7sqpo6owh"
+path="res://.godot/imported/tileGrass_tile.png-559902dd6ba97a232479e47848836769.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/tileDirt.png"
-dest_files=["res://.godot/imported/tileDirt.png-a0ff4540f4513212fe8455ffc42bbe6e.ctex"]
+source_file="res://sprites/hex/tileGrass_tile.png"
+dest_files=["res://.godot/imported/tileGrass_tile.png-559902dd6ba97a232479e47848836769.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

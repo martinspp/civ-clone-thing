@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqrax0qwe1dq3"]
+
+[ext_resource type="Script" path="res://scripts/Settlement.gd" id="1_cq04i"]
+[ext_resource type="Texture2D" uid="uid://dmvr0u8jlmyt7" path="res://sprites/objects/settlement/woodRing.png" id="2_vg2h3"]
+
+[node name="Settlement" type="Area2D"]
+script = ExtResource("1_cq04i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.90735e-06, 2.38419e-07)
+scale = Vector2(1.21538, 1.21538)
+texture = ExtResource("2_vg2h3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-40, -26, 0, -46, 40, -26, 40, 27, 0, 46, -40, 26)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -72.0
+offset_right = 20.0
+offset_bottom = -49.0
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
