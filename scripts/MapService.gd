@@ -38,12 +38,14 @@ func update_hex_type(hex: Hex, hex_type: String) -> void:
 	world_dict["map_data"][hex.r][hex.q]["hex_type"] = hex_type
 
 func add_settlement(hex: Hex, settlement: Settlement):
-	world_dict["map_data"][hex.r][hex.q]["settlement"] = {}
+	world_dict["map_data"][hex.r][hex.q]["settlement"] = settlement.settlement_data.serialize()
 	world_dict["map_data"][hex.r][hex.q]["settlement"]['ref'] = settlement
-	world_dict["map_data"][hex.r][hex.q]["settlement"]['settlement_name'] = settlement.settlement_name
-	world_dict["map_data"][hex.r][hex.q]["settlement"]['pop'] = settlement.pop
-	world_dict["map_data"][hex.r][hex.q]["settlement"]['pop_progress'] = settlement.pop_progress
-	world_dict["map_data"][hex.r][hex.q]["settlement"]['influence_range'] = settlement.influence_range
+	
+	#world_dict["map_data"][hex.r][hex.q]["settlement"]['ref'] = settlement
+	#world_dict["map_data"][hex.r][hex.q]["settlement"]['settlement_name'] = settlement.settlement_name
+	#world_dict["map_data"][hex.r][hex.q]["settlement"]['pop'] = settlement.pop
+	#world_dict["map_data"][hex.r][hex.q]["settlement"]['pop_progress'] = settlement.pop_progress
+	#world_dict["map_data"][hex.r][hex.q]["settlement"]['influence_range'] = settlement.influence_range
 	
 
 func _on_editor_ui_map_save_load(action: String) -> void:

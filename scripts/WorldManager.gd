@@ -27,11 +27,11 @@ func generate_grid(world_dict: Dictionary) -> void:
 		for q: int in len(world_dict["map_data"][r]):
 			if world_dict["map_data"][r][q].is_empty():
 				continue
-			place_hex(world_dict["map_data"][r][q], r, q)
+			var hex: Hex = place_hex(world_dict["map_data"][r][q], r, q)
 			if world_dict["map_data"][r][q].has("settlement"):
-				place_settlement(world_dict["map_data"][r][q]["settlement"], r, q)
+				place_settlement(world_dict["map_data"][r][q]["settlement"],hex , r, q)
 			
-func place_hex(hex_data: Dictionary, r: int, q: int):
+func place_hex(hex_data: Dictionary, r: int, q: int) -> Hex:
 	var hex: Hex = hex_scene.instantiate()
 	add_child(hex)
 	hex.world = self
@@ -40,10 +40,13 @@ func place_hex(hex_data: Dictionary, r: int, q: int):
 	hex.name = "Hex (r %s, q %s)" % [r,q] 
 	hex.set_hex_type(hex_data["hex_type"])
 	hex_data["ref"] = hex
-
-func place_settlement(settlement_data: Dictionary, r: int, q: int):
-	var settlement = settlement_scene.instanciate()
+	return hex
 	
+func place_settlement(settlement_data: Dictionary, hex: Hex, r: int, q: int):
+	var settlement = settlement_scene.instantiate()
+	hex.add_child(settlement)
+	(settlement as Settlement).settlement_data.deserialize(settlement_data)
+	settlement_data['ref'] = settlement
 
 func place_decor(decor_data: Dictionary, r: int, q: int):
 	print("todo")

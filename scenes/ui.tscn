@@ -36,6 +36,11 @@ auto_translate_mode = 1
 layout_mode = 2
 text = "SETTLEMENT"
 
+[node name="select" type="Button" parent="HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "SELECT"
+
 [node name="save" type="Button" parent="HBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
@@ -50,5 +55,6 @@ text = "LOAD"
 [connection signal="pressed" from="HBoxContainer/dirt" to="." method="_on_type_selected" binds= ["dirt"]]
 [connection signal="pressed" from="HBoxContainer/water" to="." method="_on_type_selected" binds= ["water"]]
 [connection signal="pressed" from="HBoxContainer/settlement" to="." method="_on_type_selected" binds= ["settlement"]]
+[connection signal="pressed" from="HBoxContainer/select" to="." method="_on_type_selected" binds= ["select"]]
 [connection signal="pressed" from="HBoxContainer/save" to="." method="_on_map_action" binds= ["save"]]
 [connection signal="pressed" from="HBoxContainer/load" to="." method="_on_map_action" binds= ["load"]]
