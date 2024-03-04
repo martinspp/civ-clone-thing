@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/EditorUI.gd" id="1_edcfj"]
 
-[node name="UI" type="Container"]
+[node name="EditorUI" type="Container"]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -55,7 +55,6 @@ layout_mode = 2
 text = "LOAD"
 
 [node name="settlement_data" type="HBoxContainer" parent="VBoxContainer"]
-visible = false
 layout_mode = 2
 
 [node name="Button" type="Button" parent="VBoxContainer/settlement_data"]

@@ -4,7 +4,8 @@ class_name EditorService
 @export var world: World
 @export var hex_scene: PackedScene
 @export var settlement_scene: PackedScene
-@export var editor_ui: EditorUI
+@export var editor_ui_scene: PackedScene
+var editor_ui: EditorUI
 static var cursor: HexCursor
 static var selected_type: String = "grass"
 static var selected_settlement: Settlement
@@ -14,6 +15,8 @@ func _ready() -> void:
 	world.add_child(cursor)
 	cursor.set_cursor_type(selected_type)
 	GameStateService.editor_service = self
+	editor_ui = editor_ui_scene.instantiate()
+	$"../CanvasLayer".add_child(editor_ui)
 
 func move_editor_cursor(move_to_hex: Hex) -> void:
 	cursor.q = move_to_hex.q
@@ -36,6 +39,9 @@ func hex_clicked(hex: Hex):
 	
 	
 	
-func _process(delta: float) -> void:
-	pass
+func _exit_tree() -> void:
+	GameStateService.editor_service = null
+	cursor.queue_free()
+	editor_ui.queue_free()
+	
 	

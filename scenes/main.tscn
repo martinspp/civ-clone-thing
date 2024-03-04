@@ -4,10 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://c0r4cjyguhpli" path="res://scenes/hex.tscn" id="2_f1kye"]
 [ext_resource type="Script" path="res://scripts/CameraController.gd" id="3_45lbt"]
 [ext_resource type="Script" path="res://scripts/MapService.gd" id="4_c8qbf"]
-[ext_resource type="PackedScene" uid="uid://cther6q38cub5" path="res://scenes/ui.tscn" id="5_pqxj8"]
 [ext_resource type="PackedScene" uid="uid://dqhgdug3c7dcl" path="res://scenes/hexCursor.tscn" id="6_blydh"]
 [ext_resource type="Script" path="res://scripts/EditorService.gd" id="6_s2usr"]
 [ext_resource type="PackedScene" uid="uid://cqrax0qwe1dq3" path="res://scenes/settlement.tscn" id="7_puklf"]
+[ext_resource type="PackedScene" uid="uid://cther6q38cub5" path="res://scenes/EditorUI.tscn" id="8_274qo"]
 
 [node name="Main" type="Node2D"]
 
@@ -25,28 +25,11 @@ script = ExtResource("3_45lbt")
 [node name="MapService" type="Node" parent="."]
 script = ExtResource("4_c8qbf")
 
-[node name="EditorService" type="Node" parent="." node_paths=PackedStringArray("world", "editor_ui")]
+[node name="EditorService" type="Node" parent="." node_paths=PackedStringArray("world")]
 script = ExtResource("6_s2usr")
 world = NodePath("../World")
 hex_scene = ExtResource("6_blydh")
 settlement_scene = ExtResource("7_puklf")
-editor_ui = NodePath("../CanvasLayer/EditorUI")
+editor_ui_scene = ExtResource("8_274qo")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="EditorUI" parent="CanvasLayer" instance=ExtResource("5_pqxj8")]
-top_level = true
-anchors_preset = 0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
-size_flags_horizontal = 2
-size_flags_vertical = 2
-
-[connection signal="map_save_load" from="CanvasLayer/EditorUI" to="MapService" method="_on_editor_ui_map_save_load"]
-[connection signal="type_changed" from="CanvasLayer/EditorUI" to="EditorService" method="_on_editor_ui_type_changed"]

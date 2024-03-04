@@ -9,6 +9,10 @@ var type_selected: HexType
 signal type_changed(String)
 signal map_save_load(String)
 
+func _ready() -> void:
+	type_changed.connect(GameStateService.editor_service._on_editor_ui_type_changed)
+	map_save_load.connect(GameStateService.map_service._on_editor_ui_map_save_load)
+	
 func _on_type_selected(type: String) -> void:
 	type_changed.emit(type)
 	
