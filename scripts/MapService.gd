@@ -7,6 +7,21 @@ var world_dict: Dictionary
 func _ready() -> void:
 	GameStateService.map_service = self
 
+func generate_land(height: int, width: int) -> Array:
+	var new_map_data := []
+	new_map_data.resize(height)
+	for r in range(height):
+		new_map_data[r] = []
+		new_map_data[r].resize(width+width/2)
+		
+		for q in range(width):
+			new_map_data[r][q] = {}
+			new_map_data[r][q]["hex_type"] = "water"
+			#new_map_data[r][q+floor(r/2)]["hex_type"] = "water"
+			#new_map_data[r][q+floor(r/2)].erase("empty")
+	print(JSON.stringify(new_map_data))
+	return new_map_data
+
 func load_from_file(path: String) -> bool:
 	var file: String = FileAccess.get_file_as_string(path)
 	world_dict = JSON.parse_string(file)

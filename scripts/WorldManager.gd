@@ -10,7 +10,7 @@ class_name World
 func _ready() -> void:
 	#generate_grid(30,15)
 	print(map_service.load_from_file("res://maps/bleh.json"))
-	
+	map_service.world_dict["map_data"] = map_service.generate_land(6,6)
 	generate_grid(map_service.world_dict)
 	
 func hex_clicked(hex: Hex):
@@ -20,11 +20,11 @@ func hex_clicked(hex: Hex):
 	
 #region World Generation from data
 func generate_grid(world_dict: Dictionary) -> void:
-	for r: int in len(world_dict["map_data"]):
+	for r: int in len(world_dict["map_data"])-1:
 		if world_dict["map_data"][r].is_empty():
 			continue
 		world_dict[r] = {}
-		for q: int in len(world_dict["map_data"][r]):
+		for q: int in len(world_dict["map_data"][r])-1:
 			if world_dict["map_data"][r][q].is_empty():
 				continue
 			var hex: Hex = place_hex(world_dict["map_data"][r][q], r, q)
