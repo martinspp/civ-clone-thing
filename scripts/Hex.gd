@@ -35,13 +35,17 @@ func update_pos() -> void:
 	
 func set_hex_type(type: String):
 	hex_type = load("res://resources/HexTypes/%s.tres" % type)
+	if hex_type == null:
+		hex_type = load("res://resources/HexTypes/delete.tres")
 	sprite.texture = hex_type.world_sprite
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
-		if event.button_index == 1 && event.pressed == true:
-			if GameStateService.current_state == GameStateService.game_states.EDITOR:
+		if GameStateService.current_state == GameStateService.game_states.EDITOR:
+			if event.button_index == 1 && event.pressed == true:
 				GameStateService.editor_service.hex_clicked(self)
+			if event.button_index == 2 && event.pressed == true:
+				GameStateService.editor_service.hex_alt_clicked(self)
 
 func _on_mouse_entered() -> void:
 	if GameStateService.current_state == GameStateService.game_states.EDITOR:

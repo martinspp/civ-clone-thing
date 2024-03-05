@@ -9,3 +9,4 @@ script = ExtResource("1_godq5")
 world_sprite = ExtResource("3_40nnw")
 cursor_sprite = ExtResource("1_28qvw")
 data_name = "water"
+settleable = false

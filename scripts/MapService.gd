@@ -37,16 +37,29 @@ func update_hex_type(hex: Hex, hex_type: String) -> void:
 	(world_dict["map_data"][hex.r][hex.q]["ref"] as Hex).set_hex_type(hex_type)
 	world_dict["map_data"][hex.r][hex.q]["hex_type"] = hex_type
 
-func add_settlement(hex: Hex, settlement: Settlement):
-	world_dict["map_data"][hex.r][hex.q]["settlement"] = settlement.settlement_data.serialize()
-	world_dict["map_data"][hex.r][hex.q]["settlement"]['ref'] = settlement
-	
-	#world_dict["map_data"][hex.r][hex.q]["settlement"]['ref'] = settlement
-	#world_dict["map_data"][hex.r][hex.q]["settlement"]['settlement_name'] = settlement.settlement_name
-	#world_dict["map_data"][hex.r][hex.q]["settlement"]['pop'] = settlement.pop
-	#world_dict["map_data"][hex.r][hex.q]["settlement"]['pop_progress'] = settlement.pop_progress
-	#world_dict["map_data"][hex.r][hex.q]["settlement"]['influence_range'] = settlement.influence_range
-	
+func add_settlement(hex: Hex, settlement: Settlement) -> void:
+	if hex.hex_type.settleable == true:
+		world_dict["map_data"][hex.r][hex.q]["settlement"] = settlement.settlement_data.serialize()
+		world_dict["map_data"][hex.r][hex.q]["settlement"]['ref'] = settlement
+	else:
+		print("Cant settle on %s" % hex.hex_type.data_name)
+
+func add_new_settlement(hex: Hex) -> bool:
+	print(hex.hex_type.settleable)
+	if hex.hex_type.settleable == true:
+		var new_settlement: Settlement = GameStateService.editor_service.settlement_scene.instantiate()
+		hex.add_child(new_settlement)
+		add_settlement(hex, new_settlement)
+		return true
+	else:
+		print("Cant settle on %s" % hex.hex_type.data_name)
+		return false
+
+func remove_settlement(hex: Hex) -> void:
+	if world_dict["map_data"][hex.r][hex.q].has("settlement"):
+		world_dict["map_data"][hex.r][hex.q]["settlement"]["ref"].queue_free()
+		world_dict["map_data"][hex.r][hex.q].erase("settlement")
+
 func get_settlement_by_hex(hex: Hex) -> Settlement:
 	return world_dict["map_data"][hex.r][hex.q]['settlement']['ref']
 

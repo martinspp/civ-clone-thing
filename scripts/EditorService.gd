@@ -28,15 +28,16 @@ func _on_editor_ui_type_changed(type: String) -> void:
 
 func hex_clicked(hex: Hex):
 	if selected_type == "settlement":
-		var new_settlement: Settlement = settlement_scene.instantiate()
-		hex.add_child(new_settlement)
-		GameStateService.map_service.add_settlement(hex, new_settlement)
-	if selected_type == "select":
+		GameStateService.map_service.add_new_settlement(hex)
+	elif selected_type == "select":
 		var selected_settlement = GameStateService.map_service.get_settlement_by_hex(hex)
 		editor_ui.set_settlement_info(selected_settlement)
 	else:
 		GameStateService.map_service.update_hex_type(hex, selected_type)
-	
+
+func hex_alt_clicked(hex: Hex):
+	if selected_type == "settlement":
+		GameStateService.map_service.remove_settlement(hex)
 	
 	
 func _exit_tree() -> void:
