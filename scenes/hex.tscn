@@ -14,5 +14,12 @@ position = Vector2(9.59635e-06, 23.0269)
 scale = Vector2(1.96923, 1.96923)
 texture = ExtResource("2_w4ssm")
 
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, -64, 60, -32, 60, 32, 0, 66, -62, 32, -62, -32)
+closed = true
+default_color = Color(0.137255, 0.72549, 1, 1)
+round_precision = 2
+antialiased = true
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

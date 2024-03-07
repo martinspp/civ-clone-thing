@@ -2,8 +2,37 @@ extends Node2D
 
 class_name Hex
 
+enum side_flag {
+	top_right = 1,     #0
+	right = 2,         #1
+	bottom_right = 4,  #2
+	bottom_left = 8,   #3
+	left = 16,         #4
+	top_left = 32      #5
+}
+
+# inverse_side_lut[source] = target
+static var inverse_side_lut = [3,4,5,0,1,2]
+
+static func get_side_index(side: side_flag) -> int:
+	# theres gotta be a better way of doing this
+	if side & Hex.side_flag.top_right:
+		return 0
+	elif side & Hex.side_flag.right:
+		return 1
+	elif side & Hex.side_flag.bottom_right:
+		return 2
+	elif side & Hex.side_flag.bottom_left:
+		return 3
+	elif side & Hex.side_flag.left:
+		return 4
+	elif side & Hex.side_flag.top_left:
+		return 5
+	return -1
+
 @onready var sprite: Sprite2D = $Sprite2D
 var hex_type: HexType
+@onready var rivers: int = 0
 
 static var world: World
 

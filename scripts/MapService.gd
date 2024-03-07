@@ -3,23 +3,27 @@ extends Node
 class_name MapService
 
 var world_dict: Dictionary
-
+var axial_direction_vectors = [
+	[-1,1],[0,1],[1,0],
+	[1,-1],[0,-1],[-1,0]
+]
 func _ready() -> void:
 	GameStateService.map_service = self
 
-func generate_land(height: int, width: int) -> Array:
+#fuck this
+func generate_land(_height: int, _width: int) -> Array:
+	var height = _height + 1 # i dont know what im doing
+	var width = _width
 	var new_map_data := []
 	new_map_data.resize(height)
 	for r in range(height):
 		new_map_data[r] = []
-		new_map_data[r].resize(width+width/2)
-		
+		new_map_data[r].resize(width+1+width/2) # dont lower otherwise this gets weird
+		new_map_data[r].fill({}) # to fill in null, dont use this because its the same dict by ref
 		for q in range(width):
-			new_map_data[r][q] = {}
-			new_map_data[r][q]["hex_type"] = "water"
-			#new_map_data[r][q+floor(r/2)]["hex_type"] = "water"
-			#new_map_data[r][q+floor(r/2)].erase("empty")
-	print(JSON.stringify(new_map_data))
+			var new_q = q + floor((height-1-r)/2) # ?????
+			new_map_data[r][new_q] = {}
+			new_map_data[r][new_q]["hex_type"] = "water"
 	return new_map_data
 
 func load_from_file(path: String) -> bool:
@@ -78,6 +82,23 @@ func remove_settlement(hex: Hex) -> void:
 func get_settlement_by_hex(hex: Hex) -> Settlement:
 	return world_dict["map_data"][hex.r][hex.q]['settlement']['ref']
 
+func add_river(hex: Hex, side: Hex.side_flag) -> void:
+	if hex.rivers & side:
+		print("River already set")
+	else:
+		hex.rivers = hex.rivers | side
+		world_dict["map_data"][hex.r][hex.q]["rivers"] = hex.rivers
+		
+	var neighbour_hex: Hex = world_dict["map_data"]
+	neighbour_hex.rivers = neighbour_hex | Hex.inverse_side_lut[Hex.get_side_index(side)]
+	
+func get_neighbouring_hex(hex: Hex, side: Hex.side_flag) -> Hex:
+	var side_coord := Hex.get_side_index(side)
+	#need to add checks because the neighbouring hexes might be nulls
+	var new_r: int = hex.r+axial_direction_vectors[side_coord][0]
+	var new_q: int = hex.q+axial_direction_vectors[side_coord][1]
+	return world_dict["map_data"][new_r][new_q]["ref"]
+	
 func _on_editor_ui_map_save_load(action: String) -> void:
 	if action == "save":
 		save_map("res://maps/bleh.json")

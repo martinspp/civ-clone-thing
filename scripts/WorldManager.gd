@@ -10,8 +10,9 @@ class_name World
 func _ready() -> void:
 	#generate_grid(30,15)
 	print(map_service.load_from_file("res://maps/bleh.json"))
-	map_service.world_dict["map_data"] = map_service.generate_land(6,6)
+	#map_service.world_dict["map_data"] = map_service.generate_land(20,20)
 	generate_grid(map_service.world_dict)
+	generate_rivers(map_service.world_dict)
 	
 func hex_clicked(hex: Hex):
 	print("%s, %s" % [hex.q, hex.r])
@@ -48,6 +49,19 @@ func place_settlement(settlement_data: Dictionary, hex: Hex, r: int, q: int):
 	(settlement as Settlement).settlement_data.deserialize(settlement_data)
 	settlement_data['ref'] = settlement
 
+func generate_rivers(world_dict: Dictionary):
+	# First get consecutive chains of hexes
+	var chains := []
+	var checked_hexes = []
+	for r: int in len(world_dict["map_data"])-1:
+		if world_dict["map_data"][r].is_empty():
+			continue
+		for q: int in len(world_dict["map_data"][r])-1:
+			if world_dict["map_data"][r][q].is_empty():
+				continue
+			checked_hexes.append(world_dict["map_data"][r][q]["ref"] as Hex)
+	pass
+			
 func place_decor(decor_data: Dictionary, r: int, q: int):
 	print("todo")
 
