@@ -10,10 +10,20 @@ enum side_flag {
 	left = 16,         #4
 	top_left = 32      #5
 }
+static var border_set = [
+	Vector2(0,-64),
+	Vector2(64,-32),
+	Vector2(64, 32),
+	Vector2(0, 64),
+	Vector2(-64, 32),
+	Vector2(-64, -32)
+]
+
+static var border_pairs = [[0,1],[1,2],[2,3],[3,4],[4,5],[5,0]]
 
 # inverse_side_lut[source] = target
 static var inverse_side_lut = [3,4,5,0,1,2]
-
+#static var side_index=[1,2,4,8,16,32]
 static func get_side_index(side: side_flag) -> int:
 	# theres gotta be a better way of doing this
 	if side & Hex.side_flag.top_right:
@@ -34,7 +44,7 @@ static func get_side_index(side: side_flag) -> int:
 var hex_type: HexType
 @onready var rivers: int = 0
 
-static var world: World
+static var world: WorldManager
 
 var _q: int = INF
 var _r: int = INF
@@ -72,7 +82,7 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		if GameStateService.current_state == GameStateService.game_states.EDITOR:
 			if event.button_index == 1 && event.pressed == true:
-				GameStateService.editor_service.hex_clicked(self)
+				GameStateService.editor_service.hex_clicked(self, event)
 			if event.button_index == 2 && event.pressed == true:
 				GameStateService.editor_service.hex_alt_clicked(self)
 

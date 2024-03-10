@@ -5,8 +5,6 @@ class_name HexCursor
 @onready var sprite: Sprite2D = $Sprite2D
 var hex_type: HexType
 
-static var world: World
-
 var _q: int = INF
 var _r: int = INF
 

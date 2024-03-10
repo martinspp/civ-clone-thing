@@ -17,17 +17,15 @@ hex_scene = ExtResource("2_f1kye")
 settlement_scene = ExtResource("7_puklf")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(498, 284)
-offset = Vector2(2.475, 0)
-zoom = Vector2(0.5, 0.5)
+position = Vector2(1613, 586)
+position_smoothing_speed = 1.0
 script = ExtResource("3_45lbt")
 
 [node name="MapService" type="Node" parent="."]
 script = ExtResource("4_c8qbf")
 
-[node name="EditorService" type="Node" parent="." node_paths=PackedStringArray("world")]
+[node name="EditorService" type="Node" parent="."]
 script = ExtResource("6_s2usr")
-world = NodePath("../World")
 hex_scene = ExtResource("6_blydh")
 settlement_scene = ExtResource("7_puklf")
 editor_ui_scene = ExtResource("8_274qo")

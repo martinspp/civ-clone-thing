@@ -39,6 +39,11 @@ auto_translate_mode = 1
 layout_mode = 2
 text = "SETTLEMENT"
 
+[node name="river" type="Button" parent="VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "RIVER"
+
 [node name="select" type="Button" parent="VBoxContainer/HBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
@@ -88,6 +93,7 @@ layout_mode = 2
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/dirt" to="." method="_on_type_selected" binds= ["dirt"]]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/water" to="." method="_on_type_selected" binds= ["water"]]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/settlement" to="." method="_on_type_selected" binds= ["settlement"]]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/river" to="." method="_on_type_selected" binds= ["river"]]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/select" to="." method="_on_type_selected" binds= ["select"]]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/save" to="." method="_on_map_action" binds= ["save"]]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/load" to="." method="_on_map_action" binds= ["load"]]

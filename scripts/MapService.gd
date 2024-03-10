@@ -82,22 +82,26 @@ func remove_settlement(hex: Hex) -> void:
 func get_settlement_by_hex(hex: Hex) -> Settlement:
 	return world_dict["map_data"][hex.r][hex.q]['settlement']['ref']
 
-func add_river(hex: Hex, side: Hex.side_flag) -> void:
+func add_river(hex: Hex, side: Hex.side_flag) -> bool:
+	print("%s <- %s" % [hex.rivers, side])
 	if hex.rivers & side:
 		print("River already set")
+		return false
 	else:
 		hex.rivers = hex.rivers | side
 		world_dict["map_data"][hex.r][hex.q]["rivers"] = hex.rivers
-		
-	var neighbour_hex: Hex = world_dict["map_data"]
-	neighbour_hex.rivers = neighbour_hex | Hex.inverse_side_lut[Hex.get_side_index(side)]
+	var neighbour_hex: Hex = get_neighbouring_hex(world_dict["map_data"][hex.r][hex.q]["ref"],side)
+	if neighbour_hex:
+		neighbour_hex.rivers = neighbour_hex.rivers | 2**Hex.inverse_side_lut[Hex.get_side_index(side)]
+	return true
 	
 func get_neighbouring_hex(hex: Hex, side: Hex.side_flag) -> Hex:
 	var side_coord := Hex.get_side_index(side)
-	#need to add checks because the neighbouring hexes might be nulls
 	var new_r: int = hex.r+axial_direction_vectors[side_coord][0]
 	var new_q: int = hex.q+axial_direction_vectors[side_coord][1]
-	return world_dict["map_data"][new_r][new_q]["ref"]
+	if world_dict["map_data"][new_r][new_q].has("ref"):
+		return world_dict["map_data"][new_r][new_q]["ref"]
+	return null
 	
 func _on_editor_ui_map_save_load(action: String) -> void:
 	if action == "save":
