@@ -1,1 +1,2101 @@
-{"0":{},"1":{},"2":{},"3":{},"4":{},"5":{},"6":{},"7":{},"8":{},"9":{},"10":{},"11":{},"12":{},"13":{},"14":{},"15":{},"16":{},"17":{},"18":{},"19":{},"0":{},"1":{},"10":{},"11":{},"12":{},"13":{},"14":{},"15":{},"16":{},"17":{},"18":{},"19":{},"2":{},"20":{},"3":{},"4":{},"5":{},"6":{},"7":{},"8":{},"9":{},"map_data":[[{},{},{},{},{},{},{},{},{},{},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water","rivers":6},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{}],[{},{},{},{},{},{},{},{},{},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"dirt","rivers":56},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{},{}],[{},{},{},{},{},{},{},{},{},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"dirt","rivers":6},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{},{}],[{},{},{},{},{},{},{},{},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt","rivers":8},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{},{},{}],[{},{},{},{},{},{},{},{},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt","rivers":7},{"hex_type":"dirt","rivers":35},{"hex_type":"water","rivers":8},{"hex_type":"dirt","rivers":8},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{},{},{}],[{},{},{},{},{},{},{},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt","rivers":2},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"dirt","rivers":32},{"hex_type":"dirt","rivers":32},{"hex_type":"water"},{"hex_type":"grass","settlement":{"influence_range":1,"pop":0,"pop_progress":0,"ref":"Settlement:<Area2D#45130712783>","settlement_name":"New City"}},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{},{},{},{}],[{},{},{},{},{},{},{},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{},{},{},{}],[{},{},{},{},{},{},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass","settlement":{"influence_range":1,"pop":0,"pop_progress":0,"ref":"Settlement:<Area2D#49576675202>","settlement_name":"New City"}},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{},{},{},{},{}],[{},{},{},{},{},{},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass","settlement":{"influence_range":1,"pop":0,"pop_progress":0,"ref":"Settlement:<Area2D#51908708321>","settlement_name":"New City"}},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{},{},{},{},{}],[{},{},{},{},{},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{},{},{},{},{},{}],[{},{},{},{},{},{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{},{},{},{},{},{}],[{},{},{},{},{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{},{},{},{},{},{},{}],[{},{},{},{},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{},{},{},{},{},{},{}],[{},{},{},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{},{},{},{},{},{},{},{}],[{},{},{},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{},{},{},{},{},{},{},{}],[{},{},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{},{},{},{},{},{},{},{},{}],[{},{},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{},{},{},{},{},{},{},{},{}],[{},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{},{},{},{},{},{},{},{},{},{}],[{},{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{},{},{},{},{},{},{},{},{},{}],[{"hex_type":"water"},{"hex_type":"dirt"},{"hex_type":"dirt"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{"hex_type":"grass"},{"hex_type":"water"},{"hex_type":"grass"},{},{},{},{},{},{},{},{},{},{},{}],[{"hex_type":"water"},{"hex_type":"water"},{"hex_type":"water"},{"hex_type":"water"},{"hex_type":"water"},{"hex_type":"water"},{"hex_type":"water"},{"hex_type":"water"},{"hex_type":"water"},{"hex_type":"water"},{"hex_type":"water"},{"hex_type":"water"},{"hex_type":"water"},{"hex_type":"water"},{"hex_type":"water"},{"hex_type":"water"},{"hex_type":"water"},{"hex_type":"water"},{"hex_type":"water"},{"hex_type":"water"},{},{},{},{},{},{},{},{},{},{},{}]],"map_name":"bleh"}
+{
+	"0": {
+
+	},
+	"1": {
+
+	},
+	"2": {
+
+	},
+	"3": {
+
+	},
+	"4": {
+
+	},
+	"5": {
+
+	},
+	"6": {
+
+	},
+	"7": {
+
+	},
+	"8": {
+
+	},
+	"9": {
+
+	},
+	"10": {
+
+	},
+	"11": {
+
+	},
+	"12": {
+
+	},
+	"13": {
+
+	},
+	"14": {
+
+	},
+	"15": {
+
+	},
+	"16": {
+
+	},
+	"17": {
+
+	},
+	"18": {
+
+	},
+	"19": {
+
+	},
+	"20": {
+
+	},
+	"map_data": [
+		[
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass",
+				"rivers": 16
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water",
+				"rivers": 6
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+
+			}
+		],
+		[
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass",
+				"rivers": 48
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt",
+				"rivers": 56
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+
+			},
+			{
+
+			}
+		],
+		[
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+				"hex_type": "grass",
+				"rivers": 51
+			},
+			{
+				"hex_type": "grass",
+				"rivers": 7
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt",
+				"rivers": 6
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+
+			},
+			{
+
+			}
+		],
+		[
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+				"hex_type": "grass",
+				"rivers": 48
+			},
+			{
+				"hex_type": "grass",
+				"rivers": 1
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt",
+				"rivers": 8
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			}
+		],
+		[
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt",
+				"rivers": 7
+			},
+			{
+				"hex_type": "dirt",
+				"rivers": 35
+			},
+			{
+				"hex_type": "water",
+				"rivers": 8
+			},
+			{
+				"hex_type": "dirt",
+				"rivers": 8
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			}
+		],
+		[
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt",
+				"rivers": 2
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt",
+				"rivers": 32
+			},
+			{
+				"hex_type": "dirt",
+				"rivers": 32
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass",
+				"settlement": {
+					"influence_range": 1,
+					"pop": 0,
+					"pop_progress": 0,
+					"ref": "Settlement:<Area2D#55398369114>",
+					"settlement_name": "New City"
+				}
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			}
+		],
+		[
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			}
+		],
+		[
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass",
+				"settlement": {
+					"influence_range": 1,
+					"pop": 0,
+					"pop_progress": 0,
+					"ref": "Settlement:<Area2D#59844331533>",
+					"settlement_name": "New City"
+				}
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			}
+		],
+		[
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass",
+				"settlement": {
+					"influence_range": 1,
+					"pop": 0,
+					"pop_progress": 0,
+					"ref": "Settlement:<Area2D#62176364652>",
+					"settlement_name": "New City"
+				}
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			}
+		],
+		[
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			}
+		],
+		[
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			}
+		],
+		[
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			}
+		],
+		[
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			}
+		],
+		[
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			}
+		],
+		[
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			}
+		],
+		[
+			{
+
+			},
+			{
+
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			}
+		],
+		[
+			{
+
+			},
+			{
+
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			}
+		],
+		[
+			{
+
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			}
+		],
+		[
+			{
+
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			}
+		],
+		[
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "dirt"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "grass"
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			}
+		],
+		[
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+				"hex_type": "water"
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			},
+			{
+
+			}
+		]
+	],
+	"map_name": "bleh"
+}

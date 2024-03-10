@@ -55,35 +55,36 @@ func delete_hex(hex: Hex) -> void:
 func update_hex_type(hex: Hex, hex_type: String) -> void:
 	(world_dict["map_data"][hex.r][hex.q]["ref"] as Hex).set_hex_type(hex_type)
 	world_dict["map_data"][hex.r][hex.q]["hex_type"] = hex_type
-
+	
+#region settlement
 func add_settlement(hex: Hex, settlement: Settlement) -> void:
+	if world_dict["map_data"][hex.r][hex.q].has("settlement"):
+		print("Already has settlement")
+		return
 	if hex.hex_type.settleable == true:
-		world_dict["map_data"][hex.r][hex.q]["settlement"] = settlement.settlement_data.serialize()
-		world_dict["map_data"][hex.r][hex.q]["settlement"]['ref'] = settlement
+		if settlement == null:
+			world_dict["map_data"][hex.r][hex.q]["settlement"] = SettlementData.default_data()
+		else:
+			world_dict["map_data"][hex.r][hex.q]["settlement"]['ref'] = settlement
+			world_dict["map_data"][hex.r][hex.q]["settlement"] = settlement.settlement_data.serialize()	
 	else:
 		print("Cant settle on %s" % hex.hex_type.data_name)
-
-func add_new_settlement(hex: Hex) -> bool:
-	print(hex.hex_type.settleable)
-	if hex.hex_type.settleable == true:
-		var new_settlement: Settlement = GameStateService.editor_service.settlement_scene.instantiate()
-		hex.add_child(new_settlement)
-		add_settlement(hex, new_settlement)
-		return true
-	else:
-		print("Cant settle on %s" % hex.hex_type.data_name)
-		return false
+	GameStateService.world_manager.refresh_hex_settlement(world_dict, hex)
 
 func remove_settlement(hex: Hex) -> void:
 	if world_dict["map_data"][hex.r][hex.q].has("settlement"):
 		world_dict["map_data"][hex.r][hex.q]["settlement"]["ref"].queue_free()
 		world_dict["map_data"][hex.r][hex.q].erase("settlement")
-
+		GameStateService.world_manager.refresh_hex_settlement(world_dict, hex)
+		
 func get_settlement_by_hex(hex: Hex) -> Settlement:
-	return world_dict["map_data"][hex.r][hex.q]['settlement']['ref']
+	if world_dict["map_data"][hex.r][hex.q].has("settlement"):
+		return world_dict["map_data"][hex.r][hex.q]['settlement']['ref']
+	else:
+		return null
+#endregion
 
 func add_river(hex: Hex, side: Hex.side_flag) -> bool:
-	print("%s <- %s" % [hex.rivers, side])
 	if hex.rivers & side:
 		print("River already set")
 		return false
@@ -95,6 +96,11 @@ func add_river(hex: Hex, side: Hex.side_flag) -> bool:
 		neighbour_hex.rivers = neighbour_hex.rivers | 2**Hex.inverse_side_lut[Hex.get_side_index(side)]
 	return true
 	
+func remove_river(hex: Hex, side: Hex.side_flag) -> bool:
+	if hex.rivers & side:
+		pass
+	return false
+	
 func get_neighbouring_hex(hex: Hex, side: Hex.side_flag) -> Hex:
 	var side_coord := Hex.get_side_index(side)
 	var new_r: int = hex.r+axial_direction_vectors[side_coord][0]
@@ -102,9 +108,11 @@ func get_neighbouring_hex(hex: Hex, side: Hex.side_flag) -> Hex:
 	if world_dict["map_data"][new_r][new_q].has("ref"):
 		return world_dict["map_data"][new_r][new_q]["ref"]
 	return null
+
 	
 func _on_editor_ui_map_save_load(action: String) -> void:
 	if action == "save":
 		save_map("res://maps/bleh.json")
 	if action == "load":
 		load_from_file("res://maps/bleh.json")
+		GameStateService.world_manager.generate_grid(world_dict)

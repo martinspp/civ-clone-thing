@@ -23,3 +23,11 @@ func deserialize(data: Dictionary) -> void:
 	pop = data["pop"]
 	pop_progress = data["pop_progress"]
 	influence_range = data["influence_range"]
+	
+static func default_data() -> Dictionary:
+	return {
+		"settlement_name" = "New City",
+		"pop" = 0,
+		"pop_progress" = 0.0,
+		"influence_range" = 1
+	}

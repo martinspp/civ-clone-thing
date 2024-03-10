@@ -19,7 +19,6 @@ func _on_type_selected(type: String) -> void:
 func _on_map_action(action: String) -> void:
 	map_save_load.emit(action)
 
-
 func set_settlement_info(settlement: Settlement) -> void:
 	settlement_data.set_visible(true)
 	$VBoxContainer/settlement_data/VBoxContainer/s_name.text = settlement.settlement_data.settlement_name

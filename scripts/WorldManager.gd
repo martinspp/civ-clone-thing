@@ -2,8 +2,6 @@ extends Node
 
 class_name WorldManager
 
-@onready var map_service: MapService = $"../MapService"
-
 @export var hex_scene: PackedScene
 @export var settlement_scene: PackedScene
 
@@ -12,15 +10,18 @@ class_name WorldManager
 
 func _ready() -> void:
 	GameStateService.world_manager = self
+	Hex.world = self
 	hexes.name = "Hexes"
 	rivers.name = "Rivers"
 	add_child(hexes)
 	add_child(rivers)
 	#generate_grid(30,15)
-	print(map_service.load_from_file("res://maps/bleh.json"))
 	#map_service.world_dict["map_data"] = map_service.generate_land(20,20)
-	generate_grid(map_service.world_dict)
-	generate_rivers(map_service.world_dict)
+	#generate_grid(map_service.world_dict)
+	#generate_rivers(map_service.world_dict)
+
+func start_generation(world_dict: Dictionary) -> void:
+	generate_grid(world_dict)
 	
 func hex_clicked(hex: Hex):
 	print("%s, %s" % [hex.q, hex.r])
@@ -37,25 +38,54 @@ func generate_grid(world_dict: Dictionary) -> void:
 			if world_dict["map_data"][r][q].is_empty():
 				continue
 			var hex: Hex = place_hex(world_dict["map_data"][r][q], r, q)
-			if world_dict["map_data"][r][q].has("settlement"):
-				place_settlement(world_dict["map_data"][r][q]["settlement"],hex , r, q)
-			
+			refresh_hex(world_dict, hex)
+	apply_on_all_hexes(world_dict, refresh_hex_rivers)
+				
+func apply_on_all_hexes(world_dict:Dictionary, function: Callable):
+	for r: int in len(world_dict["map_data"])-1:
+		if world_dict["map_data"][r].is_empty():
+			continue
+		for q: int in len(world_dict["map_data"][r])-1:
+			if world_dict["map_data"][r][q].is_empty():
+				continue
+			function.call(world_dict, world_dict["map_data"][r][q]["ref"])
+
 func place_hex(hex_data: Dictionary, r: int, q: int) -> Hex:
 	var hex: Hex = hex_scene.instantiate()
 	hexes.add_child(hex)
-	hex.world = self
 	hex.q = q
 	hex.r = r 
 	hex.name = "Hex (r %s, q %s)" % [r,q] 
-	hex.set_hex_type(hex_data["hex_type"])
 	hex_data["ref"] = hex
 	return hex
 	
-func place_settlement(settlement_data: Dictionary, hex: Hex, r: int, q: int) -> void:
-	var settlement = settlement_scene.instantiate()
+#region hex refreshing
+func refresh_hex(world_dict: Dictionary, hex: Hex):
+	hex.set_hex_type(world_dict["map_data"][hex.r][hex.q]["hex_type"]) 
+	refresh_hex_settlement(world_dict, hex)
+	
+func refresh_hex_settlement(world_dict: Dictionary, hex: Hex):
+	if world_dict["map_data"][hex.r][hex.q].has("settlement"):
+		print(world_dict["map_data"][hex.r][hex.q]["settlement"])
+		# Fresh settlement wont have ref
+		if !world_dict["map_data"][hex.r][hex.q]["settlement"].has("ref") || (
+			world_dict["map_data"][hex.r][hex.q]["settlement"].has("ref") && typeof(world_dict["map_data"][hex.r][hex.q]["settlement"]["ref"]) == TYPE_STRING):
+			#if typeof(world_dict["map_data"][hex.r][hex.q]["settlement"]["ref"]) == typeof(TYPE_STRING): # ref isnt an actual object
+			world_dict["map_data"][hex.r][hex.q]["settlement"]["ref"] = place_settlement(world_dict["map_data"][hex.r][hex.q]["settlement"], hex)
+			
+
+func refresh_hex_rivers(world_dict: Dictionary, hex: Hex):
+	for side in Hex.side_flag.values():
+		if world_dict["map_data"][hex.r][hex.q].has("rivers"):
+			if int(world_dict["map_data"][hex.r][hex.q]["rivers"]) & side:
+				#TODO need to clean up other
+				add_river(world_dict["map_data"][hex.r][hex.q]["ref"], side)
+
+func place_settlement(settlement_data: Dictionary, hex: Hex) -> Settlement:
+	var settlement: Settlement = settlement_scene.instantiate()
 	hex.add_child(settlement)
-	(settlement as Settlement).settlement_data.deserialize(settlement_data)
-	settlement_data['ref'] = settlement
+	settlement.settlement_data.deserialize(settlement_data)
+	return settlement
 
 func generate_rivers(world_dict: Dictionary):
 	for r: int in len(world_dict["map_data"])-1:
