@@ -22,8 +22,7 @@ var r:
 		update_pos()
 
 func _ready() -> void:
-	#(sprite as CanvasItem).z_index = 9999
-	pass
+	(self as CanvasItem).z_index = 1
 
 func update_pos() -> void:
 	position.x = (q * 128)+(r*64)

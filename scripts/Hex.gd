@@ -79,6 +79,7 @@ func set_hex_type(type: String):
 	sprite.texture = hex_type.world_sprite
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	$Label.text = int2bin(rivers)
 	if event is InputEventMouseButton:
 		if GameStateService.current_state == GameStateService.game_states.EDITOR:
 			if event.button_index == 1 && event.pressed == true:
@@ -89,11 +90,11 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 func _on_mouse_entered() -> void:
 	if GameStateService.current_state == GameStateService.game_states.EDITOR:
 		GameStateService.editor_service.move_editor_cursor(self)
+	$Label.text = int2bin(rivers)
 
 func get_sextant_clicked(event: InputEventMouse) -> side_flag:
 	var camera: Camera2D = get_viewport().get_camera_2d()
-	var mouse_pos_relative_to_world: Vector2 = event.global_position + camera.position + camera.offset - get_viewport().size * 0.5
-	var side_angle = rad_to_deg(global_position.angle_to_point(mouse_pos_relative_to_world))+90 # 0 is horizontal right
+	var side_angle = rad_to_deg(global_position.angle_to_point(get_global_mouse_position()))+90 # 0 is horizontal right
 	if side_angle < 0:
 		side_angle += 359 # help
 	var side_angle_snapped = snappedf(side_angle,30)
@@ -101,3 +102,10 @@ func get_sextant_clicked(event: InputEventMouse) -> side_flag:
 		side_angle_snapped = 0 # i hate myself
 	var side = floor(side_angle_snapped / 60)
 	return 2**side
+
+func int2bin(value):
+	var out = ""
+	while (value > 0):
+			out = str(value & 1) + out
+			value = (value >> 1)
+	return out

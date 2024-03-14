@@ -3,19 +3,19 @@
 [ext_resource type="Script" path="res://scripts/EditorUI.gd" id="1_edcfj"]
 
 [node name="EditorUI" type="Container"]
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -648.0
-offset_right = -1152.0
-offset_bottom = -648.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_edcfj")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -59,6 +59,11 @@ auto_translate_mode = 1
 layout_mode = 2
 text = "LOAD"
 
+[node name="start game" type="Button" parent="VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "START GAME"
+
 [node name="settlement_data" type="HBoxContainer" parent="VBoxContainer"]
 visible = false
 layout_mode = 2
@@ -89,6 +94,45 @@ layout_mode = 2
 auto_translate_mode = 1
 layout_mode = 2
 
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Global mouse pos: "
+
+[node name="globalMouse" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "Adjusted mouse pos: "
+
+[node name="globalMouse" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer2"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer3"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "Hex pos: "
+
+[node name="globalMouse" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer3"]
+auto_translate_mode = 1
+layout_mode = 2
+
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/grass" to="." method="_on_type_selected" binds= ["grass"]]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/dirt" to="." method="_on_type_selected" binds= ["dirt"]]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/water" to="." method="_on_type_selected" binds= ["water"]]
@@ -97,4 +141,5 @@ layout_mode = 2
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/select" to="." method="_on_type_selected" binds= ["select"]]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/save" to="." method="_on_map_action" binds= ["save"]]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/load" to="." method="_on_map_action" binds= ["load"]]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/start game" to="." method="_start_game_action"]
 [connection signal="pressed" from="VBoxContainer/settlement_data/Button" to="." method="_close_settlement_data"]

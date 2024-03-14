@@ -91,15 +91,17 @@ func add_river(hex: Hex, side: Hex.side_flag) -> bool:
 	else:
 		hex.rivers = hex.rivers | side
 		world_dict["map_data"][hex.r][hex.q]["rivers"] = hex.rivers
-	var neighbour_hex: Hex = get_neighbouring_hex(world_dict["map_data"][hex.r][hex.q]["ref"],side)
-	if neighbour_hex:
-		neighbour_hex.rivers = neighbour_hex.rivers | 2**Hex.inverse_side_lut[Hex.get_side_index(side)]
+		var neighbour_hex: Hex = get_neighbouring_hex(world_dict["map_data"][hex.r][hex.q]["ref"],side)
+		if neighbour_hex:
+			neighbour_hex.rivers = neighbour_hex.rivers | 2**Hex.inverse_side_lut[Hex.get_side_index(side)]
 	return true
 	
-func remove_river(hex: Hex, side: Hex.side_flag) -> bool:
-	if hex.rivers & side:
-		pass
-	return false
+func remove_river(hex: Hex, side: Hex.side_flag) -> void:
+	hex.rivers = ~(~hex.rivers | side)
+	world_dict["map_data"][hex.r][hex.q]["rivers"] = hex.rivers
+	var neighbour_hex: Hex = get_neighbouring_hex(world_dict["map_data"][hex.r][hex.q]["ref"],side)
+	if neighbour_hex:
+		neighbour_hex.rivers = ~(~neighbour_hex.rivers | 2**Hex.inverse_side_lut[Hex.get_side_index(side)])
 	
 func get_neighbouring_hex(hex: Hex, side: Hex.side_flag) -> Hex:
 	var side_coord := Hex.get_side_index(side)

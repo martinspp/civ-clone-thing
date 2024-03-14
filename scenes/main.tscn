@@ -4,10 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://c0r4cjyguhpli" path="res://scenes/hex.tscn" id="2_f1kye"]
 [ext_resource type="Script" path="res://scripts/CameraController.gd" id="3_45lbt"]
 [ext_resource type="Script" path="res://scripts/MapService.gd" id="4_c8qbf"]
-[ext_resource type="PackedScene" uid="uid://dqhgdug3c7dcl" path="res://scenes/hexCursor.tscn" id="6_blydh"]
+[ext_resource type="PackedScene" uid="uid://dqhgdug3c7dcl" path="res://scenes/Editor/hexCursor.tscn" id="6_blydh"]
 [ext_resource type="Script" path="res://scripts/EditorService.gd" id="6_s2usr"]
 [ext_resource type="PackedScene" uid="uid://cqrax0qwe1dq3" path="res://scenes/settlement.tscn" id="7_puklf"]
-[ext_resource type="PackedScene" uid="uid://cther6q38cub5" path="res://scenes/EditorUI.tscn" id="8_274qo"]
+[ext_resource type="PackedScene" uid="uid://cther6q38cub5" path="res://scenes/Editor/EditorUI.tscn" id="8_274qo"]
 
 [node name="Main" type="Node2D"]
 
