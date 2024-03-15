@@ -20,7 +20,8 @@ func _ready() -> void:
 
 func start_generation(world_dict: Dictionary) -> void:
 	generate_grid(world_dict)
-	apply_on_all_hexes(world_dict, refresh_hex_rivers)
+	#apply_on_all_hexes(world_dict, refresh_hex_rivers)
+	generate_rivers(world_dict)
 	loaded = true
 	
 func hex_clicked(hex: Hex):
@@ -55,6 +56,8 @@ func place_hex(hex_data: Dictionary, r: int, q: int) -> Hex:
 	hex.q = q
 	hex.r = r 
 	hex.name = "Hex (r %s, q %s)" % [r,q] 
+	if hex_data.has("rivers"):
+		hex.rivers = hex_data["rivers"]
 	hex_data["ref"] = hex
 	return hex
 	
@@ -94,6 +97,8 @@ func place_settlement(settlement_data: Dictionary, hex: Hex) -> Settlement:
 	return settlement
 
 func generate_rivers(world_dict: Dictionary):
+	for river in rivers.get_children():
+		river.queue_free()
 	for r: int in len(world_dict["map_data"])-1:
 		if world_dict["map_data"][r].is_empty():
 			continue

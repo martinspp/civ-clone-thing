@@ -94,6 +94,7 @@ func add_river(hex: Hex, side: Hex.side_flag) -> bool:
 		var neighbour_hex: Hex = get_neighbouring_hex(world_dict["map_data"][hex.r][hex.q]["ref"],side)
 		if neighbour_hex:
 			neighbour_hex.rivers = neighbour_hex.rivers | 2**Hex.inverse_side_lut[Hex.get_side_index(side)]
+			world_dict["map_data"][neighbour_hex.r][neighbour_hex.q]["rivers"] = neighbour_hex.rivers
 	return true
 	
 func remove_river(hex: Hex, side: Hex.side_flag) -> void:
@@ -102,6 +103,7 @@ func remove_river(hex: Hex, side: Hex.side_flag) -> void:
 	var neighbour_hex: Hex = get_neighbouring_hex(world_dict["map_data"][hex.r][hex.q]["ref"],side)
 	if neighbour_hex:
 		neighbour_hex.rivers = ~(~neighbour_hex.rivers | 2**Hex.inverse_side_lut[Hex.get_side_index(side)])
+		world_dict["map_data"][neighbour_hex.r][neighbour_hex.q]["rivers"] = neighbour_hex.rivers
 	
 func get_neighbouring_hex(hex: Hex, side: Hex.side_flag) -> Hex:
 	var side_coord := Hex.get_side_index(side)
@@ -117,4 +119,4 @@ func _on_editor_ui_map_save_load(action: String) -> void:
 		save_map("res://maps/bleh.json")
 	if action == "load":
 		load_from_file("res://maps/bleh.json")
-		GameStateService.world_manager.generate_grid(world_dict)
+		GameStateService.world_manager.start_generation(world_dict)
