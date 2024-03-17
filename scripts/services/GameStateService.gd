@@ -6,6 +6,7 @@ var editor_service: EditorService
 var map_service: MapService
 var world_manager: WorldManager
 var game_service: GameService
+var camera: CameraController
 
 var settlement_registy: Array[Settlement]
 var player_registry: Array[Player]

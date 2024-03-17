@@ -49,9 +49,10 @@ var hex_type: HexType
 static var world: WorldManager
 
 var settlement: Settlement
+@onready var units: Array[Unit] = []
 
-var _q: int = INF
-var _r: int = INF
+var _q: int = -999
+var _r: int = -999
 
 var q:
 	get:

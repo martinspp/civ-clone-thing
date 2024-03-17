@@ -9,9 +9,13 @@ class_name PlayUI
 
 
 func _ready() -> void:
-	PlayEventBus.connect("update_gold", _update_gold)
-	PlayEventBus.connect("update_turn", _update_round)
-	end_turn_button.connect("pressed", _end_turn_button)
+	PlayEventBus.update_gold.connect(_update_gold)
+	PlayEventBus.update_turn.connect( _update_round)
+	end_turn_button.pressed.connect( _end_turn_button)
+
+	PlayEventBus.settlement_highlighted.connect(_highlight_settlement)
+	PlayEventBus.settlement_unhighlighted.connect(_unhighlight_settlement)
+
 
 func _update_gold(amnt: int) -> void:
 	gold_value_label.text = str(amnt)
@@ -23,3 +27,8 @@ func _end_turn_button() -> void:
 	PlayEventBus.end_turn.emit()
 
 
+func _highlight_settlement(settlement: Settlement) -> void:
+	GameStateService.camera.focus_settlement(settlement.global_position,Vector2(2,2))
+
+func _unhighlight_settlement() -> void:
+	GameStateService.camera.unfocus_settlement()

@@ -1,5 +1,7 @@
 extends Camera2D
 
+class_name CameraController
+
 var camera_speed:int = 500
 
 var pan_point
@@ -9,12 +11,10 @@ var pan_point
 @onready var target_zoom := Vector2(1,1)
 
 func _ready() -> void:
-	pass
+	GameStateService.camera = self
 
 func _process(delta: float) -> void:
-	if is_focusing:
-		focusing(delta)
-	else:
+	if !is_focusing:
 		if Input.is_action_pressed("ui_down"):
 			self.position.y += camera_speed * delta
 		if Input.is_action_pressed("ui_up"):
@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 			self.position.x -= camera_speed * delta
 		if Input.is_action_pressed("ui_right"):
 			self.position.x += camera_speed * delta
-		
+
 		if Input.is_action_just_pressed('move_map'):
 			pan_point = get_global_mouse_position()
 		if Input.is_action_pressed('move_map') && pan_point:
@@ -33,11 +33,10 @@ func _process(delta: float) -> void:
 			pan_point = null
 
 		if Input.is_action_just_released("zoom_in"):
-			target_zoom += step_zoom
+			zoom += step_zoom
 		if Input.is_action_just_released("zoom_out"):
-			target_zoom -= step_zoom
-		target_zoom = clamp(target_zoom,min_zoom,max_zoom)
-		self.zoom = target_zoom	
+			zoom -= step_zoom
+	zoom = clamp(zoom,min_zoom,max_zoom)
 	
 var start_focus_point: Vector2
 var end_focus_point: Vector2
@@ -48,23 +47,17 @@ var end_focus_zoom: float
 var is_focusing := false
 var focus_progress: float = 0
 
-func focus(point: Vector2, zoom: float):
-	start_focus_point = position
-	start_focus_zoom = zoom
-	
-	end_focus_point = point
-	end_focus_zoom = zoom
+func focus_settlement(point: Vector2, focus_zoom: Vector2):
 	is_focusing = true
+
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "position", point, 0.75).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	tween.parallel().tween_property(self, "zoom", focus_zoom, 0.75).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+	#tween.tween_callback(unfocus_settlement)
 	
-	focus_progress = 0
-	
-func focusing(delta: float):
-	position.x = lerpf(start_focus_point.x, end_focus_point.x, focus_progress)
-	position.y = lerpf(start_focus_point.y, end_focus_point.y, focus_progress)
-	if focus_progress < 1:
-		focus_progress += delta
-	
-func unfocus():
+func unfocus_settlement():
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "zoom", Vector2(1,1), 0.2).set_ease(Tween.EASE_IN_OUT)
 	is_focusing = false
  
 
