@@ -83,7 +83,7 @@ func get_settlement_by_hex(hex: Hex) -> Settlement:
 	else:
 		return null
 #endregion
-
+#region river
 func add_river(hex: Hex, side: Hex.side_flag) -> bool:
 	if hex.rivers & side:
 		print("River already set")
@@ -104,7 +104,8 @@ func remove_river(hex: Hex, side: Hex.side_flag) -> void:
 	if neighbour_hex:
 		neighbour_hex.rivers = ~(~neighbour_hex.rivers | 2**Hex.inverse_side_lut[Hex.get_side_index(side)])
 		world_dict["map_data"][neighbour_hex.r][neighbour_hex.q]["rivers"] = neighbour_hex.rivers
-	
+#endregion
+
 func get_neighbouring_hex(hex: Hex, side: Hex.side_flag) -> Hex:
 	var side_coord := Hex.get_side_index(side)
 	var new_r: int = hex.r+axial_direction_vectors[side_coord][0]

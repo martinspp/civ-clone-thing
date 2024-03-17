@@ -11,6 +11,9 @@ var camera: CameraController
 var settlement_registy: Array[Settlement]
 var player_registry: Array[Player]
 
+func _ready() -> void:
+	randomize()
+
 func start_game() -> Dictionary:
 	var ret_msg = {"msg": "", "success": false}
 	if world_manager.hexes.get_child_count() < 2:

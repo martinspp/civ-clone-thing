@@ -83,7 +83,7 @@ func set_hex_type(type: String):
 		hex_type = load("res://resources/HexTypes/delete.tres")
 	sprite.texture = hex_type.world_sprite
 
-func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		if GameStateService.current_state == GameStateService.game_states.EDITOR:
 			handle_editor_click(event)
@@ -104,8 +104,7 @@ func _on_mouse_entered() -> void:
 	if GameStateService.current_state == GameStateService.game_states.EDITOR:
 		GameStateService.editor_service.move_editor_cursor(self)
 
-func get_sextant_clicked(event: InputEventMouse) -> side_flag:
-	var camera: Camera2D = get_viewport().get_camera_2d()
+func get_sextant_clicked(_event: InputEventMouse) -> side_flag:
 	var side_angle = rad_to_deg(global_position.angle_to_point(get_global_mouse_position()))+90 # 0 is horizontal right
 	if side_angle < 0:
 		side_angle += 359 # help
