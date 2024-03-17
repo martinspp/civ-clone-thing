@@ -8,6 +8,7 @@ class_name Settlement
 @onready var settlement_name_label: Label = %SettlementNameLabel
 @onready var settlement_name_label_selected: Label = %SettlementNameLabel_Copy
 
+
 @onready var settlement_data: SettlementData = SettlementData.new()
 @onready var parent_hex: Hex = get_parent() as Hex
 

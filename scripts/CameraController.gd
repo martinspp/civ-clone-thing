@@ -53,7 +53,6 @@ func focus_settlement(point: Vector2, focus_zoom: Vector2):
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "position", point, 0.75).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	tween.parallel().tween_property(self, "zoom", focus_zoom, 0.75).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
-	#tween.tween_callback(unfocus_settlement)
 	
 func unfocus_settlement():
 	var tween = get_tree().create_tween()

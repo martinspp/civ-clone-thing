@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameStateService="*res://scripts/services/GameStateService.gd"
 PlayEventBus="*res://scripts/services/PlayEventBus.gd"
+ResourceRegistry="*res://scripts/services/ResourceRegistry.gd"
 
 [file_customization]
 

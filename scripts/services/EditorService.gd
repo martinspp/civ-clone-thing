@@ -10,10 +10,10 @@ static var selected_type: String = "grass"
 static var selected_settlement: Settlement
 
 func _ready() -> void:
+	GameStateService.editor_service = self
 	cursor = hex_scene.instantiate()
 	GameStateService.world_manager.hexes.add_child(cursor)
 	cursor.set_cursor_type(selected_type)
-	GameStateService.editor_service = self
 	editor_ui = editor_ui_scene.instantiate()
 	$"../CanvasLayer".add_child(editor_ui)
 	
@@ -29,7 +29,7 @@ func hex_clicked(hex: Hex, event: InputEvent):
 	if selected_type == "settlement":
 		GameStateService.map_service.add_settlement(hex, null)
 	elif selected_type == "select":
-		var selected_settlement = GameStateService.map_service.get_settlement_by_hex(hex)
+		selected_settlement = GameStateService.map_service.get_settlement_by_hex(hex)
 		if selected_settlement != null:
 			editor_ui.set_settlement_info(selected_settlement)
 	elif selected_type == "river":

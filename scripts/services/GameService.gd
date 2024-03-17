@@ -12,10 +12,9 @@ func _ready() -> void:
 	play_ui = play_ui_scene.instantiate()
 	$"../CanvasLayer".add_child(play_ui)
 	PlayEventBus.hex_clicked.connect(hex_click_event)
-	PlayEventBus.settlement_unhighlighted.connect(func(): selected_object = null)
+	PlayEventBus.settlement_unhighlighted.connect(unselect_settlement)
 
 func hex_click_event(hex: Hex, event: InputEvent):
-	# Check if hex has a settlement, if it does, check if we are over it.
 	if hex.units.size() > 0:
 		unit_clicked(hex.units[0], event)
 		
@@ -31,9 +30,24 @@ func hex_clicked(hex: Hex, event: InputEvent):
 
 func unit_clicked(unit: Unit, event: InputEvent):
 	selected_object = unit
-	
+
 func settlement_clicked(settlement: Settlement, event: InputEvent):
 	if (event as InputEventMouseButton).double_click == true:
-		selected_object = settlement
-		PlayEventBus.settlement_highlighted.emit(settlement)
-		settlement.select()
+		# Something else is already selected, should defocus
+		if selected_object != null && (selected_object != settlement) && selected_object is Settlement:
+			unselect_settlement()
+			select_settlement(settlement)
+		elif selected_object == settlement:
+			return
+		else:
+			select_settlement(settlement)
+
+func select_settlement(settlement: Settlement) -> void:
+	selected_object = settlement
+	PlayEventBus.settlement_highlighted.emit(settlement)
+	settlement.select()
+
+func unselect_settlement() -> void:
+	#PlayEventBus.settlement_unhighlighted.emit()
+	selected_object.unselect()
+	selected_object = null
