@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cther6q38cub5"]
 
-[ext_resource type="Script" path="res://scripts/EditorUI.gd" id="1_edcfj"]
+[ext_resource type="Script" path="res://scripts/ui/EditorUI.gd" id="1_edcfj"]
 
 [node name="EditorUI" type="Container"]
 anchors_preset = 15

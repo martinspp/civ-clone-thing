@@ -3,8 +3,9 @@
 [ext_resource type="Script" path="res://scripts/Hex.gd" id="1_4ullu"]
 [ext_resource type="Texture2D" uid="uid://cfinei4vv7t42" path="res://sprites/hex/tileGrass.png" id="2_w4ssm"]
 
-[node name="Hex" type="Area2D"]
+[node name="Hex" type="Area2D" node_paths=PackedStringArray("collision")]
 script = ExtResource("1_4ullu")
+collision = NodePath("CollisionPolygon2D")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-64, -32, 0, -64, 64, -32, 64, 32, 0, 64, -64, 32)
@@ -13,10 +14,6 @@ polygon = PackedVector2Array(-64, -32, 0, -64, 64, -32, 64, 32, 0, 64, -64, 32)
 position = Vector2(9.59635e-06, 23.0269)
 scale = Vector2(1.96923, 1.96923)
 texture = ExtResource("2_w4ssm")
-
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

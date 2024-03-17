@@ -7,6 +7,8 @@ class_name WorldManager
 
 @onready var hexes: Node = Node.new()
 @onready var rivers: Node = Node.new()
+@onready var units: Node = Node.new()
+@onready var decors: Node = Node.new()
 
 var loaded = false
 
@@ -15,8 +17,13 @@ func _ready() -> void:
 	Hex.world = self
 	hexes.name = "Hexes"
 	rivers.name = "Rivers"
+	units.name = "Units"
+	decors.name = "Decors"
 	add_child(hexes)
 	add_child(rivers)
+	add_child(units)
+	add_child(decors)
+	
 
 func start_generation(world_dict: Dictionary) -> void:
 	generate_grid(world_dict)

@@ -113,6 +113,8 @@ func get_neighbouring_hex(hex: Hex, side: Hex.side_flag) -> Hex:
 		return world_dict["map_data"][new_r][new_q]["ref"]
 	return null
 
+func add_unit(hex: Hex, unit: Unit) -> void:
+	pass
 	
 func _on_editor_ui_map_save_load(action: String) -> void:
 	if action == "save":

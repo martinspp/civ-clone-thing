@@ -1,4 +1,4 @@
-extends Node2D
+extends Area2D
 
 class_name Hex
 
@@ -44,7 +44,11 @@ static func get_side_index(side: side_flag) -> int:
 var hex_type: HexType
 @onready var rivers: int = 0
 
+@export var collision: CollisionPolygon2D
+
 static var world: WorldManager
+
+var settlement: Settlement
 
 var _q: int = INF
 var _r: int = INF
@@ -79,18 +83,25 @@ func set_hex_type(type: String):
 	sprite.texture = hex_type.world_sprite
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	$Label.text = int2bin(rivers)
 	if event is InputEventMouseButton:
 		if GameStateService.current_state == GameStateService.game_states.EDITOR:
-			if event.button_index == 1 && event.pressed == true:
-				GameStateService.editor_service.hex_clicked(self, event)
-			if event.button_index == 2 && event.pressed == true:
-				GameStateService.editor_service.hex_alt_clicked(self, event)
+			handle_editor_click(event)
+		if GameStateService.current_state == GameStateService.game_states.PLAY:
+			handle_play_click(event)
 
+func handle_editor_click(event: InputEvent):
+	if event.button_index == 1 && event.pressed == true:
+		GameStateService.editor_service.hex_clicked(self, event)
+	if event.button_index == 2 && event.pressed == true:
+		GameStateService.editor_service.hex_alt_clicked(self, event)
+		
+func handle_play_click(event: InputEvent):
+	if event.button_index == 1 && event.pressed == true:
+		PlayEventBus.emit_signal("hex_clicked",self,event)
+	
 func _on_mouse_entered() -> void:
 	if GameStateService.current_state == GameStateService.game_states.EDITOR:
 		GameStateService.editor_service.move_editor_cursor(self)
-	$Label.text = int2bin(rivers)
 
 func get_sextant_clicked(event: InputEventMouse) -> side_flag:
 	var camera: Camera2D = get_viewport().get_camera_2d()

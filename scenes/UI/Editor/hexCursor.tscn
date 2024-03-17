@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dqhgdug3c7dcl"]
 
-[ext_resource type="Script" path="res://scripts/HexCursor.gd" id="1_j60mh"]
+[ext_resource type="Script" path="res://scripts/ui/HexCursor.gd" id="1_j60mh"]
 [ext_resource type="Texture2D" uid="uid://btys55s2wby8y" path="res://sprites/hex/tileDelete.png" id="2_l4i2v"]
 
 [node name="HexCursor" type="Node2D"]

@@ -15,6 +15,7 @@ texture = ExtResource("2_vg2h3")
 polygon = PackedVector2Array(-40, -26, 0, -46, 40, -26, 40, 27, 0, 46, -40, 26)
 
 [node name="Label" type="Label" parent="."]
+z_index = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -30,4 +31,3 @@ size_flags_horizontal = 4
 horizontal_alignment = 1
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
-[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
