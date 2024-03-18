@@ -4,6 +4,11 @@ class_name EditorUI
 
 var type_selected: HexType
 
+@export var hextypes_itemlist: ItemList
+@export var units_itemlist: ItemList
+@export var other_itemlist: ItemList
+@export var actions_itemlist: ItemList
+
 @onready var settlement_data: HBoxContainer = $VBoxContainer/settlement_data
 
 signal type_changed(String)
@@ -14,9 +19,8 @@ func _ready() -> void:
 	type_changed.connect(GameStateService.editor_service._on_editor_ui_type_changed)
 	map_save_load.connect(GameStateService.map_service._on_editor_ui_map_save_load)
 	start_game.connect(GameStateService.start_game)
-	
-func _on_type_selected(type: String) -> void:
-	type_changed.emit(type)
+
+	_populate_itemboxes()
 	
 func _on_map_action(action: String) -> void:
 	map_save_load.emit(action)
@@ -34,9 +38,52 @@ func set_settlement_info(settlement: Settlement) -> void:
 func _close_settlement_data() -> void:
 	settlement_data.set_visible(false)
 	
-func _process(delta: float) -> void:
-	pass
-	#var cameratrans := get_viewport().get_camera_2d().get_transform()
-	#$VBoxContainer/VBoxContainer/HBoxContainer/globalMouse.text = str(get_global_mouse_position() cameratrans)
-	#$VBoxContainer/VBoxContainer/HBoxContainer2/globalMouse.text = str(GameStateService.adjusted_mouse_pos)
-	#$VBoxContainer/VBoxContainer/HBoxContainer3/globalMouse
+func _populate_itemboxes() -> void:
+	hextypes_itemlist.clear()
+	for hextype in ResourceRegistry.hex_type_registry:
+		hextypes_itemlist.add_item(hextype.data_name)
+	
+	units_itemlist.clear()
+	for unit_data in ResourceRegistry.unit_data_registry:
+		units_itemlist.add_item(unit_data.unit_name)
+
+func unhighlight_lists():
+	hextypes_itemlist.deselect_all()
+	units_itemlist.deselect_all()
+	other_itemlist.deselect_all()
+	actions_itemlist.deselect_all()
+
+func _on_hextypes_item_clicked(index:int, _at_position:Vector2, _mouse_button_index:int) -> void:
+	unhighlight_lists()
+	type_changed.emit(ResourceRegistry.hex_type_registry[index].data_name)
+
+func _on_actions_item_clicked(index:int, _at_position:Vector2, _mouse_button_index:int) -> void:
+	unhighlight_lists()
+	match index:
+		0:
+			print("select")
+		1:
+			map_save_load.emit("save")
+		2:
+			map_save_load.emit("load")
+		3:	
+			start_game.emit()
+		_:
+			print("unkown action")
+
+
+func _on_other_item_clicked(index:int, _at_position:Vector2, _mouse_button_index:int) -> void:
+	unhighlight_lists()
+	match index:
+		0:
+			type_changed.emit("settlement")
+		1:
+			type_changed.emit("river")
+		_:
+			print("unkown other item")
+
+
+func _on_units_item_clicked(index:int, _at_position:Vector2, _mouse_button_index:int) -> void:
+	unhighlight_lists()
+	print("not implemented")
+

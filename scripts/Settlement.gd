@@ -12,6 +12,8 @@ class_name Settlement
 @onready var settlement_data: SettlementData = SettlementData.new()
 @onready var parent_hex: Hex = get_parent() as Hex
 
+var player: Player
+
 func _ready() -> void:
 	settlement_name_label.text = settlement_data.settlement_name
 	settlement_name_label_selected.text = settlement_data.settlement_name
