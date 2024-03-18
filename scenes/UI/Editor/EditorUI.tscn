@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cther6q38cub5"]
+[gd_scene load_steps=5 format=3 uid="uid://cther6q38cub5"]
 
 [ext_resource type="Script" path="res://scripts/ui/EditorUI.gd" id="1_edcfj"]
 
@@ -7,8 +7,6 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_p85c5"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7jekc"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_id1qr"]
 
 [node name="EditorUI" type="Container" node_paths=PackedStringArray("hextypes_itemlist", "units_itemlist", "other_itemlist", "actions_itemlist")]
 anchors_preset = 15
@@ -88,14 +86,10 @@ allow_search = false
 auto_height = true
 text_overrun_behavior = 0
 item_count = 4
-item_0/text = "Select"
-item_0/icon = SubResource("PlaceholderTexture2D_0xvhp")
-item_1/text = "Save"
-item_1/icon = SubResource("PlaceholderTexture2D_p85c5")
-item_2/text = "Load"
-item_2/icon = SubResource("PlaceholderTexture2D_7jekc")
-item_3/text = "Start Game"
-item_3/icon = SubResource("PlaceholderTexture2D_id1qr")
+item_0/text = "🔍Select"
+item_1/text = "💾Save"
+item_2/text = "🔄Load"
+item_3/text = " ▶️ Start Game"
 
 [node name="HSeparator" type="HSeparator" parent="Panel/VBoxContainer"]
 layout_mode = 2

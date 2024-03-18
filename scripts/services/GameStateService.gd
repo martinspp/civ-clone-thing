@@ -14,11 +14,16 @@ var player_registry: Array[Player]
 func _ready() -> void:
 	randomize()
 
+func add_player(player_name: String) -> void:
+	var new_player: Player = Player.new(name, null, null)
+	player_registry.append(new_player)
+	
+
 func start_game() -> Dictionary:
-	var ret_msg = {"msg": "", "success": false}
+	#var ret_msg = {"msg": "", "success": false}
 	if world_manager.hexes.get_child_count() < 2:
 		return {"msg": "map is not loaded", "success": false}
-		
+	
 	# Check if players set 
 	editor_service.queue_free()
 	editor_service = null
@@ -28,6 +33,5 @@ func start_game() -> Dictionary:
 	game_service.set_name("GameService")
 	get_node("/root/Main").add_child(game_service)
 	
-	ret_msg = {"msg": "", "success": true}
-	return ret_msg
+	return {"msg": "", "success": true}
 	

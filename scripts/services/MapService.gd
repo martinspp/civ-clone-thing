@@ -5,8 +5,8 @@ class_name MapService
 var world_dict: Dictionary
 var axial_direction_vectors = [
 	[-1,1],[0,1],[1,0],
-	[1,-1],[0,-1],[-1,0]
-]
+	[1,-1],[0,-1],[-1,0]]
+	
 func _ready() -> void:
 	GameStateService.map_service = self
 
