@@ -35,3 +35,9 @@ func start_game() -> Dictionary:
 	
 	return {"msg": "", "success": true}
 	
+
+func get_settlement_by_id(id: int) -> Settlement:
+	for s in settlement_registy:
+		if s.id == id:
+			return s
+	return null

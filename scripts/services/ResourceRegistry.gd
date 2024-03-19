@@ -26,3 +26,10 @@ func register_building_data(building: BuildingData):
 
 func register_unit_data(unit: UnitData):
     pass
+
+
+func get_research_by_name(name: String) -> ResearchData:
+    for r in research_regsistry:
+        if r.research_name == name:
+            return r
+    return null
