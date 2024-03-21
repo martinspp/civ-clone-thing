@@ -24,7 +24,11 @@ func add_player_box(new_player: Player):
 		player_box_list.move_child(new_player_box, new_box_index)
 
 func _on_button_pressed() -> void:
+		if %PlayerName.text == "":
+			return
 		var new_player: Player = Player.new(%PlayerName.text, null, %ColorPickerButton.color)
+		%PlayerName.text = ""
+		%ColorPickerButton.color = Color.WHITE
 		GameStateService.data_service.add_update_player(new_player)
 		add_player_box(new_player)
 		
