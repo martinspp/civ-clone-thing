@@ -87,7 +87,7 @@ func refresh_hex_rivers(world_dict: Dictionary, hex: Hex):
 		if river.get_meta("q") == hex.q && river.get_meta("r") == hex.r:
 			river.queue_free()
 	for side in Hex.side_flag.values():
-		var n_hex: Hex = GameStateService.map_service.get_neighbouring_hex(hex, side)
+		var n_hex: Hex = GameStateService.data_service.get_neighbouring_hex(hex, side)
 		if n_hex:
 			for river in rivers.get_children():
 				if river.get_meta("q") == n_hex.q && river.get_meta("r") == n_hex.r && (river.get_meta("side") == 2** Hex.inverse_side_lut[Hex.get_side_index(side)]):

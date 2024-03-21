@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://blgtvxhpfkcnf"]
+
+[ext_resource type="Script" path="res://scripts/ui/PlayerMenu.gd" id="1_wefww"]
+[ext_resource type="PackedScene" uid="uid://boic2gi5rnwi2" path="res://scenes/UI/Editor/PlayerBox.tscn" id="2_56en8"]
+
+[node name="PlayerMenu" type="VBoxContainer" node_paths=PackedStringArray("player_box_list")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+script = ExtResource("1_wefww")
+player_box_scene = ExtResource("2_56en8")
+player_box_list = NodePath("PanelContainer2/VBoxContainer")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer"]
+layout_mode = 2
+text = "Players"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="."]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer2"]
+layout_mode = 2
+
+[node name="Hbox" type="HBoxContainer" parent="PanelContainer2/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="PlayerName" type="LineEdit" parent="PanelContainer2/VBoxContainer/Hbox"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+placeholder_text = "Player Name"
+alignment = 3
+max_length = 15
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="PanelContainer2/VBoxContainer/Hbox"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+text = "Color"
+color = Color(1, 1, 1, 1)
+
+[node name="Button" type="Button" parent="PanelContainer2/VBoxContainer/Hbox"]
+layout_mode = 2
+text = "Add Player"
+
+[connection signal="pressed" from="PanelContainer2/VBoxContainer/Hbox/Button" to="." method="_on_button_pressed"]

@@ -30,6 +30,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="SelectedUI" type="Control" parent="SettlementUI"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -150,18 +151,21 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SettlementUI/WorldUI"]
+[node name="Panel" type="PanelContainer" parent="SettlementUI/WorldUI"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -43.0
-offset_right = 43.0
-offset_bottom = 40.0
+offset_left = -45.0
+offset_right = 45.0
+offset_bottom = 50.0
 grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettlementUI/WorldUI/Panel"]
+layout_mode = 2
 mouse_filter = 2
 
-[node name="SettlementNameLabel" type="Label" parent="SettlementUI/WorldUI/VBoxContainer"]
+[node name="SettlementNameLabel" type="Label" parent="SettlementUI/WorldUI/Panel/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -169,25 +173,25 @@ text = "Settlement "
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SettlementUI/WorldUI/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="SettlementUI/WorldUI/Panel/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SettlementUI/WorldUI/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="SettlementUI/WorldUI/Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "🍏:"
 
-[node name="GrowthLabel" type="Label" parent="SettlementUI/WorldUI/VBoxContainer/HBoxContainer"]
+[node name="GrowthLabel" type="Label" parent="SettlementUI/WorldUI/Panel/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 auto_translate_mode = 1
 layout_mode = 2
 text = "0"
 
-[node name="Label2" type="Label" parent="SettlementUI/WorldUI/VBoxContainer/HBoxContainer"]
+[node name="Label2" type="Label" parent="SettlementUI/WorldUI/Panel/VBoxContainer/HBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
 text = "🧑:"
 
-[node name="PopulationLabel" type="Label" parent="SettlementUI/WorldUI/VBoxContainer/HBoxContainer"]
+[node name="PopulationLabel" type="Label" parent="SettlementUI/WorldUI/Panel/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 auto_translate_mode = 1
 layout_mode = 2

@@ -1,6 +1,7 @@
 extends Node
 
-class_name MapService
+# Data Service should be the only class that directly interacts with world_dict
+class_name DataService
 
 var world_dict: Dictionary
 var axial_direction_vectors = [
@@ -8,7 +9,7 @@ var axial_direction_vectors = [
 	[1,-1],[0,-1],[-1,0]]
 	
 func _ready() -> void:
-	GameStateService.map_service = self
+	GameStateService.data_service = self
 
 #fuck this
 func generate_land(_height: int, _width: int) -> Array:
@@ -35,7 +36,7 @@ func load_from_file(path: String) -> bool:
 	
 func save_map(path: String) -> void:
 	var file: FileAccess = FileAccess.open(path,FileAccess.WRITE)
-	var world_dict_clean = world_dict.duplicate(true)
+	var world_dict_clean :Dictionary = world_dict.duplicate(true)
 	# Need to remove godot references from dict
 	for r: int in len(world_dict_clean["map_data"]):
 		if world_dict["map_data"][r].is_empty():
@@ -123,3 +124,29 @@ func _on_editor_ui_map_save_load(action: String) -> void:
 	if action == "load":
 		load_from_file("res://maps/bleh.json")
 		GameStateService.world_manager.start_generation(world_dict)
+		load_players()
+		GameStateService.editor_service.player_menu.populate_list()
+		
+
+func load_players() -> void:
+	for player in world_dict["player_data"]["players"]:
+		var new_player = Player.new("foobar", null, null)
+		new_player.deserialize(world_dict["player_data"]["players"][player])
+		add_update_player(new_player)
+	print(world_dict["player_data"]["players"])
+
+
+func add_update_player(player: Player) -> void:
+	world_dict["player_data"]["players"][str(player.id)] = player.serialize()
+
+func remove_player(player_id: int) -> void:
+	world_dict["player_data"]["players"].erase(str(player_id))
+
+func get_player_by_id(player_id: int) -> Player:
+	return world_dict["player_data"]["players"][str(player_id)]["ref"]
+
+func get_all_players() -> Array[Player]:
+	var ret: Array[Player] = []
+	for p in world_dict["player_data"]["players"]:
+		ret.append(world_dict["player_data"]["players"][p]["ref"])
+	return ret

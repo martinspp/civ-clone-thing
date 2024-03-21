@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://boic2gi5rnwi2"]
+
+[ext_resource type="Script" path="res://scripts/ui/PlayerBox.gd" id="1_ij7nl"]
+
+[node name="PlayerBox" type="PanelContainer" node_paths=PackedStringArray("player_id", "player_name", "color_picker", "settlement_count", "research_count")]
+auto_translate_mode = 1
+script = ExtResource("1_ij7nl")
+player_id = NodePath("Vbox/PlayerID")
+player_name = NodePath("Vbox/PlayerName")
+color_picker = NodePath("Vbox/ColorPickerButton")
+settlement_count = NodePath("Vbox/SettlementCount")
+research_count = NodePath("Vbox/ResearchCount")
+
+[node name="Vbox" type="HBoxContainer" parent="."]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Vbox"]
+layout_mode = 2
+text = "X"
+
+[node name="PlayerID" type="Label" parent="Vbox"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "1"
+
+[node name="PlayerName" type="Label" parent="Vbox"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "Player1"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="Vbox"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "Color"
+color = Color(1, 1, 1, 1)
+
+[node name="SettlementCount" type="Label" parent="Vbox"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "0"
+
+[node name="ResearchCount" type="Label" parent="Vbox"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "0"
+
+[connection signal="pressed" from="Vbox/Button" to="." method="_on_button_pressed"]

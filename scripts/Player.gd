@@ -15,9 +15,20 @@ func _init(_player_name: String, _id, _color) -> void:
     player_name = _player_name
 
 func deserialize(data: Dictionary) -> void:
-    id = data["id"]
-    player_name = data["player_name"]
-    color = Color(data["color"][0],data["color"][1],data["color"][2])
+    if data.has("id"):
+        id = data["id"]
+    else:
+        id = randi()
+
+    if data.has("player_name"):
+        player_name = data["player_name"]
+    else:
+        player_name = str(id)
+    
+    if data.has("color"):
+        color = Color(data["color"][0],data["color"][1],data["color"][2])
+    else:
+        color = Color.BLACK
     for r in data["researches"]:
         var research_data := ResourceRegistry.get_research_by_name(r)
         if research_data:
@@ -40,11 +51,12 @@ func serialize() -> Dictionary:
         researches.append(r.research_name)
     for s in owned_settlements:
         settlement_ids.append(s.id)
+    print("set %s" % str(self))
     return {
         "id": id,
         "player_name": player_name,
         "color": [color.r, color.g, color.b],
         "researches": researches,
-        "settlements": settlement_ids
-
+        "settlements": settlement_ids,
+        "ref": self
     }

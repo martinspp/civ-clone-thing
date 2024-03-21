@@ -3,26 +3,25 @@ extends Node
 enum game_states {EDITOR, PLAY}
 @onready var current_state = game_states.EDITOR
 var editor_service: EditorService
-var map_service: MapService
+var data_service: DataService
 var world_manager: WorldManager
 var game_service: GameService
 var camera: CameraController
 
 var settlement_registy: Array[Settlement]
-var player_registry: Array[Player]
+#var player_registry: Array[Player]
 
 func _ready() -> void:
 	randomize()
-
-func add_player(player_name: String) -> void:
-	var new_player: Player = Player.new(name, null, null)
-	player_registry.append(new_player)
 	
 
 func start_game() -> Dictionary:
 	#var ret_msg = {"msg": "", "success": false}
 	if world_manager.hexes.get_child_count() < 2:
 		return {"msg": "map is not loaded", "success": false}
+	if data_service.world_dict.has("player_data") && data_service.world_dict["player_data"].has("players"):
+		for player in data_service.world_dict["player_data"]["players"]:
+			print("Player name: %s  id: %s " % [data_service.world_dict["player_data"]["players"][player]["player_name"], data_service.world_dict["player_data"]["players"][player]["id"]])
 	
 	# Check if players set 
 	editor_service.queue_free()
@@ -41,3 +40,14 @@ func get_settlement_by_id(id: int) -> Settlement:
 		if s.id == id:
 			return s
 	return null
+
+#func get_player_by_id(id: int) -> Player:
+#	for p in player_registry:
+#		if p.id == id:
+#			return p
+#	return null
+#
+#func remove_player_by_id(id: int) -> void:
+#	for p in player_registry:
+#		if p.id == id:
+#			player_registry.erase(p)

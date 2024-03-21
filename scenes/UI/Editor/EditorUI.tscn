@@ -8,12 +8,9 @@
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7jekc"]
 
-[node name="EditorUI" type="Container" node_paths=PackedStringArray("hextypes_itemlist", "units_itemlist", "other_itemlist", "actions_itemlist")]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="EditorUI" type="VBoxContainer" node_paths=PackedStringArray("hextypes_itemlist", "units_itemlist", "other_itemlist", "actions_itemlist", "settlement_data", "seperator", "settlement_name", "settlement_pop", "settlement_progress", "settlement_influence")]
+offset_right = 383.0
+offset_bottom = 178.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 script = ExtResource("1_edcfj")
@@ -21,9 +18,16 @@ hextypes_itemlist = NodePath("Panel/VBoxContainer/FlowContainer/hextypes")
 units_itemlist = NodePath("Panel/VBoxContainer/FlowContainer/units")
 other_itemlist = NodePath("Panel/VBoxContainer/FlowContainer/other")
 actions_itemlist = NodePath("Panel/VBoxContainer/FlowContainer/actions")
+settlement_data = NodePath("Panel/VBoxContainer/settlement_data")
+seperator = NodePath("Panel/VBoxContainer/HSeparator")
+settlement_name = NodePath("Panel/VBoxContainer/settlement_data/VBoxContainer/s_name")
+settlement_pop = NodePath("Panel/VBoxContainer/settlement_data/VBoxContainer/s_pop")
+settlement_progress = NodePath("Panel/VBoxContainer/settlement_data/VBoxContainer2/s_progress")
+settlement_influence = NodePath("Panel/VBoxContainer/settlement_data/VBoxContainer2/s_influence")
 
 [node name="Panel" type="PanelContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 2
 size_flags_stretch_ratio = 1.28
 mouse_filter = 1
 
@@ -92,10 +96,10 @@ item_2/text = "🔄Load"
 item_3/text = " ▶️ Start Game"
 
 [node name="HSeparator" type="HSeparator" parent="Panel/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="settlement_data" type="HBoxContainer" parent="Panel/VBoxContainer"]
-visible = false
 layout_mode = 2
 
 [node name="Button" type="Button" parent="Panel/VBoxContainer/settlement_data"]
@@ -122,6 +126,15 @@ layout_mode = 2
 
 [node name="s_influence" type="Label" parent="Panel/VBoxContainer/settlement_data/VBoxContainer2"]
 auto_translate_mode = 1
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel/VBoxContainer/settlement_data"]
+layout_mode = 2
+
+[node name="PlayerName" type="Label" parent="Panel/VBoxContainer/settlement_data/VBoxContainer3"]
+layout_mode = 2
+
+[node name="PlayerColor" type="ColorRect" parent="Panel/VBoxContainer/settlement_data/VBoxContainer3"]
 layout_mode = 2
 
 [connection signal="item_clicked" from="Panel/VBoxContainer/FlowContainer/hextypes" to="." method="_on_hextypes_item_clicked"]

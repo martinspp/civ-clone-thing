@@ -19,6 +19,8 @@ func _ready() -> void:
 	settlement_name_label_selected.text = settlement_data.settlement_name
 	parent_hex.settlement = self
 	selected_ui.visible = false
+	settlement_data.connect("data_updated",update_data)
+	settlement_data.ref = self
 
 func _exit_tree() -> void:
 	parent_hex.settlement = null
@@ -41,3 +43,10 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			if GameStateService.current_state == GameStateService.game_states.PLAY:
 				PlayEventBus.settlement_clicked.emit(self,event)
 
+func update_data():
+	if settlement_data.owned_player:
+		settlement_name_label.modulate = settlement_data.owned_player.color
+		settlement_name_label_selected.modulate = settlement_data.owned_player.color
+	else:
+		settlement_name_label.modulate = Color.BLACK
+		settlement_name_label_selected.modulate = Color.BLACK

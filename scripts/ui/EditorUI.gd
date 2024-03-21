@@ -9,7 +9,13 @@ var type_selected: HexType
 @export var other_itemlist: ItemList
 @export var actions_itemlist: ItemList
 
-@onready var settlement_data: HBoxContainer = $VBoxContainer/settlement_data
+@export var settlement_data: HBoxContainer
+
+@export var seperator: HSeparator
+@export var settlement_name: Label
+@export var settlement_pop: Label
+@export var settlement_progress: Label
+@export var settlement_influence: Label
 
 signal type_changed(String)
 signal map_save_load(String)
@@ -17,26 +23,21 @@ signal start_game()
 
 func _ready() -> void:
 	type_changed.connect(GameStateService.editor_service._on_editor_ui_type_changed)
-	map_save_load.connect(GameStateService.map_service._on_editor_ui_map_save_load)
+	map_save_load.connect(GameStateService.data_service._on_editor_ui_map_save_load)
 	start_game.connect(GameStateService.start_game)
-
 	_populate_itemboxes()
-	
-func _on_map_action(action: String) -> void:
-	map_save_load.emit(action)
-
-func _start_game_action() -> void:
-	start_game.emit()
 
 func set_settlement_info(settlement: Settlement) -> void:
 	settlement_data.set_visible(true)
-	$VBoxContainer/settlement_data/VBoxContainer/s_name.text = settlement.settlement_data.settlement_name
-	$VBoxContainer/settlement_data/VBoxContainer/s_pop.text = str(settlement.settlement_data.pop)
-	$VBoxContainer/settlement_data/VBoxContainer2/s_progress.text = str(settlement.settlement_data.pop_progress)
-	$VBoxContainer/settlement_data/VBoxContainer2/s_influence.text = str(settlement.settlement_data.influence_range)
+	seperator.set_visible(true)
+	settlement_name.text = settlement.settlement_data.settlement_name
+	settlement_pop.text = str(settlement.settlement_data.pop)
+	settlement_progress.text = str(settlement.settlement_data.pop_progress)
+	settlement_influence.text = str(settlement.settlement_data.influence_range)
 
 func _close_settlement_data() -> void:
 	settlement_data.set_visible(false)
+	seperator.set_visible(false)
 	
 func _populate_itemboxes() -> void:
 	hextypes_itemlist.clear()
@@ -61,7 +62,7 @@ func _on_actions_item_clicked(index:int, _at_position:Vector2, _mouse_button_ind
 	unhighlight_lists()
 	match index:
 		0:
-			print("select")
+			type_changed.emit("select")
 		1:
 			map_save_load.emit("save")
 		2:
@@ -83,7 +84,7 @@ func _on_other_item_clicked(index:int, _at_position:Vector2, _mouse_button_index
 			print("unkown other item")
 
 
-func _on_units_item_clicked(index:int, _at_position:Vector2, _mouse_button_index:int) -> void:
+func _on_units_item_clicked(_index:int, _at_position:Vector2, _mouse_button_index:int) -> void:
 	unhighlight_lists()
 	print("not implemented")
 

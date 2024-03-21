@@ -1,0 +1,33 @@
+extends VBoxContainer
+
+class_name PlayerMenu
+
+@export var player_box_scene: PackedScene
+@export var player_box_list: VBoxContainer
+
+func clear_list():
+	for i in player_box_list.get_children():
+		if i is PlayerBox:
+			i.queue_free()
+
+func populate_list():
+	clear_list()
+	for player in GameStateService.data_service.get_all_players():
+		add_player_box(player)
+
+func add_player_box(new_player: Player):
+		var new_player_box : PlayerBox = player_box_scene.instantiate()
+		new_player_box.player_menu = self
+		var new_box_index = player_box_list.get_child_count()-1
+		player_box_list.add_child(new_player_box)
+		new_player_box.update_data(new_player)
+		player_box_list.move_child(new_player_box, new_box_index)
+
+func _on_button_pressed() -> void:
+		var new_player: Player = Player.new(%PlayerName.text, null, %ColorPickerButton.color)
+		GameStateService.data_service.add_update_player(new_player)
+		add_player_box(new_player)
+		
+func remove_player(player_box: PlayerBox):
+	GameStateService.data_service.remove_player(player_box.player_ref.id)
+	populate_list()

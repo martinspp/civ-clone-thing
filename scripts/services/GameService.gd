@@ -13,6 +13,7 @@ func _ready() -> void:
 	$"../CanvasLayer".add_child(play_ui)
 	PlayEventBus.hex_clicked.connect(hex_click_event)
 	PlayEventBus.settlement_unhighlighted.connect(unselect_settlement)
+	
 
 func hex_click_event(hex: Hex, event: InputEvent):
 	if hex.units.size() > 0:
@@ -25,10 +26,10 @@ func hex_click_event(hex: Hex, event: InputEvent):
 		hex_clicked(hex, event)
 
 
-func hex_clicked(hex: Hex, event: InputEvent):
+func hex_clicked(hex: Hex, _event: InputEvent):
 	selected_object = hex
 
-func unit_clicked(unit: Unit, event: InputEvent):
+func unit_clicked(unit: Unit, _event: InputEvent):
 	selected_object = unit
 
 func settlement_clicked(settlement: Settlement, event: InputEvent):
@@ -48,6 +49,5 @@ func select_settlement(settlement: Settlement) -> void:
 	settlement.select()
 
 func unselect_settlement() -> void:
-	#PlayEventBus.settlement_unhighlighted.emit()
 	selected_object.unselect()
 	selected_object = null
