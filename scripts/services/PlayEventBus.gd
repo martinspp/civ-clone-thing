@@ -1,5 +1,8 @@
 extends Node
 
+signal player_list_updated()
+
+
 signal update_gold(int)
 signal update_turn(int)
 

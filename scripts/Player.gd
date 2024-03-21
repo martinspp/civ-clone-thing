@@ -1,6 +1,6 @@
 class_name Player
 
-var id := randi()
+var id := randi() % 50000000 
 var player_name := "Player"
 var color : Color= Color.BLUE
 

@@ -83,6 +83,9 @@ func get_settlement_by_hex(hex: Hex) -> Settlement:
 		return world_dict["map_data"][hex.r][hex.q]['settlement']['ref']
 	else:
 		return null
+
+func update_settlement_data(settlement: Settlement) -> void:
+	world_dict["map_data"][settlement.parent_hex.r][settlement.parent_hex.q]["settlement"] = settlement.settlement_data.serialize()
 #endregion
 #region river
 func add_river(hex: Hex, side: Hex.side_flag) -> bool:
@@ -123,8 +126,8 @@ func _on_editor_ui_map_save_load(action: String) -> void:
 		save_map("res://maps/bleh.json")
 	if action == "load":
 		load_from_file("res://maps/bleh.json")
-		GameStateService.world_manager.start_generation(world_dict)
 		load_players()
+		GameStateService.world_manager.start_generation(world_dict)
 		GameStateService.editor_service.player_menu.populate_list()
 		
 
@@ -138,12 +141,23 @@ func load_players() -> void:
 
 func add_update_player(player: Player) -> void:
 	world_dict["player_data"]["players"][str(player.id)] = player.serialize()
+	PlayEventBus.player_list_updated.emit()
 
 func remove_player(player_id: int) -> void:
 	world_dict["player_data"]["players"].erase(str(player_id))
+	PlayEventBus.player_list_updated.emit()
 
 func get_player_by_id(player_id: int) -> Player:
-	return world_dict["player_data"]["players"][str(player_id)]["ref"]
+	if world_dict["player_data"]["players"].has(str(player_id)):
+		return world_dict["player_data"]["players"][str(player_id)]["ref"]
+	else: 
+		return null
+
+func is_player_exist(player: Player) -> bool:
+	if player:
+		return world_dict["player_data"]["players"].has(str(player.id))
+	else:
+		return false
 
 func get_all_players() -> Array[Player]:
 	var ret: Array[Player] = []

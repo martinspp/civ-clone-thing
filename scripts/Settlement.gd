@@ -21,6 +21,7 @@ func _ready() -> void:
 	selected_ui.visible = false
 	settlement_data.connect("data_updated",update_data)
 	settlement_data.ref = self
+	PlayEventBus.player_list_updated.connect(update_data)
 
 func _exit_tree() -> void:
 	parent_hex.settlement = null
@@ -44,9 +45,18 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 				PlayEventBus.settlement_clicked.emit(self,event)
 
 func update_data():
+	settlement_name_label.text = settlement_data.settlement_name
+	settlement_name_label_selected.text = settlement_data.settlement_name
+
+	# Check if owned player still exists
+	if !GameStateService.data_service.is_player_exist(settlement_data.owned_player):
+		settlement_data.owned_player = null
+
+
 	if settlement_data.owned_player:
 		settlement_name_label.modulate = settlement_data.owned_player.color
 		settlement_name_label_selected.modulate = settlement_data.owned_player.color
 	else:
 		settlement_name_label.modulate = Color.BLACK
 		settlement_name_label_selected.modulate = Color.BLACK
+	
