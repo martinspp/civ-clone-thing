@@ -1,6 +1,6 @@
 extends Resource
 
-class_name UnitData
+class_name UnitType
 
 @export var unit_name: String
 @export var health: float

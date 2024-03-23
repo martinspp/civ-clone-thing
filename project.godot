@@ -17,9 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameStateService="*res://scripts/services/GameStateService.gd"
-PlayEventBus="*res://scripts/services/PlayEventBus.gd"
 ResourceRegistry="*res://scripts/services/ResourceRegistry.gd"
+PlayEventBus="*res://scripts/services/PlayEventBus.gd"
+GameStateService="*res://scripts/services/GameStateService.gd"
 
 [file_customization]
 

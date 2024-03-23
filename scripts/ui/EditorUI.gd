@@ -64,7 +64,7 @@ func _populate_itemboxes() -> void:
 		hextypes_itemlist.add_item(hextype.data_name)
 	
 	units_itemlist.clear()
-	for unit_data in ResourceRegistry.unit_data_registry:
+	for unit_data in ResourceRegistry.unit_type_registry:
 		units_itemlist.add_item(unit_data.unit_name)
 
 func unhighlight_lists():

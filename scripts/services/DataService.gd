@@ -11,6 +11,7 @@ var axial_direction_vectors = [
 func _ready() -> void:
 	GameStateService.data_service = self
 
+#region loading/saving
 #fuck this
 func generate_land(_height: int, _width: int) -> Array:
 	var height = _height + 1 # i dont know what im doing
@@ -48,15 +49,41 @@ func save_map(path: String) -> void:
 			world_dict_clean["map_data"][r][q].erase("ref")
 	file.store_string(JSON.stringify(world_dict_clean))
 	file.close()
-	
+
+func _on_editor_ui_map_save_load(action: String) -> void:
+	if action == "save":
+		save_map("res://maps/bleh.json")
+	if action == "load":
+		load_from_file("res://maps/bleh.json")
+		load_players()
+		GameStateService.world_manager.start_generation(world_dict)
+		GameStateService.editor_service.player_menu.populate_list()
+
+#endregion
+#region hex	
 func delete_hex(hex: Hex) -> void: 
 	(world_dict["map_data"][hex.r][hex.q]["ref"] as Hex).delete()
 	world_dict["map_data"][hex.r][hex.q].clear()
 	
 func update_hex_type(hex: Hex, hex_type: String) -> void:
+	if get_settlement_by_hex(hex):
+		# check that what we are changing to is settleable
+		if !ResourceRegistry.get_hextype_by_name(hex_type).settleable:
+			#isnt settleable, do nothing
+			print("Cant change to unsettleable land, remove settlement first")
+			return
 	(world_dict["map_data"][hex.r][hex.q]["ref"] as Hex).set_hex_type(hex_type)
 	world_dict["map_data"][hex.r][hex.q]["hex_type"] = hex_type
-	
+
+func get_neighbouring_hex(hex: Hex, side: Hex.side_flag) -> Hex:
+	var side_coord := Hex.get_side_index(side)
+	var new_r: int = hex.r+axial_direction_vectors[side_coord][0]
+	var new_q: int = hex.q+axial_direction_vectors[side_coord][1]
+	if world_dict["map_data"][new_r][new_q].has("ref"):
+		return world_dict["map_data"][new_r][new_q]["ref"]
+	return null
+
+#endregion
 #region settlement
 func add_settlement(hex: Hex, settlement: Settlement) -> void:
 	if world_dict["map_data"][hex.r][hex.q].has("settlement"):
@@ -109,27 +136,7 @@ func remove_river(hex: Hex, side: Hex.side_flag) -> void:
 		neighbour_hex.rivers = ~(~neighbour_hex.rivers | 2**Hex.inverse_side_lut[Hex.get_side_index(side)])
 		world_dict["map_data"][neighbour_hex.r][neighbour_hex.q]["rivers"] = neighbour_hex.rivers
 #endregion
-
-func get_neighbouring_hex(hex: Hex, side: Hex.side_flag) -> Hex:
-	var side_coord := Hex.get_side_index(side)
-	var new_r: int = hex.r+axial_direction_vectors[side_coord][0]
-	var new_q: int = hex.q+axial_direction_vectors[side_coord][1]
-	if world_dict["map_data"][new_r][new_q].has("ref"):
-		return world_dict["map_data"][new_r][new_q]["ref"]
-	return null
-
-func add_unit(hex: Hex, unit: Unit) -> void:
-	pass
-	
-func _on_editor_ui_map_save_load(action: String) -> void:
-	if action == "save":
-		save_map("res://maps/bleh.json")
-	if action == "load":
-		load_from_file("res://maps/bleh.json")
-		load_players()
-		GameStateService.world_manager.start_generation(world_dict)
-		GameStateService.editor_service.player_menu.populate_list()
-		
+#region players
 
 func load_players() -> void:
 	for player in world_dict["player_data"]["players"]:
@@ -164,3 +171,15 @@ func get_all_players() -> Array[Player]:
 	for p in world_dict["player_data"]["players"]:
 		ret.append(world_dict["player_data"]["players"][p]["ref"])
 	return ret
+#endregion
+#region units
+
+func add_unit(hex: Hex, unit: Unit) -> void:
+	if world_dict["map_data"][hex.r][hex.q].has("unit"):
+		world_dict["map_data"][hex.r][hex.q]["unit"] = unit.unit_data.serialize()
+func update_unit(hex: Hex, unit: Unit) -> void:
+	pass
+
+
+
+#endregion

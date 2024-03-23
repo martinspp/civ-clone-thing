@@ -36,7 +36,6 @@ func deserialize(data: Dictionary) -> void:
 	id = data["id"]	
 	if data.has("owned_player_id"):
 		if data["owned_player_id"] != -1:
-			#owned_player =  GameStateService.data_service.world_dict["player_data"]["players"][data["owned_player_id"]]
 			owned_player = GameStateService.data_service.get_player_by_id(data["owned_player_id"])
 	
 	data_updated.emit()

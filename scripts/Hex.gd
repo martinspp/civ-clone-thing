@@ -51,20 +51,17 @@ static var world: WorldManager
 var settlement: Settlement
 @onready var units: Array[Unit] = []
 
-var _q: int = -999
-var _r: int = -999
-
-var q:
+var q:int:
 	get:
-		return _q
+		return q
 	set(val):
-		_q = val
+		q = val
 		update_pos()
-var r:
+var r :int:
 	get:
-		return _r
+		return r
 	set(val):
-		_r = val
+		r = val
 		update_pos()
 
 func _ready() -> void:
@@ -74,6 +71,8 @@ func delete() -> void:
 	queue_free()
 
 func update_pos() -> void:
+	if q == null || r == null:
+		return
 	position.x = (q * 128)+(r*64)
 	position.y = r * 96
 	

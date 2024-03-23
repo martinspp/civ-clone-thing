@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=3 format=3 uid="uid://b4okc1nethr2j"]
+[gd_resource type="Resource" script_class="UnitType" load_steps=3 format=3 uid="uid://lb8x0f3xqm7s"]
 
-[ext_resource type="Script" path="res://resources/Units/UnitData.gd" id="1_8pcxf"]
-[ext_resource type="Texture2D" uid="uid://f58jlja3fu0l" path="res://icon.svg" id="2_lroiu"]
+[ext_resource type="Script" path="res://resources/Units/UnitType.gd" id="1_0atjq"]
+[ext_resource type="Texture2D" uid="uid://f58jlja3fu0l" path="res://icon.svg" id="2_dn2xr"]
 
 [resource]
-script = ExtResource("1_8pcxf")
+script = ExtResource("1_0atjq")
 unit_name = "Warrior"
 health = 100.0
 speed = 1.0
-sprite = ExtResource("2_lroiu")
+sprite = ExtResource("2_dn2xr")
