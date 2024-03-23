@@ -53,11 +53,11 @@ func hex_clicked(hex: Hex, event: InputEvent):
 func hex_alt_clicked(hex: Hex, event: InputEvent):
 	if selected_type == "object" && selected_subtype == "settlement":
 		GameStateService.data_service.remove_settlement(hex)
-		GameStateService.world_manager.refresh_hex_settlement(GameStateService.data_service.world_dict, hex)
+		GameStateService.world_manager.refresh_hex_settlement(hex)
 	elif selected_type == "object" && selected_subtype == "river":
 		var sextant_clicked: Hex.side_flag = hex.get_sextant_clicked(event)
 		GameStateService.data_service.remove_river(hex, sextant_clicked)
-		GameStateService.world_manager.refresh_hex_rivers(GameStateService.data_service.world_dict, hex)
+		GameStateService.world_manager.refresh_hex_rivers(hex)
 	
 
 func _exit_tree() -> void:

@@ -3,7 +3,7 @@ extends Node
 # Data Service should be the only class that directly interacts with world_dict
 class_name DataService
 
-var world_dict: Dictionary
+static var world_dict: Dictionary
 var axial_direction_vectors = [
 	[-1,1],[0,1],[1,0],
 	[1,-1],[0,-1],[-1,0]]
@@ -56,14 +56,15 @@ func _on_editor_ui_map_save_load(action: String) -> void:
 	if action == "load":
 		load_from_file("res://maps/bleh.json")
 		load_players()
-		GameStateService.world_manager.start_generation(world_dict)
+		GameStateService.world_manager.start_generation()
 		GameStateService.editor_service.player_menu.populate_list()
 
 #endregion
 #region hex	
 func delete_hex(hex: Hex) -> void: 
-	(world_dict["map_data"][hex.r][hex.q]["ref"] as Hex).delete()
-	world_dict["map_data"][hex.r][hex.q].clear()
+	#(world_dict["map_data"][hex.r][hex.q]["ref"] as Hex).delete()
+	#world_dict["map_data"][hex.r][hex.q].clear()
+	return
 	
 func update_hex_type(hex: Hex, hex_type: String) -> void:
 	if get_settlement_by_hex(hex):
@@ -105,13 +106,13 @@ func add_settlement(hex: Hex, settlement: Settlement) -> void:
 			world_dict["map_data"][hex.r][hex.q]["settlement"] = settlement.settlement_data.serialize()	
 	else:
 		print("Cant settle on %s" % hex.hex_type.data_name)
-	GameStateService.world_manager.refresh_hex_settlement(world_dict, hex)
+	GameStateService.world_manager.refresh_hex_settlement(hex)
 
 func remove_settlement(hex: Hex) -> void:
 	if world_dict["map_data"][hex.r][hex.q].has("settlement"):
 		world_dict["map_data"][hex.r][hex.q]["settlement"]["ref"].queue_free()
 		world_dict["map_data"][hex.r][hex.q].erase("settlement")
-		GameStateService.world_manager.refresh_hex_settlement(world_dict, hex)
+		GameStateService.world_manager.refresh_hex_settlement(hex)
 		
 func get_settlement_by_hex(hex: Hex) -> Settlement:
 	if world_dict["map_data"][hex.r][hex.q].has("settlement"):

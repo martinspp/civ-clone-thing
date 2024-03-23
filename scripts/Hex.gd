@@ -85,7 +85,6 @@ func update_pos() -> void:
 	position.y = r * 96
 	world.astar.add_point(get_instance_id(), position)
 	connect_neighbours()
-	print(world.astar.get_point_connections(get_instance_id()))
 
 
 func set_hex_type_by_string(type: String):
