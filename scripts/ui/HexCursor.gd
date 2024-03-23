@@ -17,20 +17,17 @@ static var cursor_settings := {
 		"color": Color.WHITE}
 }
 
-var _q: int = INF
-var _r: int = INF
-
-var q:
+var q : int = int(INF) :
 	get:
-		return _q
+		return q
 	set(val):
-		_q = val
+		q = val
 		update_pos()
-var r:
+var r :int = int(INF):
 	get:
-		return _r
+		return r
 	set(val):
-		_r = val
+		r = val
 		update_pos()
 
 func _ready() -> void:

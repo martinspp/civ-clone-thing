@@ -3,15 +3,15 @@ extends Node
 signal player_list_updated()
 
 
-signal update_gold(int)
-signal update_turn(int)
+signal update_gold(gold_amount: int)
+signal update_turn(turn_number :int)
 
 signal end_turn()
 
-signal hex_clicked(Hex, InputEvent)
-signal settlement_clicked(Settlement)
-signal unit_clicked(Unit)
+signal hex_clicked(clicked_hex: Hex, event: InputEvent)
+signal settlement_clicked(settlement: Settlement)
+signal unit_clicked(unit: Unit)
 
 
-signal settlement_highlighted(Settlement)
+signal settlement_highlighted(settlement: Settlement)
 signal settlement_unhighlighted()
