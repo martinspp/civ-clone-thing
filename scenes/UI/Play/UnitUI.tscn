@@ -1,0 +1,92 @@
+[gd_scene load_steps=2 format=3 uid="uid://dew133bodp7bk"]
+
+[ext_resource type="Texture2D" uid="uid://f58jlja3fu0l" path="res://icon.svg" id="1_ck7hx"]
+
+[node name="UnitUI" type="Control"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_ck7hx")
+
+[node name="VSeparator" type="VSeparator" parent="Panel/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Unit Name"
+horizontal_alignment = 1
+
+[node name="Health" type="Label" parent="Panel/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "Health 100/100"
+horizontal_alignment = 1
+
+[node name="AP" type="Label" parent="Panel/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "AP: 2/2"
+horizontal_alignment = 1
+
+[node name="Damage" type="Label" parent="Panel/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "Damage: 8"
+horizontal_alignment = 1
+
+[node name="VSeparator2" type="VSeparator" parent="Panel/HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="Button" type="Button" parent="Panel/HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Action 1"
+
+[node name="Button2" type="Button" parent="Panel/HBoxContainer/GridContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "Action 2"
+
+[node name="Button3" type="Button" parent="Panel/HBoxContainer/GridContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "Action 3"
+
+[node name="Button4" type="Button" parent="Panel/HBoxContainer/GridContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "Action 4"
+
+[node name="Button5" type="Button" parent="Panel/HBoxContainer/GridContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "Action 5"
+
+[node name="Button6" type="Button" parent="Panel/HBoxContainer/GridContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "Action 6"
