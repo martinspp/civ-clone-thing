@@ -9,3 +9,4 @@ unit_name = "Warrior"
 health = 100.0
 speed = 1.0
 sprite = ExtResource("2_dn2xr")
+actions = Array[String](["attack_unit"])

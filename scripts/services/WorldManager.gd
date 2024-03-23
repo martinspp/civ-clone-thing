@@ -48,6 +48,7 @@ func generate_grid(world_dict: Dictionary) -> void:
 				continue
 			var hex: Hex = place_hex(world_dict["map_data"][r][q], r, q)
 			refresh_hex(world_dict, hex)
+	
 			
 func apply_on_all_hexes(world_dict:Dictionary, function: Callable):
 	for r: int in len(world_dict["map_data"])-1:

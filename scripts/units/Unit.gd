@@ -12,11 +12,17 @@ var unit_data: UnitType:
 
 @export var sprite_2d: Sprite2D
 
+
 var player: Player
 var hex: Hex
 
 func _ready() -> void:
 	pass
+
+func perform_action(action: String,target: Variant):
+	var action_message: ActionMessage = Callable(UnitActions,action).callv([self, target])
+	if action_message.success == false:
+		print(action_message.message)
 
 func serialize() -> Dictionary:
 	var dict = {}

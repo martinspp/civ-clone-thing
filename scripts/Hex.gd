@@ -1,7 +1,7 @@
 extends Area2D
 
 class_name Hex
-
+#region sides
 enum side_flag {
 	top_right = 1,     #0
 	right = 2,         #1
@@ -40,7 +40,6 @@ static func get_side_index(side: side_flag) -> int:
 		return 5
 	return -1
 
-@onready var sprite: Sprite2D = $Sprite2D
 
 var hex_type: HexType:
 	get:
@@ -51,9 +50,11 @@ var hex_type: HexType:
 			sprite.texture = hex_type.world_sprite
 		else:
 			hex_type = load("res://resources/HexTypes/delete.tres")
+#endregion
 
 @onready var rivers: int = 0
 
+@onready var sprite: Sprite2D = $Sprite2D
 @export var collision: CollisionPolygon2D
 
 static var world: WorldManager
@@ -84,9 +85,9 @@ func update_pos() -> void:
 	position.y = r * 96
 	world.astar.add_point(get_instance_id(), position)
 	connect_neighbours()
+	print(world.astar.get_point_connections(get_instance_id()))
 
 
-	
 func set_hex_type_by_string(type: String):
 	hex_type = load("res://resources/HexTypes/%s.tres" % type)
 	if hex_type.traversable:
