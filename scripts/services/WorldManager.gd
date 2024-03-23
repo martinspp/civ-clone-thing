@@ -10,6 +10,8 @@ class_name WorldManager
 @onready var units: Node = Node.new()
 @onready var decors: Node = Node.new()
 
+@onready var astar := AStar2D.new()
+
 var loaded = false
 
 func _ready() -> void:
@@ -70,7 +72,7 @@ func place_hex(hex_data: Dictionary, r: int, q: int) -> Hex:
 	
 #region hex refreshing
 func refresh_hex(world_dict: Dictionary, hex: Hex):
-	hex.set_hex_type(world_dict["map_data"][hex.r][hex.q]["hex_type"]) 
+	hex.set_hex_type_by_string(world_dict["map_data"][hex.r][hex.q]["hex_type"]) 
 	refresh_hex_settlement(world_dict, hex)
 	
 func refresh_hex_settlement(world_dict: Dictionary, hex: Hex):

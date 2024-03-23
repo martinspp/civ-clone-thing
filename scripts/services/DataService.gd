@@ -83,6 +83,14 @@ func get_neighbouring_hex(hex: Hex, side: Hex.side_flag) -> Hex:
 		return world_dict["map_data"][new_r][new_q]["ref"]
 	return null
 
+func get_all_neighbouring_hexes(hex: Hex) -> Array[Hex]:
+	var neighbours : Array[Hex] = []
+	for i in Hex.side_flag.values():
+		var neighbour := get_neighbouring_hex(hex,i)
+		if neighbour:
+			neighbours.append(neighbour)
+	return neighbours
+
 #endregion
 #region settlement
 func add_settlement(hex: Hex, settlement: Settlement) -> void:
@@ -175,11 +183,27 @@ func get_all_players() -> Array[Player]:
 #region units
 
 func add_unit(hex: Hex, unit: Unit) -> void:
-	if world_dict["map_data"][hex.r][hex.q].has("unit"):
+	if hex_has_unit(hex):
 		world_dict["map_data"][hex.r][hex.q]["unit"] = unit.unit_data.serialize()
-func update_unit(hex: Hex, unit: Unit) -> void:
-	pass
 
+func update_unit(hex: Hex, unit: Unit) -> void:
+	if hex_has_unit(hex):
+		world_dict["map_data"][hex.r][hex.q]["unit"] = unit.unit_data.serialize()
+
+func move_unit(hex_from: Hex, hex_to: Hex) -> bool:
+	if hex_has_unit(hex_from) && hex_has_unit(hex_to):
+		world_dict["map_data"][hex_to.r][hex_to.q]["unit"] = world_dict["map_data"][hex_from.r][hex_from.q]["unit"]
+		world_dict["map_data"][hex_from.r][hex_from.q].erase("unit")
+		return true
+	return false
+
+func plot_path(hex_from: Hex, hex_to: Hex) -> Array[Hex]:
+
+	return []
+
+
+func hex_has_unit(hex: Hex) -> bool:
+	return world_dict["map_data"][hex.r][hex.q].has("unit")
 
 
 #endregion

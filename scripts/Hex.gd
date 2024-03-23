@@ -41,7 +41,17 @@ static func get_side_index(side: side_flag) -> int:
 	return -1
 
 @onready var sprite: Sprite2D = $Sprite2D
-var hex_type: HexType
+
+var hex_type: HexType:
+	get:
+		return hex_type
+	set(value):
+		hex_type = value
+		if value:
+			sprite.texture = hex_type.world_sprite
+		else:
+			hex_type = load("res://resources/HexTypes/delete.tres")
+
 @onready var rivers: int = 0
 
 @export var collision: CollisionPolygon2D
@@ -64,9 +74,6 @@ var r :int:
 		r = val
 		update_pos()
 
-func _ready() -> void:
-	pass
-
 func delete() -> void:
 	queue_free()
 
@@ -75,12 +82,17 @@ func update_pos() -> void:
 		return
 	position.x = (q * 128)+(r*64)
 	position.y = r * 96
+	world.astar.add_point(get_instance_id(), position)
+	connect_neighbours()
+
+
 	
-func set_hex_type(type: String):
+func set_hex_type_by_string(type: String):
 	hex_type = load("res://resources/HexTypes/%s.tres" % type)
-	if hex_type == null:
-		hex_type = load("res://resources/HexTypes/delete.tres")
-	sprite.texture = hex_type.world_sprite
+	if hex_type.traversable:
+		world.astar.set_point_disabled(get_instance_id(), false)
+	else:
+		world.astar.set_point_disabled(get_instance_id(), true)
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton:
@@ -90,9 +102,9 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			handle_play_click(event)
 
 func handle_editor_click(event: InputEvent):
-	if event.button_index == 1 && event.pressed == true:
+	if event.button_index == MOUSE_BUTTON_LEFT && event.pressed == true:
 		GameStateService.editor_service.hex_clicked(self, event)
-	if event.button_index == 2 && event.pressed == true:
+	if event.button_index == MOUSE_BUTTON_RIGHT && event.pressed == true:
 		GameStateService.editor_service.hex_alt_clicked(self, event)
 		
 func handle_play_click(event: InputEvent):
@@ -113,9 +125,14 @@ func get_sextant_clicked(_event: InputEventMouse) -> side_flag:
 	var side = floor(side_angle_snapped / 60)
 	return 2**side
 
+# was used for debugging rivers
 func int2bin(value):
 	var out = ""
 	while (value > 0):
 			out = str(value & 1) + out
 			value = (value >> 1)
 	return out
+
+func connect_neighbours():
+	for neighbour in GameStateService.data_service.get_all_neighbouring_hexes(self):
+		world.astar.connect_points(get_instance_id(), neighbour.get_instance_id())

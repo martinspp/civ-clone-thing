@@ -18,13 +18,10 @@ var hex: Hex
 func _ready() -> void:
 	pass
 
-
-
 func serialize() -> Dictionary:
 	var dict = {}
 	dict["unit_type"] = unit_data.unit_name
 	dict["health"] = unit_data.health
-	dict["speed"] = unit_data.speed
 	dict["owner_id"] = player.id
 	return dict
 

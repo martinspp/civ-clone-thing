@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://c3ks0spf6nsc8"]
+[gd_scene load_steps=3 format=3 uid="uid://c3ks0spf6nsc8"]
 
 [ext_resource type="Script" path="res://scripts/units/Unit.gd" id="1_vhdn0"]
 
-[node name="Unit" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u2rtw"]
+size = Vector2(50, 50)
+
+[node name="Unit" type="Area2D" node_paths=PackedStringArray("sprite_2d")]
 script = ExtResource("1_vhdn0")
+sprite_2d = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_u2rtw")
