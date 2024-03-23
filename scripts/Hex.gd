@@ -40,7 +40,9 @@ static func get_side_index(side: side_flag) -> int:
 		return 5
 	return -1
 
+#endregion
 
+@onready var rivers: int = 0
 var hex_type: HexType:
 	get:
 		return hex_type
@@ -50,9 +52,7 @@ var hex_type: HexType:
 			sprite.texture = hex_type.world_sprite
 		else:
 			hex_type = load("res://resources/HexTypes/delete.tres")
-#endregion
 
-@onready var rivers: int = 0
 
 @onready var sprite: Sprite2D = $Sprite2D
 @export var collision: CollisionPolygon2D

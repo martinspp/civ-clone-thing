@@ -18,8 +18,8 @@ var type_selected: HexType
 @export var settlement_influence: Label
 @export var player_option: OptionButton
 
-signal type_changed(String)
-signal map_save_load(String)
+signal type_changed(type: String, sub_type: String)
+signal map_save_load(action: String)
 signal start_game()
 
 func _ready() -> void:
@@ -75,13 +75,13 @@ func unhighlight_lists():
 
 func _on_hextypes_item_clicked(index:int, _at_position:Vector2, _mouse_button_index:int) -> void:
 	unhighlight_lists()
-	type_changed.emit(ResourceRegistry.hex_type_registry[index].data_name)
+	type_changed.emit("hex",ResourceRegistry.hex_type_registry[index].data_name)
 
 func _on_actions_item_clicked(index:int, _at_position:Vector2, _mouse_button_index:int) -> void:
 	unhighlight_lists()
 	match index:
 		0:
-			type_changed.emit("select")
+			type_changed.emit("action","select")
 		1:
 			map_save_load.emit("save")
 		2:
@@ -96,16 +96,16 @@ func _on_other_item_clicked(index:int, _at_position:Vector2, _mouse_button_index
 	unhighlight_lists()
 	match index:
 		0:
-			type_changed.emit("settlement")
+			type_changed.emit("object","settlement")
 		1:
-			type_changed.emit("river")
+			type_changed.emit("object","river")
 		_:
 			print("unkown other item")
 
 
-func _on_units_item_clicked(_index:int, _at_position:Vector2, _mouse_button_index:int) -> void:
+func _on_units_item_clicked(index:int, _at_position:Vector2, _mouse_button_index:int) -> void:
 	unhighlight_lists()
-	print("not implemented")
+	type_changed.emit("unit",ResourceRegistry.unit_type_registry[index].unit_name)
 
 func update_player_options() -> void:
 	player_option.clear()

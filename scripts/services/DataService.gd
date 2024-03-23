@@ -72,7 +72,7 @@ func update_hex_type(hex: Hex, hex_type: String) -> void:
 			#isnt settleable, do nothing
 			print("Cant change to unsettleable land, remove settlement first")
 			return
-	(world_dict["map_data"][hex.r][hex.q]["ref"] as Hex).set_hex_type(hex_type)
+	(world_dict["map_data"][hex.r][hex.q]["ref"] as Hex).set_hex_type_by_string(hex_type)
 	world_dict["map_data"][hex.r][hex.q]["hex_type"] = hex_type
 
 func get_neighbouring_hex(hex: Hex, side: Hex.side_flag) -> Hex:
