@@ -8,3 +8,4 @@ class_name UnitType
 @export var sprite: CompressedTexture2D
 @export var actions: Array[String]
 @export var attack_damage: float
+@export var action_points: int

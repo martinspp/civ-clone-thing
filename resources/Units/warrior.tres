@@ -11,3 +11,4 @@ speed = 1.0
 sprite = ExtResource("2_dn2xr")
 actions = Array[String](["move", "attack_unit_melee"])
 attack_damage = 0.0
+action_points = 0

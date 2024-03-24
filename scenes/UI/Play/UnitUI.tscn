@@ -1,13 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://dew133bodp7bk"]
+[gd_scene load_steps=3 format=3 uid="uid://dew133bodp7bk"]
 
 [ext_resource type="Texture2D" uid="uid://f58jlja3fu0l" path="res://icon.svg" id="1_ck7hx"]
+[ext_resource type="Script" path="res://scripts/ui/UnitUI.gd" id="1_p54cy"]
 
-[node name="UnitUI" type="Control"]
+[node name="UnitUI" type="Control" node_paths=PackedStringArray("thumbnail", "unit_name_label", "health_label", "action_points_label", "damage_label", "actions_grid")]
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 grow_vertical = 0
+script = ExtResource("1_p54cy")
+thumbnail = NodePath("Panel/HBoxContainer/TextureRect")
+unit_name_label = NodePath("Panel/HBoxContainer/VBoxContainer/Label")
+health_label = NodePath("Panel/HBoxContainer/VBoxContainer/Health")
+action_points_label = NodePath("Panel/HBoxContainer/VBoxContainer/AP")
+damage_label = NodePath("Panel/HBoxContainer/VBoxContainer/Damage")
+actions_grid = NodePath("Panel/HBoxContainer/ActionsGrid")
 
 [node name="Panel" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -58,35 +66,6 @@ horizontal_alignment = 1
 auto_translate_mode = 1
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="Panel/HBoxContainer"]
+[node name="ActionsGrid" type="GridContainer" parent="Panel/HBoxContainer"]
 layout_mode = 2
 columns = 3
-
-[node name="Button" type="Button" parent="Panel/HBoxContainer/GridContainer"]
-layout_mode = 2
-text = "Action 1"
-
-[node name="Button2" type="Button" parent="Panel/HBoxContainer/GridContainer"]
-auto_translate_mode = 1
-layout_mode = 2
-text = "Action 2"
-
-[node name="Button3" type="Button" parent="Panel/HBoxContainer/GridContainer"]
-auto_translate_mode = 1
-layout_mode = 2
-text = "Action 3"
-
-[node name="Button4" type="Button" parent="Panel/HBoxContainer/GridContainer"]
-auto_translate_mode = 1
-layout_mode = 2
-text = "Action 4"
-
-[node name="Button5" type="Button" parent="Panel/HBoxContainer/GridContainer"]
-auto_translate_mode = 1
-layout_mode = 2
-text = "Action 5"
-
-[node name="Button6" type="Button" parent="Panel/HBoxContainer/GridContainer"]
-auto_translate_mode = 1
-layout_mode = 2
-text = "Action 6"
