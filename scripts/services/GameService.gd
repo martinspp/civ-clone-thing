@@ -49,8 +49,9 @@ func settlement_clicked(settlement: Settlement, event: InputEvent):
 func select_settlement(settlement: Settlement) -> void:
 	selected_object = settlement
 	PlayEventBus.settlement_highlighted.emit(settlement)
-	settlement.select()
+	settlement.selected = true
 
 func unselect_settlement() -> void:
-	selected_object.unselect()
-	selected_object = null
+	if selected_object is Settlement:
+		selected_object.selected = false
+		selected_object = null
