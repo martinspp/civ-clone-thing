@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/ui/PlayerBox.gd" id="1_ij7nl"]
 
-[node name="PlayerBox" type="PanelContainer" node_paths=PackedStringArray("player_id", "player_name", "color_picker", "settlement_count", "research_count")]
+[node name="PlayerBox" type="PanelContainer" node_paths=PackedStringArray("player_id", "player_name", "color_picker", "settlement_count", "research_count", "set_current_player")]
 auto_translate_mode = 1
 script = ExtResource("1_ij7nl")
 player_id = NodePath("Vbox/PlayerID")
@@ -10,6 +10,7 @@ player_name = NodePath("Vbox/PlayerName")
 color_picker = NodePath("Vbox/ColorPickerButton")
 settlement_count = NodePath("Vbox/SettlementCount")
 research_count = NodePath("Vbox/ResearchCount")
+set_current_player = NodePath("Vbox/SetCurrentPlayer")
 
 [node name="Vbox" type="HBoxContainer" parent="."]
 auto_translate_mode = 1
@@ -45,4 +46,9 @@ auto_translate_mode = 1
 layout_mode = 2
 text = "0"
 
+[node name="SetCurrentPlayer" type="Button" parent="Vbox"]
+layout_mode = 2
+text = "Use"
+
 [connection signal="pressed" from="Vbox/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Vbox/SetCurrentPlayer" to="." method="_on_set_current_player_pressed"]

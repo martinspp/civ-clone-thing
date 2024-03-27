@@ -109,14 +109,14 @@ offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="SettlementUI/SelectedUI/HBoxContainer"]
+[node name="Units" type="VBoxContainer" parent="SettlementUI/SelectedUI/HBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SettlementUI/SelectedUI/HBoxContainer/VBoxContainer2"]
+[node name="Label" type="Label" parent="SettlementUI/SelectedUI/HBoxContainer/Units"]
 layout_mode = 2
 text = "Units:"
 
-[node name="Button" type="Button" parent="SettlementUI/SelectedUI/HBoxContainer/VBoxContainer2"]
+[node name="Button" type="Button" parent="SettlementUI/SelectedUI/HBoxContainer/Units"]
 layout_mode = 2
 text = "Warrior"
 
@@ -124,15 +124,15 @@ text = "Warrior"
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="SettlementUI/SelectedUI/HBoxContainer"]
+[node name="Buildings" type="VBoxContainer" parent="SettlementUI/SelectedUI/HBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SettlementUI/SelectedUI/HBoxContainer/VBoxContainer3"]
+[node name="Label" type="Label" parent="SettlementUI/SelectedUI/HBoxContainer/Buildings"]
 layout_mode = 2
 text = "Buildings:"
 
-[node name="Button" type="Button" parent="SettlementUI/SelectedUI/HBoxContainer/VBoxContainer3"]
+[node name="Button" type="Button" parent="SettlementUI/SelectedUI/HBoxContainer/Buildings"]
 auto_translate_mode = 1
 layout_mode = 2
 text = "Granary"

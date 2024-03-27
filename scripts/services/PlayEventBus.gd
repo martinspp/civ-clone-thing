@@ -4,14 +4,15 @@ signal player_list_updated()
 
 
 signal update_gold(gold_amount: int)
-signal update_turn(turn_number :int)
+signal update_turn(turn_number: int)
 
-signal end_turn()
+signal end_turn(player: Player)
 
 signal hex_clicked(clicked_hex: Hex, event: InputEvent)
 signal settlement_clicked(settlement: Settlement)
 
 signal unit_selected(unit: Unit)
+signal unit_unselected()
 
 signal settlement_highlighted(settlement: Settlement)
 signal settlement_unhighlighted()

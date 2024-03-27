@@ -7,6 +7,8 @@ class_name PlayerBox
 @export var color_picker: ColorPickerButton
 @export var settlement_count: Label
 @export var research_count: Label
+@export var set_current_player: Button
+
 var player_ref: Player
 var player_menu: PlayerMenu
 
@@ -23,3 +25,14 @@ func update_data(player: Player) -> void:
 
 func _on_button_pressed() -> void:
 	player_menu.remove_player(self)
+
+
+func _on_set_current_player_pressed() -> void:
+	GameStateService.current_player = player_ref
+	player_menu.update_player_boxes()
+
+func update_set_player_button() -> void:
+	if GameStateService.current_player && GameStateService.current_player == player_ref:
+		set_current_player.disabled = true
+	else:
+		set_current_player.disabled = false

@@ -11,7 +11,7 @@ class_name UnitUI
 
 
 func _ready() -> void:
-	pass
+	PlayEventBus.unit_unselected.connect(unselect)
 
 func set_ui_data(unit : Unit) -> void:
 	thumbnail.texture = unit.unit_data.sprite
@@ -26,3 +26,7 @@ func population_actions_grid(unit: Unit) -> void:
 		action_button.text = action
 		actions_grid.add_child(action_button)
 		action_button.connect("pressed", UnitActions.callable_dict[action])
+
+func unselect():
+	Unit.selected_unit = null
+	visible = false
