@@ -11,7 +11,13 @@ var camera: CameraController
 var settlement_registy: Array[Settlement]
 #var player_registry: Array[Player]
 
-var current_player: Player
+var current_player: Player:
+	get: 
+		return current_player
+	set(value):
+		current_player = value
+		PlayEventBus.current_player_changed.emit(value)
+
 
 func _ready() -> void:
 	randomize()

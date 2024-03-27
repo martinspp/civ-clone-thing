@@ -23,6 +23,7 @@ func add_player_box(new_player: Player):
 	new_player_box.update_data(new_player)
 	player_box_list.move_child(new_player_box, new_box_index)
 
+# adding new player
 func _on_button_pressed() -> void:
 	if %PlayerName.text == "":
 		return
@@ -36,6 +37,7 @@ func remove_player(player_box: PlayerBox):
 	GameStateService.data_service.remove_player(player_box.player_ref.id)
 	populate_list()
 
+#called by player box on changing player
 func update_player_boxes():
 	for player_box in player_box_list.get_children():
 		if player_box is PlayerBox:
