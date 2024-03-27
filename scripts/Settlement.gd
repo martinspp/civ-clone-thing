@@ -12,8 +12,6 @@ class_name Settlement
 @onready var settlement_data: SettlementData = SettlementData.new()
 @onready var parent_hex: Hex = get_parent() as Hex
 
-var player: Player
-
 func _ready() -> void:
 	settlement_name_label.text = settlement_data.settlement_name
 	settlement_name_label_selected.text = settlement_data.settlement_name
@@ -22,6 +20,7 @@ func _ready() -> void:
 	settlement_data.connect("data_updated",update_data)
 	settlement_data.ref = self
 	PlayEventBus.player_list_updated.connect(update_data)
+	PlayEventBus.current_player_changed.connect(update_ui_state)
 
 func _exit_tree() -> void:
 	parent_hex.settlement = null
@@ -52,11 +51,13 @@ func update_data():
 	if !GameStateService.data_service.is_player_exist(settlement_data.owned_player):
 		settlement_data.owned_player = null
 
-
 	if settlement_data.owned_player:
 		settlement_name_label.modulate = settlement_data.owned_player.color
 		settlement_name_label_selected.modulate = settlement_data.owned_player.color
 	else:
 		settlement_name_label.modulate = Color.BLACK
 		settlement_name_label_selected.modulate = Color.BLACK
-	
+
+
+func update_ui_state():
+	pass

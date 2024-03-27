@@ -6,7 +6,7 @@ signal update_turn(turn_number: int)
 signal end_turn(player: Player)
 
 signal hex_clicked(clicked_hex: Hex, event: InputEvent)
-signal settlement_clicked(settlement: Settlement)
+signal settlement_clicked(settlement: Settlement, event: InputEvent)
 
 #region unit
 signal unit_selected(unit: Unit)

@@ -27,13 +27,16 @@ func hex_click_event(hex: Hex, event: InputEvent):
 
 
 func hex_clicked(hex: Hex, _event: InputEvent):
-	selected_object = hex
+	if selected_object is Settlement:
+		return
+	else:
+		selected_object = hex
 
 func unit_clicked(unit: Unit, _event: InputEvent):
 	selected_object = unit
 
 func settlement_clicked(settlement: Settlement, event: InputEvent):
-	if (event as InputEventMouseButton).double_click == true:
+	if (event as InputEventMouseButton).double_click == true && settlement.settlement_data.owned_player == GameStateService.current_player:
 		# Something else is already selected, should defocus
 		if selected_object != null && (selected_object != settlement) && selected_object is Settlement:
 			unselect_settlement()
