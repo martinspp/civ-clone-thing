@@ -54,6 +54,8 @@ func _ready() -> void:
 	settlement_data.ref = self
 	PlayEventBus.player_list_updated.connect(update_ui_data)
 	PlayEventBus.current_player_changed.connect(update_ui_state)
+	PlayEventBus.start_of_turn.connect(start_of_turn_actions)
+	PlayEventBus.end_of_turn.connect(end_of_turn_actions)
 
 func _exit_tree() -> void:
 	parent_hex.settlement = null
@@ -87,4 +89,10 @@ func update_ui_data():
 	settlement_pop_label = str(settlement_data.pop)
 
 func update_ui_state():
+	pass
+
+func start_of_turn_actions():
+	pass
+
+func end_of_turn_actions():
 	pass

@@ -32,7 +32,6 @@ func serialize() -> Dictionary:
 		"owned_player_id" = player_id,
 		"ref" = ref,
 		"productions" = production_dict,
-
 	}
 	
 func deserialize(data: Dictionary) -> void:
@@ -44,7 +43,7 @@ func deserialize(data: Dictionary) -> void:
 	if data.has("owned_player_id"):
 		if data["owned_player_id"] != -1:
 			owned_player = GameStateService.data_service.get_player_by_id(data["owned_player_id"])
-	
+	production_dict = data["productions"]
 	data_updated.emit()
 
 func get_production_progress(name: String) -> float:

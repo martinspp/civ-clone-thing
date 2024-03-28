@@ -19,7 +19,8 @@ var player: Player
 var hex: Hex
 
 func _ready() -> void:
-	pass
+	PlayEventBus.start_of_turn.connect(start_of_turn_actions)
+	PlayEventBus.end_of_turn.connect(end_of_turn_actions)
 
 func perform_action(action: String,target: Variant):
 	if UnitActions.callable_dict[action]["targeted"] && (target == null):
@@ -45,3 +46,9 @@ func _on_input_event(_viewport:Node, event:InputEvent, _shape_idx:int) -> void:
 	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT && event.pressed:
 		selected_unit = self
 		PlayEventBus.unit_selected.emit(Unit)
+
+func start_of_turn_actions() -> void:
+	pass
+
+func end_of_turn_actions() -> void:
+	pass
