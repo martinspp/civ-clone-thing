@@ -65,7 +65,6 @@ func place_hex(r: int, q: int) -> Hex:
 	hexes.add_child(hex)
 	hex.q = q
 	hex.r = r 
-	hex.name = "Hex (r %s, q %s)" % [r,q] 
 	if DataService.world_dict["map_data"][r][q].has("rivers"):
 		hex.rivers = DataService.world_dict["map_data"][r][q]["rivers"]
 	DataService.world_dict["map_data"][r][q]["ref"] = hex

@@ -85,6 +85,7 @@ func update_pos() -> void:
 	position.y = r * 96
 	world.astar.add_point(get_instance_id(), position)
 	connect_neighbours()
+	name = "Hex (r %s, q %s)" % [r,q] 
 
 
 func set_hex_type_by_string(type: String):
@@ -129,8 +130,8 @@ func get_sextant_clicked(_event: InputEventMouse) -> side_flag:
 func int2bin(value):
 	var out = ""
 	while (value > 0):
-			out = str(value & 1) + out
-			value = (value >> 1)
+		out = str(value & 1) + out
+		value = (value >> 1)
 	return out
 
 func connect_neighbours():

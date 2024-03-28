@@ -8,6 +8,7 @@ var play_ui: PlayUI
 var selected_object: Variant
 
 func _ready() -> void:
+	set_name("GameService")
 	GameStateService.game_service = self
 	play_ui = play_ui_scene.instantiate()
 	$"../CanvasLayer".add_child(play_ui)

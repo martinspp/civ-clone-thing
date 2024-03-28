@@ -36,6 +36,9 @@ var settlement_pop_label: String:
 		settlement_pop_label = value
 #endregion
 
+
+
+# Used to flip the ui when settlement is focused
 var selected: bool:
 	get:
 		return selected
@@ -60,6 +63,7 @@ func _on_exit_pressed() -> void:
 	PlayEventBus.settlement_unhighlighted.emit()
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	# does not handle the zoom in on double click, that is handled by double click on hex
 	if event is InputEventMouseButton:
 		if event.button_index == 1 && event.pressed == true:
 			if GameStateService.current_state == GameStateService.game_states.PLAY:

@@ -42,7 +42,6 @@ func start_game() -> Dictionary:
 
 	#add game stuff
 	game_service = GameService.new()
-	game_service.set_name("GameService")
 	get_node("/root/Main").add_child(game_service)
 	
 	return {"msg": "", "success": true}
