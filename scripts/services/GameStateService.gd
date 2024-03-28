@@ -30,12 +30,17 @@ func start_game() -> Dictionary:
 	if data_service.world_dict.has("player_data") && data_service.world_dict["player_data"].has("players"):
 		for player in data_service.world_dict["player_data"]["players"]:
 			print("Player name: %s  id: %s " % [data_service.world_dict["player_data"]["players"][player]["player_name"], data_service.world_dict["player_data"]["players"][player]["id"]])
-	
-	# Check if players set 
+	if current_player == null:
+		return {'msg': "Current player is not set", "success": false}
+	if data_service.get_all_players().size() < 2:
+		return {'msg': "Need at least 2 players to start", "success": false}
+
+	#clear editor things
 	editor_service.queue_free()
 	editor_service = null
 	current_state = game_states.PLAY
-	# Add players, player stuff
+
+	#add game stuff
 	game_service = GameService.new()
 	game_service.set_name("GameService")
 	get_node("/root/Main").add_child(game_service)
