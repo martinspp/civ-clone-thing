@@ -4,7 +4,7 @@ class_name CameraController
 
 var camera_speed:int = 500
 
-var pan_point
+var pan_point: Variant
 @onready var max_zoom:= Vector2(2,2)
 @onready var min_zoom:= Vector2(0.5,0.5)
 @onready var step_zoom := Vector2(0.1,0.1)
@@ -47,15 +47,15 @@ var end_focus_zoom: float
 var is_focusing := false
 var focus_progress: float = 0
 
-func focus_settlement(point: Vector2, focus_zoom: Vector2):
+func focus_settlement(point: Vector2, focus_zoom: Vector2) -> void:
 	is_focusing = true
 
-	var tween = get_tree().create_tween()
+	var tween :Tween= get_tree().create_tween()
 	tween.tween_property(self, "position", point, 0.75).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	tween.parallel().tween_property(self, "zoom", focus_zoom, 0.75).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
 	
-func unfocus_settlement():
-	var tween = get_tree().create_tween()
+func unfocus_settlement() -> void:
+	var tween :Tween = get_tree().create_tween()
 	tween.tween_property(self, "zoom", Vector2(1,1), 0.2).set_ease(Tween.EASE_IN_OUT)
 	is_focusing = false
  

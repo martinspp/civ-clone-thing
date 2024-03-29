@@ -9,7 +9,10 @@ var unit_data: UnitType:
 		return unit_data
 	set(value):
 		sprite_2d.texture = value.sprite
-		unit_data = value.new()
+		if unit_data == null:
+			unit_data = value.new()
+		else:
+			unit_data = value
 
 
 @export var sprite_2d: Sprite2D
@@ -17,12 +20,13 @@ var unit_data: UnitType:
 
 var player: Player
 var hex: Hex
+var movement_target_hex: Hex
 
 func _ready() -> void:
 	PlayEventBus.start_of_turn.connect(start_of_turn_actions)
 	PlayEventBus.end_of_turn.connect(end_of_turn_actions)
 
-func perform_action(action: String,target: Variant):
+func perform_action(action: String,target: Variant) -> void:
 	if UnitActions.callable_dict[action]["targeted"] && (target == null):
 		print("no target given")
 	var action_message: ActionMessage = Callable(UnitActions,action).callv([self, target])
@@ -30,7 +34,7 @@ func perform_action(action: String,target: Variant):
 		print(action_message.message)
 
 func serialize() -> Dictionary:
-	var dict = {}
+	var dict := {}
 	dict["unit_type"] = unit_data.unit_name
 	dict["health"] = unit_data.health
 	dict["owner_id"] = player.id
@@ -51,4 +55,5 @@ func start_of_turn_actions() -> void:
 	pass
 
 func end_of_turn_actions() -> void:
+	#TODO continue set walk action if AP points allow it
 	pass

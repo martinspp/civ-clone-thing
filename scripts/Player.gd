@@ -7,17 +7,11 @@ var color : Color= Color.BLUE
 var unlocked_researches : Array[ResearchData] = []
 var owned_settlements : Array[Settlement] = []
 
-func _init(_player_name: String, _id, _color) -> void:
-    if _id:
-        id = _id
-    if _color:
-        color = _color
+func _init(_player_name: String, _id: int, _color: Color) -> void:
     player_name = _player_name
 
 func deserialize(data: Dictionary) -> void:
-    if data.has("id"):
-        id = data["id"]
-    else:
+    if data['id'] == -1:
         id = randi()
 
     if data.has("player_name"):
@@ -29,14 +23,14 @@ func deserialize(data: Dictionary) -> void:
         color = Color(data["color"][0],data["color"][1],data["color"][2])
     else:
         color = Color.BLACK
-    for r in data["researches"]:
+    for r: String in data["researches"]:
         var research_data := ResourceRegistry.get_research_by_name(r)
         if research_data:
             unlocked_researches.append(research_data)
         else:
             printerr("Player.gd: Attempted to deserialize an invalid research %s" % r)
     
-    for s in data["settlements"]:
+    for s: int in data["settlements"]:
         var settlement := GameStateService.get_settlement_by_id(s)
         if settlement:
             owned_settlements.append(settlement)
@@ -45,8 +39,8 @@ func deserialize(data: Dictionary) -> void:
     
 
 func serialize() -> Dictionary:
-    var researches = []
-    var settlement_ids = []
+    var researches: Array[ResearchData] = []
+    var settlement_ids: Array[int] = []
     for r in unlocked_researches:
         researches.append(r.research_name)
     for s in owned_settlements:

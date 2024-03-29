@@ -33,7 +33,7 @@ func _on_editor_ui_type_changed(type: String, sub_type: String = "") -> void:
 	selected_type = type
 	selected_subtype = sub_type
 
-func hex_clicked(hex: Hex, event: InputEvent):
+func hex_clicked(hex: Hex, event: InputEvent) -> void:
 	if selected_type == "object" && selected_subtype == "settlement":
 		GameStateService.data_service.add_settlement(hex, null)
 	elif selected_type == "action" && selected_subtype == "select":
@@ -50,7 +50,7 @@ func hex_clicked(hex: Hex, event: InputEvent):
 		GameStateService.data_service.update_hex_type(hex, selected_subtype)
 		
 
-func hex_alt_clicked(hex: Hex, event: InputEvent):
+func hex_alt_clicked(hex: Hex, event: InputEvent) -> void:
 	if selected_type == "object" && selected_subtype == "settlement":
 		GameStateService.data_service.remove_settlement(hex)
 		GameStateService.world_manager.refresh_hex_settlement(hex)

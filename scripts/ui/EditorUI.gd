@@ -67,7 +67,7 @@ func _populate_itemboxes() -> void:
 	for unit_data in ResourceRegistry.unit_type_registry:
 		units_itemlist.add_item(unit_data.unit_name)
 
-func unhighlight_lists():
+func unhighlight_lists() -> void:
 	hextypes_itemlist.deselect_all()
 	units_itemlist.deselect_all()
 	other_itemlist.deselect_all()
@@ -113,7 +113,7 @@ func update_player_options() -> void:
 	for player in GameStateService.data_service.get_all_players():
 		player_option.add_item(player.player_name, int(player.id))
 
-func _on_s_name_text_submitted(text: String):
+func _on_s_name_text_submitted(text: String) -> void:
 	var settlement :Settlement = settlement_data.get_meta("s_ref")
 	settlement.settlement_data.settlement_name = text
 	settlement.update_data()

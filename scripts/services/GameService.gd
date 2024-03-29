@@ -16,7 +16,7 @@ func _ready() -> void:
 	PlayEventBus.settlement_unhighlighted.connect(unselect_settlement)
 	
 
-func hex_click_event(hex: Hex, event: InputEvent):
+func hex_click_event(hex: Hex, event: InputEvent) -> void:
 	if hex.units.size() > 0:
 		unit_clicked(hex.units[0], event)
 		
@@ -27,16 +27,16 @@ func hex_click_event(hex: Hex, event: InputEvent):
 		hex_clicked(hex, event)
 
 
-func hex_clicked(hex: Hex, _event: InputEvent):
+func hex_clicked(hex: Hex, _event: InputEvent) -> void:
 	if selected_object is Settlement:
 		return
 	else:
 		selected_object = hex
 
-func unit_clicked(unit: Unit, _event: InputEvent):
+func unit_clicked(unit: Unit, _event: InputEvent) -> void:
 	selected_object = unit
 
-func settlement_clicked(settlement: Settlement, event: InputEvent):
+func settlement_clicked(settlement: Settlement, event: InputEvent) -> void:
 	if (event as InputEventMouseButton).double_click == true && settlement.settlement_data.owned_player == GameStateService.current_player:
 		# Something else is already selected, should defocus
 		if selected_object != null && (selected_object != settlement) && selected_object is Settlement:

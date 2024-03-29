@@ -71,7 +71,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			if GameStateService.current_state == GameStateService.game_states.PLAY:
 				PlayEventBus.settlement_clicked.emit(self,event)
 
-func update_ui_data():
+func update_ui_data() -> void:
 	settlement_name_label = settlement_data.settlement_name
 
 	# Check if owned player still exists
@@ -88,11 +88,39 @@ func update_ui_data():
 	settlement_growth_label = str(0)
 	settlement_pop_label = str(settlement_data.pop)
 
-func update_ui_state():
+	%ProductionName.text = settlement_data.current_production
+
+func update_ui_state() -> void:
 	pass
 
-func start_of_turn_actions():
+func start_of_turn_actions() -> void:
 	pass
 
-func end_of_turn_actions():
-	pass
+func end_of_turn_actions() -> void:
+	# Finish production
+	if settlement_data.current_production != "":
+		if settlement_data.update_production_progress(settlement_data.current_production, 0.1) >= 1.0:
+			var produced : Variant = ResourceRegistry.get_building_or_unit_by_name(settlement_data.current_production)
+			if produced is UnitType:
+				pass
+			elif produced is BuildingData:
+				add_building(produced)
+			else:
+				print("produced non existant type")
+		settlement_data.current_production = ""
+	%ProductionBar.value = settlement_data.get_production_progress(settlement_data.current_production)
+	
+func add_building(building_data: BuildingData) -> void:
+	var new_building := Building.new()
+	new_building.building_data = building_data
+	add_child(new_building)
+
+func remove_building(building: Building) -> void:
+	building.queue_free()
+
+func spawn_unit(unit_data: UnitType) -> void:
+	var new_unit := Unit.new()
+	GameStateService.world_manager.units.add_child(new_unit)
+	new_unit.global_position.x = global_position.x
+	new_unit.global_position.y = global_position.y
+	new_unit.unit_data = unit_data

@@ -28,6 +28,28 @@ grow_vertical = 2
 mouse_filter = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="ProductionProgress" type="VBoxContainer" parent="SettlementUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -51.5
+offset_top = 50.0
+offset_right = 51.5
+offset_bottom = 90.0
+grow_horizontal = 2
+
+[node name="ProductionBar" type="ProgressBar" parent="SettlementUI/ProductionProgress"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+show_percentage = false
+
+[node name="ProductionName" type="Label" parent="SettlementUI/ProductionProgress"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Building/Unit"
+
 [node name="SelectedUI" type="Control" parent="SettlementUI"]
 unique_name_in_owner = true
 visible = false

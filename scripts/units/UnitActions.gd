@@ -2,7 +2,7 @@ extends Node
 
 class_name UnitActions
 
-static var callable_dict = {
+static var callable_dict := {
 	"attack_unit_melee" = {"func": attack_unit_melee, "targeted": true},
 	"move" = {"func":move, "targeted": true}
 

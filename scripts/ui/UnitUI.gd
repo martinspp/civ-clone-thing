@@ -21,12 +21,12 @@ func set_ui_data(unit : Unit) -> void:
 	damage_label.text = str(unit.unit_data.attack_damage)
 
 func population_actions_grid(unit: Unit) -> void:
-	for action in unit.unit_data.actions:
+	for action: String in unit.unit_data.actions:
 		var action_button : Button = Button.new()
 		action_button.text = action
 		actions_grid.add_child(action_button)
 		action_button.connect("pressed", UnitActions.callable_dict[action])
 
-func unselect():
+func unselect() -> void:
 	Unit.selected_unit = null
 	visible = false

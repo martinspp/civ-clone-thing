@@ -21,6 +21,10 @@ ResourceRegistry="*res://scripts/services/ResourceRegistry.gd"
 PlayEventBus="*res://scripts/services/PlayEventBus.gd"
 GameStateService="*res://scripts/services/GameStateService.gd"
 
+[debug]
+
+gdscript/warnings/untyped_declaration=2
+
 [file_customization]
 
 folder_colors={

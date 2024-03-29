@@ -4,7 +4,7 @@ extends Node
 class_name DataService
 
 static var world_dict: Dictionary
-var axial_direction_vectors = [
+var axial_direction_vectors := [
 	[-1,1],[0,1],[1,0],
 	[1,-1],[0,-1],[-1,0]]
 	
@@ -14,16 +14,16 @@ func _ready() -> void:
 #region loading/saving
 #fuck this
 func generate_land(_height: int, _width: int) -> Array:
-	var height = _height + 1 # i dont know what im doing
-	var width = _width
+	var height: int = _height + 1 # i dont know what im doing
+	var width :int = _width
 	var new_map_data := []
 	new_map_data.resize(height)
-	for r in range(height):
+	for r: int in range(height):
 		new_map_data[r] = []
 		new_map_data[r].resize(width+1+width/2) # dont lower otherwise this gets weird
 		new_map_data[r].fill({}) # to fill in null, dont use this because its the same dict by ref
 		for q in range(width):
-			var new_q = q + floor((height-1-r)/2) # ?????
+			var new_q := int(q + floor((height-1-r)/2)) # ?????
 			new_map_data[r][new_q] = {}
 			new_map_data[r][new_q]["hex_type"] = "water"
 	return new_map_data
@@ -86,7 +86,7 @@ func get_neighbouring_hex(hex: Hex, side: Hex.side_flag) -> Hex:
 
 func get_all_neighbouring_hexes(hex: Hex) -> Array[Hex]:
 	var neighbours : Array[Hex] = []
-	for i in Hex.side_flag.values():
+	for i: int in Hex.side_flag.values():
 		var neighbour := get_neighbouring_hex(hex,i)
 		if neighbour:
 			neighbours.append(neighbour)
@@ -148,8 +148,8 @@ func remove_river(hex: Hex, side: Hex.side_flag) -> void:
 #region players
 
 func load_players() -> void:
-	for player in world_dict["player_data"]["players"]:
-		var new_player = Player.new("foobar", null, null)
+	for player: String in world_dict["player_data"]["players"]:
+		var new_player : Player = Player.new("foobar", -1, Color.WHITE)
 		new_player.deserialize(world_dict["player_data"]["players"][player])
 		add_update_player(new_player)
 	print(world_dict["player_data"]["players"])
@@ -177,7 +177,7 @@ func is_player_exist(player: Player) -> bool:
 
 func get_all_players() -> Array[Player]:
 	var ret: Array[Player] = []
-	for p in world_dict["player_data"]["players"]:
+	for p: String in world_dict["player_data"]["players"]:
 		ret.append(world_dict["player_data"]["players"][p]["ref"])
 	return ret
 #endregion

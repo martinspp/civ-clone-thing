@@ -1,7 +1,7 @@
 extends Node
 
 enum game_states {EDITOR, PLAY}
-@onready var current_state = game_states.EDITOR
+@onready var current_state : game_states= game_states.EDITOR
 var editor_service: EditorService
 var data_service: DataService
 var world_manager: WorldManager
@@ -28,7 +28,7 @@ func start_game() -> Dictionary:
 	if world_manager.hexes.get_child_count() < 2:
 		return {"msg": "map is not loaded", "success": false}
 	if data_service.world_dict.has("player_data") && data_service.world_dict["player_data"].has("players"):
-		for player in data_service.world_dict["player_data"]["players"]:
+		for player : String in data_service.world_dict["player_data"]["players"]:
 			print("Player name: %s  id: %s " % [data_service.world_dict["player_data"]["players"][player]["player_name"], data_service.world_dict["player_data"]["players"][player]["id"]])
 	if current_player == null:
 		return {'msg': "Current player is not set", "success": false}

@@ -10,7 +10,7 @@ enum side_flag {
 	left = 16,         #4
 	top_left = 32      #5
 }
-static var border_set = [
+static var border_set : Array[Vector2]= [
 	Vector2(0,-64),
 	Vector2(64,-32),
 	Vector2(64, 32),
@@ -19,10 +19,10 @@ static var border_set = [
 	Vector2(-64, -32)
 ]
 
-static var border_pairs = [[0,1],[1,2],[2,3],[3,4],[4,5],[5,0]]
+static var border_pairs := [[0,1],[1,2],[2,3],[3,4],[4,5],[5,0]]
 
 # inverse_side_lut[source] = target
-static var inverse_side_lut = [3,4,5,0,1,2]
+static var inverse_side_lut : Array[int]= [3,4,5,0,1,2]
 #static var side_index=[1,2,4,8,16,32]
 static func get_side_index(side: side_flag) -> int:
 	# theres gotta be a better way of doing this
@@ -88,7 +88,7 @@ func update_pos() -> void:
 	name = "Hex (r %s, q %s)" % [r,q] 
 
 
-func set_hex_type_by_string(type: String):
+func set_hex_type_by_string(type: String) -> void:
 	hex_type = load("res://resources/HexTypes/%s.tres" % type)
 	if hex_type.traversable:
 		world.astar.set_point_disabled(get_instance_id(), false)
@@ -102,13 +102,13 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 		if GameStateService.current_state == GameStateService.game_states.PLAY:
 			handle_play_click(event)
 
-func handle_editor_click(event: InputEvent):
+func handle_editor_click(event: InputEvent) -> void:
 	if event.button_index == MOUSE_BUTTON_LEFT && event.pressed == true:
 		GameStateService.editor_service.hex_clicked(self, event)
 	if event.button_index == MOUSE_BUTTON_RIGHT && event.pressed == true:
 		GameStateService.editor_service.hex_alt_clicked(self, event)
 		
-func handle_play_click(event: InputEvent):
+func handle_play_click(event: InputEvent) -> void:
 	if event.button_index == 1 && event.pressed == true:
 		PlayEventBus.emit_signal("hex_clicked",self,event)
 	
@@ -117,23 +117,23 @@ func _on_mouse_entered() -> void:
 		GameStateService.editor_service.move_editor_cursor(self)
 
 func get_sextant_clicked(_event: InputEventMouse) -> side_flag:
-	var side_angle = rad_to_deg(global_position.angle_to_point(get_global_mouse_position()))+90 # 0 is horizontal right
+	var side_angle: float = rad_to_deg(global_position.angle_to_point(get_global_mouse_position()))+90 # 0 is horizontal right
 	if side_angle < 0:
 		side_angle += 359 # help
-	var side_angle_snapped = snappedf(side_angle,30)
+	var side_angle_snapped :float = snappedf(side_angle,30)
 	if side_angle_snapped == 360:
 		side_angle_snapped = 0 # i hate myself
-	var side = floor(side_angle_snapped / 60)
-	return 2**side
+	var side := int(floor(side_angle_snapped / 60))
+	return 2**side as side_flag
 
 # was used for debugging rivers
-func int2bin(value):
-	var out = ""
+func int2bin(value: int) -> String:
+	var out :String = ""
 	while (value > 0):
 		out = str(value & 1) + out
 		value = (value >> 1)
 	return out
 
-func connect_neighbours():
-	for neighbour in GameStateService.data_service.get_all_neighbouring_hexes(self):
+func connect_neighbours() -> void:
+	for neighbour: Hex in GameStateService.data_service.get_all_neighbouring_hexes(self):
 		world.astar.connect_points(get_instance_id(), neighbour.get_instance_id())

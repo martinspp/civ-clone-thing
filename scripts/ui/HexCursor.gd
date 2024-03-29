@@ -40,7 +40,7 @@ func update_pos() -> void:
 	position.y = r * 96
 	
 	
-func set_cursor_type(type: String, subtype: String):
+func set_cursor_type(type: String, subtype: String) -> void:
 	sprite.transform = cursor_settings[type]["transform"]
 	sprite.modulate = cursor_settings[type]["color"]
 	if type == "hex":
@@ -50,7 +50,7 @@ func set_cursor_type(type: String, subtype: String):
 			return
 		sprite.texture = loaded.cursor_sprite
 	elif type == "object" && subtype == "settlement":
-		var loaded = load("res://sprites/objects/settlement/woodRing.png")
+		var loaded := load("res://sprites/objects/settlement/woodRing.png")
 		if !loaded:
 			sprite.texture = (load("res://resources/HexTypes/delete.tres") as HexType).cursor_sprite
 			return
