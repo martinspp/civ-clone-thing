@@ -149,7 +149,7 @@ func remove_river(hex: Hex, side: Hex.side_flag) -> void:
 
 func load_players() -> void:
 	for player: String in world_dict["player_data"]["players"]:
-		var new_player : Player = Player.new("foobar", -1, Color.WHITE)
+		var new_player : Player = Player.new("foobar", null, null)
 		new_player.deserialize(world_dict["player_data"]["players"][player])
 		add_update_player(new_player)
 	print(world_dict["player_data"]["players"])

@@ -7,11 +7,13 @@ var color : Color= Color.BLUE
 var unlocked_researches : Array[ResearchData] = []
 var owned_settlements : Array[Settlement] = []
 
-func _init(_player_name: String, _id: int, _color: Color) -> void:
+func _init(_player_name: String, _id: Variant, _color: Variant) -> void:
     player_name = _player_name
 
 func deserialize(data: Dictionary) -> void:
-    if data['id'] == -1:
+    if data.has('id'):
+        id = data['id']
+    else:
         id = randi()
 
     if data.has("player_name"):
