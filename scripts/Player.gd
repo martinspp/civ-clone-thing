@@ -8,6 +8,10 @@ var unlocked_researches : Array[ResearchData] = []
 var owned_settlements : Array[Settlement] = []
 
 func _init(_player_name: String, _id: Variant, _color: Variant) -> void:
+    if _id:
+        id = _id
+    if _color:
+        color = _color
     player_name = _player_name
 
 func deserialize(data: Dictionary) -> void:
