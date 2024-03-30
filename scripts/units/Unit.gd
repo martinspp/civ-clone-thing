@@ -7,10 +7,11 @@ var unit_data: UnitType:
 		return unit_data
 	set(value):
 		sprite_2d.texture = value.sprite
-		if unit_data == null:
-			unit_data = value.new()
-		else:
-			unit_data = value
+		unit_data = value
+		#if unit_data == null:
+		#	unit_data = value.new()
+		#else:
+		#	unit_data = value
 
 
 @export var sprite_2d: Sprite2D

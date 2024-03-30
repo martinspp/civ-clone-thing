@@ -9,3 +9,6 @@ class_name UnitType
 @export var actions: Array[String]
 @export var attack_damage: float
 @export var action_points: int
+
+func _init() -> void:
+	pass

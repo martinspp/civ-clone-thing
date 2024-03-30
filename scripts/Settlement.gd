@@ -41,6 +41,7 @@ var settlement_pop_label: String:
 @onready var available_buildings: Array[BuildingData] = []
 @onready var available_units: Array[UnitType] = []
 
+@export var unit_scene : PackedScene
 # Used to flip the ui when settlement is focused
 var selected: bool:
 	get:
@@ -60,6 +61,7 @@ func _ready() -> void:
 	PlayEventBus.current_player_changed.connect(update_ui_state)
 	PlayEventBus.start_of_turn.connect(_start_of_turn_actions)
 	PlayEventBus.end_of_turn.connect(_end_of_turn_actions)
+	%StopProduction.pressed.connect(stop_production)
 
 func _exit_tree() -> void:
 	parent_hex.settlement = null
@@ -94,7 +96,7 @@ func update_ui_data() -> void:
 
 	if settlement_data.current_production != "":
 		%ProductionContainer.visible = true
-		%ProductionName.text = settlement_data.current_production
+		%ProductionName.text = settlement_data.current_production.capitalize()
 		%ProductionBar.value = settlement_data.get_production_progress(settlement_data.current_production)
 	else:
 		%ProductionContainer.visible = false
@@ -109,10 +111,10 @@ func _start_of_turn_actions(turn: int) -> void:
 func _end_of_turn_actions() -> void:
 	# Finish production
 	if settlement_data.current_production != "":
-		if settlement_data.update_production_progress(settlement_data.current_production, 0.5) >= 1.0:
+		if settlement_data.update_production_progress(settlement_data.current_production, 1.0) >= 1.0:
 			var produced : Variant = ResourceRegistry.get_building_or_unit_by_name(settlement_data.current_production)
 			if produced is UnitType:
-				pass
+				spawn_unit(produced)
 			elif produced is BuildingData:
 				add_building(produced)
 			else:
@@ -120,6 +122,7 @@ func _end_of_turn_actions() -> void:
 			settlement_data.current_production = ""
 	%ProductionBar.value = settlement_data.get_production_progress(settlement_data.current_production)
 	PlayEventBus.object_finished_end_turn_action.emit(self)
+	update_ui_data()
 	
 func add_building(building_data: BuildingData) -> void:
 	print("built building " + building_data.building_name)
@@ -133,7 +136,7 @@ func remove_building(building: Building) -> void:
 	built_buildings.erase(building)
 
 func spawn_unit(unit_data: UnitType) -> void:
-	var new_unit := Unit.new()
+	var new_unit := unit_scene.instantiate()
 	GameStateService.world_manager.units.add_child(new_unit)
 	new_unit.global_position.x = global_position.x
 	new_unit.global_position.y = global_position.y
@@ -143,9 +146,13 @@ func spawn_unit(unit_data: UnitType) -> void:
 static var starting_buildings := ["granary"]
 static var starting_units := ["warrior"]
 
-func start_building(building_name: String) -> void:
+func start_production(building_name: String) -> void:
 	settlement_data.update_production_progress(building_name, 0.0)
 	settlement_data.current_production = building_name
+	update_ui_data()
+
+func stop_production() -> void:
+	settlement_data.current_production = ""
 	update_ui_data()
 
 
@@ -166,10 +173,17 @@ func build_available_lists() -> void:
 	var unit_list := starting_units.duplicate(true)
 
 	for b: Building in built_buildings:
-		building_list.erase(b.building_data.building_name)
+		building_list.erase(b.building_data.building_name.to_lower())
 
 	for b: String in building_list:
 		var new_button: Button = Button.new()
 		new_button.text = b.capitalize()
 		%Buildings.add_child(new_button)
-		new_button.pressed.connect(start_building.bind(b))
+		new_button.pressed.connect(start_production.bind(b))
+
+
+	for u: String in unit_list:
+		var new_button: Button = Button.new()
+		new_button.text = u.capitalize()
+		%Units.add_child(new_button)
+		new_button.pressed.connect(start_production.bind(u))
