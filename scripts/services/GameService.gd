@@ -7,10 +7,7 @@ var play_ui: PlayUI
 
 static var selected_object: Variant
 
-var round_counter: int = 1
-
-#List of objects that need to perform actions to start the next turns
-@onready var end_of_turn_actions : Array[Variant] = []
+var turn_counter: int = 1
 
 func _ready() -> void:
 	set_name("GameService")
@@ -19,6 +16,7 @@ func _ready() -> void:
 	$"../CanvasLayer".add_child(play_ui)
 	PlayEventBus.hex_clicked.connect(hex_click_event)
 	PlayEventBus.settlement_unhighlighted.connect(unselect_settlement)
+	PlayEventBus.object_finished_end_turn_action.connect(_object_finished_actions)
 	
 
 func hex_click_event(hex: Hex, event: InputEvent) -> void:
@@ -72,3 +70,16 @@ func check_for_next_turn() -> void:
 		PlayEventBus.end_of_turn.emit()
 		for player: Player in GameStateService.data_service.get_all_players():
 			player.ended_turn = false
+
+func _object_finished_actions(object: Variant) -> void:
+	GameStateService.end_of_turn_actions[object] = true
+	for object_state: bool in GameStateService.end_of_turn_actions.values():
+		if !object_state:
+			return
+	print("all objects finished end of turn actions")
+	turn_counter += 1
+	PlayEventBus.start_of_turn.emit(turn_counter)
+
+	for obj: Variant in GameStateService.end_of_turn_actions:
+		GameStateService.end_of_turn_actions[obj] = false
+

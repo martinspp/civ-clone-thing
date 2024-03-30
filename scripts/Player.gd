@@ -8,10 +8,8 @@ var ended_turn: bool = false
 var unlocked_researches : Array[ResearchData] = []
 var owned_settlements : Array[Settlement] = []
 
-var end_of_turn_finished : bool = false
-
 func _init(_player_name: String, _id: Variant, _color: Variant) -> void:
-    GameStateService.game_service.end_of_turn_actions.append(self)
+    GameStateService.end_of_turn_actions[self] = false
     if _id:
         id = _id
     if _color:
@@ -19,6 +17,7 @@ func _init(_player_name: String, _id: Variant, _color: Variant) -> void:
     player_name = _player_name
     PlayEventBus.start_of_turn.connect(_start_of_turn_actions)
     PlayEventBus.end_of_turn.connect(_end_of_turn_actions)
+    PlayEventBus.player_end_turn.connect(_player_end_turn)
 
 func deserialize(data: Dictionary) -> void:
     if data.has('id'):
@@ -67,8 +66,13 @@ func serialize() -> Dictionary:
         "ref": self
     }
 
-func _start_of_turn_actions() -> void:
-    end_of_turn_finished = false
+func _start_of_turn_actions(turn_number: int) -> void:
+    pass
 
 func _end_of_turn_actions() -> void:
-    end_of_turn_finished = true
+    PlayEventBus.object_finished_end_turn_action.emit(self)
+
+func _player_end_turn(player: Player) -> void:
+    if player == self:
+        ended_turn = true
+    GameStateService.game_service.check_for_next_turn()

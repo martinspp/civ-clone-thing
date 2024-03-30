@@ -41,8 +41,6 @@ var settlement_pop_label: String:
 @onready var available_buildings: Array[BuildingData] = []
 @onready var available_units: Array[UnitType] = []
 
-@onready var end_of_turn_finished : bool = false
-
 # Used to flip the ui when settlement is focused
 var selected: bool:
 	get:
@@ -52,7 +50,7 @@ var selected: bool:
 		world_ui.visible = !value
 
 func _ready() -> void:
-	GameStateService.game_service.end_of_turn_actions.append(self)
+	GameStateService.end_of_turn_actions[self] = false
 	settlement_name_label = settlement_data.settlement_name
 	parent_hex.settlement = self
 	selected_ui.visible = false
@@ -105,14 +103,13 @@ func update_ui_data() -> void:
 func update_ui_state() -> void:
 	pass
 
-func _start_of_turn_actions() -> void:
-	end_of_turn_finished = false
+func _start_of_turn_actions(turn: int) -> void:
 	build_available_lists()
 
 func _end_of_turn_actions() -> void:
 	# Finish production
 	if settlement_data.current_production != "":
-		if settlement_data.update_production_progress(settlement_data.current_production, 0.1) >= 1.0:
+		if settlement_data.update_production_progress(settlement_data.current_production, 0.5) >= 1.0:
 			var produced : Variant = ResourceRegistry.get_building_or_unit_by_name(settlement_data.current_production)
 			if produced is UnitType:
 				pass
@@ -120,11 +117,12 @@ func _end_of_turn_actions() -> void:
 				add_building(produced)
 			else:
 				print("produced non existant type")
-		settlement_data.current_production = ""
+			settlement_data.current_production = ""
 	%ProductionBar.value = settlement_data.get_production_progress(settlement_data.current_production)
-	end_of_turn_finished = true
+	PlayEventBus.object_finished_end_turn_action.emit(self)
 	
 func add_building(building_data: BuildingData) -> void:
+	print("built building " + building_data.building_name)
 	var new_building := Building.new()
 	new_building.building_data = building_data
 	add_child(new_building)

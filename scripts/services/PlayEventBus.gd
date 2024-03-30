@@ -8,6 +8,8 @@ signal end_of_turn()
 
 signal player_end_turn(player: Player)
 
+signal object_finished_end_turn_action(object: Variant)
+
 signal hex_clicked(clicked_hex: Hex, event: InputEvent)
 signal settlement_clicked(settlement: Settlement, event: InputEvent)
 

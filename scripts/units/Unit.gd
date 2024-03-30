@@ -15,14 +15,12 @@ var unit_data: UnitType:
 
 @export var sprite_2d: Sprite2D
 
-@onready var end_of_turn_finished : bool = false
-
 var player: Player
 var hex: Hex
 var movement_target_hex: Hex
 
 func _ready() -> void:
-	GameStateService.game_service.end_of_turn_actions.append(self)
+	GameStateService.end_of_turn_actions[self] = false
 	PlayEventBus.start_of_turn.connect(_start_of_turn_actions)
 	PlayEventBus.end_of_turn.connect(_end_of_turn_actions)
 
@@ -51,9 +49,9 @@ func _on_input_event(_viewport:Node, event:InputEvent, _shape_idx:int) -> void:
 		GameStateService.game_service.selected_object = self
 		PlayEventBus.unit_selected.emit(Unit)
 
-func _start_of_turn_actions() -> void:
-	end_of_turn_finished = false
+func _start_of_turn_actions(turn_number: int) -> void:
+	pass
 
 func _end_of_turn_actions() -> void:
 	#TODO continue set walk action if AP points allow it
-	end_of_turn_finished = true
+	PlayEventBus.object_finished_end_turn_action.emit(self)

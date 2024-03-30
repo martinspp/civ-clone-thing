@@ -29,13 +29,14 @@ func register_unit_data(_unit: UnitType) -> void:
 
 func get_unit_type_by_name(_name: String) -> UnitType:
 	for unit_type in unit_type_registry:
-		if unit_type.unit_name == _name:
+		if unit_type.unit_name.to_lower() == _name.to_lower():
 			return unit_type
 	return null
 
 func get_building_type_by_name(_name: String) -> BuildingData:
 	for building_data in building_data_registry:
-		if building_data.building_name == _name:
+		print(building_data.building_name)
+		if building_data.building_name.to_lower() == _name.to_lower():
 			return building_data
 	return null
 

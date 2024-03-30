@@ -60,16 +60,16 @@ func get_production_progress(name: String) -> float:
 ## returns new production progress, return should always be handled
 func update_production_progress(name: String, progress: float) -> float:
 	if get_production_progress(name) == 0.0:
-		production_dict["name"] = progress
+		production_dict[name] = progress
 	else:
-		production_dict["name"] += progress
+		production_dict[name] += progress
 	
-	if production_dict['name'] >= 1.0:
+	if production_dict[name] >= 1.0:
 	# production is done, remove and return 1.0
 		production_dict.erase(name)
 		return 1.0
 
-	return production_dict['name']
+	return production_dict[name]
 
 
 static func default_data() -> Dictionary:

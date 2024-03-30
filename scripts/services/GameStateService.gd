@@ -11,6 +11,9 @@ var camera: CameraController
 var settlement_registy: Array[Settlement]
 #var player_registry: Array[Player]
 
+#List of objects that need to perform actions to start the next turns
+@onready var end_of_turn_actions : Dictionary = {}
+
 var current_player: Player:
 	get: 
 		return current_player
