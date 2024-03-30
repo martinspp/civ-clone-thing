@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqrax0qwe1dq3"]
+[gd_scene load_steps=4 format=3 uid="uid://cqrax0qwe1dq3"]
 
 [ext_resource type="Script" path="res://scripts/Settlement.gd" id="1_cq04i"]
 [ext_resource type="Texture2D" uid="uid://dmvr0u8jlmyt7" path="res://sprites/objects/settlement/woodRing.png" id="2_vg2h3"]
+[ext_resource type="Script" path="res://scripts/ui/SettlementUI.gd" id="3_mqf21"]
 
 [node name="Settlement" type="Area2D"]
 script = ExtResource("1_cq04i")
@@ -26,33 +27,42 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+script = ExtResource("3_mqf21")
 metadata/_edit_use_anchors_ = true
 
-[node name="ProductionProgress" type="VBoxContainer" parent="SettlementUI"]
+[node name="ProductionContainer" type="HBoxContainer" parent="SettlementUI"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -51.5
-offset_top = 50.0
-offset_right = 51.5
-offset_bottom = 90.0
+offset_left = -61.5
+offset_top = 51.0
+offset_right = 63.5
+offset_bottom = 105.0
 grow_horizontal = 2
+alignment = 1
 
-[node name="ProductionBar" type="ProgressBar" parent="SettlementUI/ProductionProgress"]
+[node name="StopProduction" type="Button" parent="SettlementUI/ProductionContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "X"
+
+[node name="ProductionProgress" type="VBoxContainer" parent="SettlementUI/ProductionContainer"]
+layout_mode = 2
+
+[node name="ProductionBar" type="ProgressBar" parent="SettlementUI/ProductionContainer/ProductionProgress"]
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 1.0
-show_percentage = false
 
-[node name="ProductionName" type="Label" parent="SettlementUI/ProductionProgress"]
+[node name="ProductionName" type="Label" parent="SettlementUI/ProductionContainer/ProductionProgress"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Building/Unit"
+text = "Building"
 
 [node name="SelectedUI" type="Control" parent="SettlementUI"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -132,6 +142,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Units" type="VBoxContainer" parent="SettlementUI/SelectedUI/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Label" type="Label" parent="SettlementUI/SelectedUI/HBoxContainer/Units"]
@@ -147,6 +158,7 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
 [node name="Buildings" type="VBoxContainer" parent="SettlementUI/SelectedUI/HBoxContainer"]
+unique_name_in_owner = true
 auto_translate_mode = 1
 layout_mode = 2
 

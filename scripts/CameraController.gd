@@ -4,11 +4,11 @@ class_name CameraController
 
 var camera_speed:int = 500
 
-var pan_point: Variant
-@onready var max_zoom:= Vector2(2,2)
-@onready var min_zoom:= Vector2(0.5,0.5)
-@onready var step_zoom := Vector2(0.1,0.1)
-@onready var target_zoom := Vector2(1,1)
+var pan_point: Variant #Vector2 that can be Null
+@onready var max_zoom:Vector2 = Vector2(2,2)
+@onready var min_zoom:Vector2 = Vector2(0.5,0.5)
+@onready var step_zoom :Vector2 = Vector2(0.1,0.1)
+@onready var target_zoom :Vector2 = Vector2(1,1)
 
 func _ready() -> void:
 	GameStateService.camera = self
@@ -44,7 +44,7 @@ var end_focus_point: Vector2
 var start_focus_zoom: float
 var end_focus_zoom: float
 
-var is_focusing := false
+var is_focusing: bool= false
 var focus_progress: float = 0
 
 func focus_settlement(point: Vector2, focus_zoom: Vector2) -> void:

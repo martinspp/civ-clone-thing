@@ -3,7 +3,7 @@ extends Node
 signal update_gold(gold_amount: int)
 signal update_turn(turn_number: int)
 
-signal start_of_turn()
+signal start_of_turn(new_turn_number: int)
 signal end_of_turn()
 
 signal player_end_turn(player: Player)

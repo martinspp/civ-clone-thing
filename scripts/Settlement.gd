@@ -36,7 +36,12 @@ var settlement_pop_label: String:
 		settlement_pop_label = value
 #endregion
 
+@onready var built_buildings: Array[Building] = []
 
+@onready var available_buildings: Array[BuildingData] = []
+@onready var available_units: Array[UnitType] = []
+
+@onready var end_of_turn_finished : bool = false
 
 # Used to flip the ui when settlement is focused
 var selected: bool:
@@ -47,6 +52,7 @@ var selected: bool:
 		world_ui.visible = !value
 
 func _ready() -> void:
+	GameStateService.game_service.end_of_turn_actions.append(self)
 	settlement_name_label = settlement_data.settlement_name
 	parent_hex.settlement = self
 	selected_ui.visible = false
@@ -54,8 +60,8 @@ func _ready() -> void:
 	settlement_data.ref = self
 	PlayEventBus.player_list_updated.connect(update_ui_data)
 	PlayEventBus.current_player_changed.connect(update_ui_state)
-	PlayEventBus.start_of_turn.connect(start_of_turn_actions)
-	PlayEventBus.end_of_turn.connect(end_of_turn_actions)
+	PlayEventBus.start_of_turn.connect(_start_of_turn_actions)
+	PlayEventBus.end_of_turn.connect(_end_of_turn_actions)
 
 func _exit_tree() -> void:
 	parent_hex.settlement = null
@@ -88,15 +94,22 @@ func update_ui_data() -> void:
 	settlement_growth_label = str(0)
 	settlement_pop_label = str(settlement_data.pop)
 
-	%ProductionName.text = settlement_data.current_production
+	if settlement_data.current_production != "":
+		%ProductionContainer.visible = true
+		%ProductionName.text = settlement_data.current_production
+		%ProductionBar.value = settlement_data.get_production_progress(settlement_data.current_production)
+	else:
+		%ProductionContainer.visible = false
+
 
 func update_ui_state() -> void:
 	pass
 
-func start_of_turn_actions() -> void:
-	pass
+func _start_of_turn_actions() -> void:
+	end_of_turn_finished = false
+	build_available_lists()
 
-func end_of_turn_actions() -> void:
+func _end_of_turn_actions() -> void:
 	# Finish production
 	if settlement_data.current_production != "":
 		if settlement_data.update_production_progress(settlement_data.current_production, 0.1) >= 1.0:
@@ -109,14 +122,17 @@ func end_of_turn_actions() -> void:
 				print("produced non existant type")
 		settlement_data.current_production = ""
 	%ProductionBar.value = settlement_data.get_production_progress(settlement_data.current_production)
+	end_of_turn_finished = true
 	
 func add_building(building_data: BuildingData) -> void:
 	var new_building := Building.new()
 	new_building.building_data = building_data
 	add_child(new_building)
+	built_buildings.append(new_building)
 
 func remove_building(building: Building) -> void:
 	building.queue_free()
+	built_buildings.erase(building)
 
 func spawn_unit(unit_data: UnitType) -> void:
 	var new_unit := Unit.new()
@@ -124,3 +140,38 @@ func spawn_unit(unit_data: UnitType) -> void:
 	new_unit.global_position.x = global_position.x
 	new_unit.global_position.y = global_position.y
 	new_unit.unit_data = unit_data
+
+#TODO move this somewhere else
+static var starting_buildings := ["granary"]
+static var starting_units := ["warrior"]
+
+func start_building(building_name: String) -> void:
+	settlement_data.update_production_progress(building_name, 0.0)
+	settlement_data.current_production = building_name
+	update_ui_data()
+
+
+func build_available_lists() -> void:
+	#TODO Check researches
+	#TODO Check buildings
+	#TODO remove built/obsolete buildings
+	# Add starting things
+
+	#clearing current lists
+	for n: Node in %Units.get_children() + %Buildings.get_children():
+		if n is Label:
+			continue
+		else:
+			n.queue_free()
+	
+	var building_list := starting_buildings.duplicate(true)
+	var unit_list := starting_units.duplicate(true)
+
+	for b: Building in built_buildings:
+		building_list.erase(b.building_data.building_name)
+
+	for b: String in building_list:
+		var new_button: Button = Button.new()
+		new_button.text = b.capitalize()
+		%Buildings.add_child(new_button)
+		new_button.pressed.connect(start_building.bind(b))

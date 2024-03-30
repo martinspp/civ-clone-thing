@@ -3,16 +3,22 @@ class_name Player
 var id := randi() % 50000000 
 var player_name := "Player"
 var color : Color= Color.BLUE
+var ended_turn: bool = false
 
 var unlocked_researches : Array[ResearchData] = []
 var owned_settlements : Array[Settlement] = []
 
+var end_of_turn_finished : bool = false
+
 func _init(_player_name: String, _id: Variant, _color: Variant) -> void:
+    GameStateService.game_service.end_of_turn_actions.append(self)
     if _id:
         id = _id
     if _color:
         color = _color
     player_name = _player_name
+    PlayEventBus.start_of_turn.connect(_start_of_turn_actions)
+    PlayEventBus.end_of_turn.connect(_end_of_turn_actions)
 
 func deserialize(data: Dictionary) -> void:
     if data.has('id'):
@@ -37,7 +43,7 @@ func deserialize(data: Dictionary) -> void:
             printerr("Player.gd: Attempted to deserialize an invalid research %s" % r)
     
     for s: int in data["settlements"]:
-        var settlement := GameStateService.get_settlement_by_id(s)
+        var settlement : Settlement= GameStateService.get_settlement_by_id(s)
         if settlement:
             owned_settlements.append(settlement)
         else:
@@ -60,3 +66,9 @@ func serialize() -> Dictionary:
         "settlements": settlement_ids,
         "ref": self
     }
+
+func _start_of_turn_actions() -> void:
+    end_of_turn_finished = false
+
+func _end_of_turn_actions() -> void:
+    end_of_turn_finished = true

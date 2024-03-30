@@ -21,7 +21,6 @@ var current_player: Player:
 
 func _ready() -> void:
 	randomize()
-	
 
 func start_game() -> Dictionary:
 	#var ret_msg = {"msg": "", "success": false}
@@ -44,6 +43,7 @@ func start_game() -> Dictionary:
 	game_service = GameService.new()
 	get_node("/root/Main").add_child(game_service)
 	
+	PlayEventBus.start_of_turn.emit(1)
 	return {"msg": "", "success": true}
 	
 
@@ -52,6 +52,8 @@ func get_settlement_by_id(id: int) -> Settlement:
 		if s.id == id:
 			return s
 	return null
+
+
 
 #func get_player_by_id(id: int) -> Player:
 #	for p in player_registry:

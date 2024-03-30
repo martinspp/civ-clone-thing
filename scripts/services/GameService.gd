@@ -5,7 +5,12 @@ class_name GameService
 var play_ui_scene: PackedScene = load("res://scenes/UI/Play/PlayUI.tscn")
 var play_ui: PlayUI
 
-var selected_object: Variant
+static var selected_object: Variant
+
+var round_counter: int = 1
+
+#List of objects that need to perform actions to start the next turns
+@onready var end_of_turn_actions : Array[Variant] = []
 
 func _ready() -> void:
 	set_name("GameService")
@@ -56,3 +61,14 @@ func unselect_settlement() -> void:
 	if selected_object is Settlement:
 		selected_object.selected = false
 		selected_object = null
+
+func check_for_next_turn() -> void:
+	var all_players_finished := true
+	for player: Player in GameStateService.data_service.get_all_players():
+		if !player.ended_turn:
+			all_players_finished = false
+
+	if all_players_finished:
+		PlayEventBus.end_of_turn.emit()
+		for player: Player in GameStateService.data_service.get_all_players():
+			player.ended_turn = false
