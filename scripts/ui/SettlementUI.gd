@@ -1,30 +1,49 @@
 extends Control
 
-@onready var buildings_list_container : VBoxContainer= %BuildingsListContainer
-@onready var garrison_container: GridContainer = %GridContainer
+class_name SettlementUI
 
-var settlement: Settlement:
-	get:
-		return settlement
-	set(value):
-		settlement = value
-		_populate_buildings_list()
-		_populate_garrison()
+@export var buildings_list_container : VBoxContainer
+@export var garrison_container: GridContainer
+
+var _settlement: Settlement
 	
 func _init() -> void:
 	pass
 
 func _ready() -> void:
-	pass
+	PlayEventBus.settlement_selected.connect(_update_settlement)
+	PlayEventBus.settlement_unselected.connect(_update_settlement.bindv([null]))
+	PlayEventBus.start_of_turn.connect(_update_lists)
 
-func _update_lists() -> void:
-	_populate_buildings_list()
-	_populate_garrison()
+func _update_settlement(settlement: Settlement) -> void:
+	if settlement:
+		_settlement = settlement
+		_populate_buildings_list()
+		_populate_garrison()
+		visible = true
+	else:
+		_clear_lists()
+		visible = false
+
+func _update_lists(_foo: int) -> void:
+	print("updating lists")
+	if _settlement:
+		_populate_buildings_list()
+		_populate_garrison()
+	else:
+		_clear_lists()
+
+
+func _clear_lists() -> void:
+	for child in buildings_list_container.get_children():
+		child.queue_free()
+	for child in garrison_container.get_children():
+		child.queue_free()
 
 func _populate_buildings_list() -> void:
 	for child in buildings_list_container.get_children():
 		child.queue_free()
-	for building: Building in settlement.built_buildings:
+	for building: Building in _settlement.built_buildings:
 		var new_label :Label = Label.new()
 		new_label.text = building.building_data.building_name.capitalize()
 		buildings_list_container.add_child(new_label)
@@ -32,7 +51,7 @@ func _populate_buildings_list() -> void:
 func _populate_garrison() -> void:
 	for child in garrison_container.get_children():
 		child.queue_free()
-	for unit: Unit in settlement.garissoned_units:
+	for unit: Unit in _settlement.garrisoned_units:
 		var new_button :Button = Button.new()
 		new_button.text = unit.unit_data.unit_name.capitalize()
 		garrison_container.add_child(new_button)

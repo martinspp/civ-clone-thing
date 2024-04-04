@@ -20,6 +20,9 @@ var player: Player
 var hex: Hex
 var movement_target_hex: Hex
 
+var garrisoned_settlement: Settlement
+
+
 func _ready() -> void:
 	GameStateService.end_of_turn_actions[self] = false
 	PlayEventBus.start_of_turn.connect(_start_of_turn_actions)
@@ -56,3 +59,17 @@ func _start_of_turn_actions(turn_number: int) -> void:
 func _end_of_turn_actions() -> void:
 	#TODO continue set walk action if AP points allow it
 	PlayEventBus.object_finished_end_turn_action.emit(self)
+
+func garrison(settlement: Settlement) -> void:
+	if garrisoned_settlement:
+		print("already garrisoned")
+		return
+	garrisoned_settlement = settlement
+	visible = false
+
+func ungarrsion() -> void:
+	if garrisoned_settlement:
+		garrisoned_settlement = null
+		visible = true
+	else:
+		print("not garrisoned")

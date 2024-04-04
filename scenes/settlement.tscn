@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqrax0qwe1dq3"]
+[gd_scene load_steps=4 format=3 uid="uid://cqrax0qwe1dq3"]
 
 [ext_resource type="Script" path="res://scripts/Settlement.gd" id="1_cq04i"]
 [ext_resource type="PackedScene" uid="uid://c3ks0spf6nsc8" path="res://scenes/unit.tscn" id="2_gt3mk"]
 [ext_resource type="Texture2D" uid="uid://dmvr0u8jlmyt7" path="res://sprites/objects/settlement/woodRing.png" id="2_vg2h3"]
-[ext_resource type="Script" path="res://scripts/ui/SettlementUI.gd" id="3_mqf21"]
 
 [node name="Settlement" type="Area2D"]
 script = ExtResource("1_cq04i")
@@ -29,7 +28,6 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-script = ExtResource("3_mqf21")
 metadata/_edit_use_anchors_ = true
 
 [node name="ProductionContainer" type="HBoxContainer" parent="SettlementUI"]

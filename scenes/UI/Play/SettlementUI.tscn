@@ -10,7 +10,7 @@ font_size = 10
 [sub_resource type="LabelSettings" id="LabelSettings_7wlkl"]
 font_size = 10
 
-[node name="SettlementUI" type="Control"]
+[node name="SettlementUI" type="Control" node_paths=PackedStringArray("buildings_list_container", "garrison_container")]
 layout_mode = 3
 anchors_preset = 12
 anchor_top = 1.0
@@ -19,6 +19,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("1_wpaio")
+buildings_list_container = NodePath("PanelContainer/HBoxContainer/VBoxContainer/ScrollContainer/BuildingsListContainer")
+garrison_container = NodePath("PanelContainer/HBoxContainer/GarrisonSectionContainer/GarrisonContainer")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1

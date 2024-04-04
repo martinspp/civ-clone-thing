@@ -181,7 +181,7 @@ func get_all_players() -> Array[Player]:
 		ret.append(world_dict["player_data"]["players"][p]["ref"])
 	return ret
 #endregion
-#region units
+#region units 
 
 func add_unit(hex: Hex, unit: Unit) -> void:
 	if hex_has_unit(hex):

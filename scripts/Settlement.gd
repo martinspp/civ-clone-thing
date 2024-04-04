@@ -127,7 +127,7 @@ func _end_of_turn_actions() -> void:
 	
 func add_building(building_data: BuildingData) -> void:
 	print("built building " + building_data.building_name)
-	var new_building := Building.new()
+	var new_building :Building = Building.new()
 	new_building.building_data = building_data
 	add_child(new_building)
 	built_buildings.append(new_building)
@@ -137,11 +137,15 @@ func remove_building(building: Building) -> void:
 	built_buildings.erase(building)
 
 func spawn_unit(unit_data: UnitType) -> void:
-	var new_unit := unit_scene.instantiate()
+	var new_unit :Unit = unit_scene.instantiate()
 	GameStateService.world_manager.units.add_child(new_unit)
 	new_unit.global_position.x = global_position.x
 	new_unit.global_position.y = global_position.y
 	new_unit.unit_data = unit_data
+	garrisoned_units.append(new_unit)
+	new_unit.garrison(self)
+	GameStateService.end_of_turn_actions[new_unit] = true
+	print("new unit appended")
 
 #TODO move this somewhere else
 static var starting_buildings := ["granary"]
