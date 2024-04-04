@@ -4,6 +4,7 @@ class_name SettlementUI
 
 @export var buildings_list_container : VBoxContainer
 @export var garrison_container: GridContainer
+@export var settlement_name: Label
 
 var _settlement: Settlement
 	
@@ -20,6 +21,7 @@ func _update_settlement(settlement: Settlement) -> void:
 		_settlement = settlement
 		_populate_buildings_list()
 		_populate_garrison()
+		_update_settlement_label()
 		visible = true
 	else:
 		_clear_lists()
@@ -57,3 +59,9 @@ func _populate_garrison() -> void:
 		garrison_container.add_child(new_button)
 		#TODO connect to the global signal to select the garrisoned unit
 	
+func _update_settlement_label() -> void:
+	if _settlement:
+		settlement_name.text = _settlement.settlement_data.settlement_name
+		settlement_name.modulate = _settlement.settlement_data.owned_player.color
+	else:
+		settlement_name.text = ""

@@ -18,12 +18,13 @@ var turn_counter: int = 1
 func _ready() -> void:
 	set_name("GameService")
 	GameStateService.game_service = self
-	
+
 	play_ui = play_ui_scene.instantiate()
 	$"../CanvasLayer".add_child(play_ui)
 
 	settlement_ui = settlement_ui_scene.instantiate()
 	$"../CanvasLayer".add_child(settlement_ui)
+	settlement_ui._update_settlement(null)
 
 	PlayEventBus.hex_clicked.connect(hex_click_event)
 	PlayEventBus.settlement_unhighlighted.connect(unfocus_settlement)

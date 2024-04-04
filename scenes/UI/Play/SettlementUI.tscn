@@ -1,6 +1,5 @@
 [gd_scene load_steps=6 format=3 uid="uid://coieytpvwdpo8"]
 
-[ext_resource type="Texture2D" uid="uid://cfinei4vv7t42" path="res://sprites/hex/tileGrass.png" id="1_lh6tx"]
 [ext_resource type="Script" path="res://scripts/ui/SettlementUI.gd" id="1_wpaio"]
 [ext_resource type="Texture2D" uid="uid://dmvr0u8jlmyt7" path="res://sprites/objects/settlement/woodRing.png" id="2_onurx"]
 
@@ -10,7 +9,10 @@ font_size = 10
 [sub_resource type="LabelSettings" id="LabelSettings_7wlkl"]
 font_size = 10
 
-[node name="SettlementUI" type="Control" node_paths=PackedStringArray("buildings_list_container", "garrison_container")]
+[sub_resource type="LabelSettings" id="LabelSettings_oxt7x"]
+font_size = 10
+
+[node name="SettlementUI" type="Control" node_paths=PackedStringArray("buildings_list_container", "garrison_container", "settlement_name")]
 layout_mode = 3
 anchors_preset = 12
 anchor_top = 1.0
@@ -21,6 +23,7 @@ grow_vertical = 0
 script = ExtResource("1_wpaio")
 buildings_list_container = NodePath("PanelContainer/HBoxContainer/VBoxContainer/ScrollContainer/BuildingsListContainer")
 garrison_container = NodePath("PanelContainer/HBoxContainer/GarrisonSectionContainer/GarrisonContainer")
+settlement_name = NodePath("PanelContainer/HBoxContainer/VBoxContainer2/SettlementName")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -36,6 +39,11 @@ grow_vertical = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="VSeparator4" type="VSeparator" parent="PanelContainer/HBoxContainer"]
+auto_translate_mode = 1
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
@@ -76,15 +84,22 @@ columns = 3
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="PanelContainer" type="AspectRatioContainer" parent="PanelContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
 layout_mode = 2
-alignment_vertical = 0
+alignment = 1
 
-[node name="HexSprite" type="TextureRect" parent="PanelContainer/HBoxContainer/PanelContainer"]
+[node name="SettlementName" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-texture = ExtResource("1_lh6tx")
-stretch_mode = 2
+text = "settlement"
+label_settings = SubResource("LabelSettings_oxt7x")
+horizontal_alignment = 1
 
-[node name="SettlementSprite" type="TextureRect" parent="PanelContainer/HBoxContainer/PanelContainer"]
+[node name="SettlementSprite" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
+size_flags_horizontal = 8
 texture = ExtResource("2_onurx")
+
+[node name="VSeparator3" type="VSeparator" parent="PanelContainer/HBoxContainer"]
+auto_translate_mode = 1
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
