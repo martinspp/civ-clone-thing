@@ -37,6 +37,7 @@ var settlement_pop_label: String:
 #endregion
 
 @onready var built_buildings: Array[Building] = []
+@onready var garrisoned_units: Array[Unit] = []
 
 @onready var available_buildings: Array[BuildingData] = []
 @onready var available_units: Array[UnitType] = []
@@ -105,13 +106,13 @@ func update_ui_data() -> void:
 func update_ui_state() -> void:
 	pass
 
-func _start_of_turn_actions(turn: int) -> void:
+func _start_of_turn_actions(_turn: int) -> void:
 	build_available_lists()
 
 func _end_of_turn_actions() -> void:
 	# Finish production
 	if settlement_data.current_production != "":
-		if settlement_data.update_production_progress(settlement_data.current_production, 1.0) >= 1.0:
+		if settlement_data.update_production_progress(settlement_data.current_production, 0.5) >= 1.0:
 			var produced : Variant = ResourceRegistry.get_building_or_unit_by_name(settlement_data.current_production)
 			if produced is UnitType:
 				spawn_unit(produced)

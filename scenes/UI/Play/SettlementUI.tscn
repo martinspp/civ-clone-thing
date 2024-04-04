@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=3 uid="uid://coieytpvwdpo8"]
+
+[ext_resource type="Texture2D" uid="uid://cfinei4vv7t42" path="res://sprites/hex/tileGrass.png" id="1_lh6tx"]
+[ext_resource type="Script" path="res://scripts/ui/SettlementUI.gd" id="1_wpaio"]
+[ext_resource type="Texture2D" uid="uid://dmvr0u8jlmyt7" path="res://sprites/objects/settlement/woodRing.png" id="2_onurx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ndh38"]
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_7wlkl"]
+font_size = 10
+
+[node name="SettlementUI" type="Control"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_wpaio")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -144.0
+offset_top = -89.0
+grow_horizontal = 0
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Buildings"
+label_settings = SubResource("LabelSettings_ndh38")
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="BuildingsListContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="GarrisonSectionContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/GarrisonSectionContainer"]
+layout_mode = 2
+text = "Garrison"
+label_settings = SubResource("LabelSettings_7wlkl")
+horizontal_alignment = 1
+
+[node name="GarrisonContainer" type="GridContainer" parent="PanelContainer/HBoxContainer/GarrisonSectionContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 3
+
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="AspectRatioContainer" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+alignment_vertical = 0
+
+[node name="HexSprite" type="TextureRect" parent="PanelContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("1_lh6tx")
+stretch_mode = 2
+
+[node name="SettlementSprite" type="TextureRect" parent="PanelContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("2_onurx")
