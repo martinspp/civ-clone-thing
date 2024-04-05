@@ -11,7 +11,7 @@ class_name WorldManager
 @onready var decors: Node = Node.new()
 
 @onready var astar := AStar2D.new()
-
+@onready var astar_dict: Dictionary = {}
 
 var loaded : bool= false
 
@@ -76,7 +76,7 @@ func place_hex(r: int, q: int) -> Hex:
 
 func connect_neighbours(hex: Hex) -> void:
 	for neighbour: Hex in GameStateService.data_service.get_all_neighbouring_hexes(hex):
-		astar.connect_points(hex.get_instance_id(), neighbour.get_instance_id(), true)
+		astar.connect_points(hex.get_meta("astar_id"), neighbour.get_meta("astar_id"), true)
 #endregion
 #region hex refreshing
 func refresh_hex(hex: Hex) -> void:
