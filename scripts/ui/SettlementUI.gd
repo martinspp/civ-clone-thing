@@ -57,7 +57,8 @@ func _populate_garrison() -> void:
 		var new_button :Button = Button.new()
 		new_button.text = unit.unit_data.unit_name.capitalize()
 		garrison_container.add_child(new_button)
-		#TODO connect to the global signal to select the garrisoned unit
+		new_button.pressed.connect(func() -> void : PlayEventBus.unit_selected.emit(unit))
+		
 	
 func _update_settlement_label() -> void:
 	if _settlement:

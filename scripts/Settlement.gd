@@ -63,6 +63,7 @@ func _ready() -> void:
 	PlayEventBus.start_of_turn.connect(_start_of_turn_actions)
 	PlayEventBus.end_of_turn.connect(_end_of_turn_actions)
 	%StopProduction.pressed.connect(stop_production)
+	spawn_unit(ResourceRegistry.get_unit_type_by_name("warrior"))
 
 func _exit_tree() -> void:
 	parent_hex.settlement = null

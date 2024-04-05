@@ -8,6 +8,9 @@ var play_ui: PlayUI
 var settlement_ui_scene: PackedScene = load("res://scenes/UI/Play/SettlementUI.tscn")
 var settlement_ui: SettlementUI
 
+var unit_ui_scene: PackedScene = load("res://scenes/UI/Play/UnitUI.tscn")
+var unit_ui: UnitUI
+
 static var selected_object: Variant
 
 # Used for the settlement bottom right ui
@@ -25,6 +28,10 @@ func _ready() -> void:
 	settlement_ui = settlement_ui_scene.instantiate()
 	$"../CanvasLayer".add_child(settlement_ui)
 	settlement_ui._update_settlement(null)
+
+	unit_ui = unit_ui_scene.instantiate()
+	$"../CanvasLayer".add_child(unit_ui)
+	unit_ui.unselect()
 
 	PlayEventBus.hex_clicked.connect(hex_click_event)
 	PlayEventBus.settlement_unhighlighted.connect(unfocus_settlement)
@@ -78,6 +85,7 @@ func unfocus_settlement() -> void:
 	if selected_object is Settlement:
 		selected_object.selected = false
 		selected_object = null
+		unselect_settlement()
 #endregion
 
 #region selecting
