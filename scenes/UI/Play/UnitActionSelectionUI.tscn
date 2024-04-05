@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx4hf43icac8b"]
+
+[ext_resource type="Script" path="res://scripts/ui/UnitSelectionUI.gd" id="1_1sppb"]
+[ext_resource type="Texture2D" uid="uid://f58jlja3fu0l" path="res://icon.svg" id="2_5ugma"]
+
+[node name="UnitActionSelectionUI" type="Node2D" node_paths=PackedStringArray("target_sprite", "line")]
+z_index = 10
+script = ExtResource("1_1sppb")
+target_sprite = NodePath("TargetSprite")
+line = NodePath("Path")
+
+[node name="Path" type="Line2D" parent="."]
+points = PackedVector2Array(-102, 36)
+
+[node name="TargetSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_5ugma")

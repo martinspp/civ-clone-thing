@@ -22,6 +22,7 @@ var movement_target_hex: Hex
 
 var garrisoned_settlement: Settlement
 
+signal continue_action()
 
 func _ready() -> void:
 	GameStateService.end_of_turn_actions[self] = false

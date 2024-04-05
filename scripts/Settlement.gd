@@ -63,7 +63,7 @@ func _ready() -> void:
 	PlayEventBus.start_of_turn.connect(_start_of_turn_actions)
 	PlayEventBus.end_of_turn.connect(_end_of_turn_actions)
 	%StopProduction.pressed.connect(stop_production)
-	spawn_unit(ResourceRegistry.get_unit_type_by_name("warrior"))
+	spawn_unit(ResourceRegistry.get_unit_type_by_name("warrior")).hex = parent_hex
 
 func _exit_tree() -> void:
 	parent_hex.settlement = null
@@ -116,7 +116,7 @@ func _end_of_turn_actions() -> void:
 		if settlement_data.update_production_progress(settlement_data.current_production, 0.5) >= 1.0:
 			var produced : Variant = ResourceRegistry.get_building_or_unit_by_name(settlement_data.current_production)
 			if produced is UnitType:
-				spawn_unit(produced)
+				spawn_unit(produced).hex = parent_hex
 			elif produced is BuildingData:
 				add_building(produced)
 			else:
@@ -126,18 +126,19 @@ func _end_of_turn_actions() -> void:
 	PlayEventBus.object_finished_end_turn_action.emit(self)
 	update_ui_data()
 	
-func add_building(building_data: BuildingData) -> void:
+func add_building(building_data: BuildingData) -> Building:
 	print("built building " + building_data.building_name)
 	var new_building :Building = Building.new()
 	new_building.building_data = building_data
 	add_child(new_building)
 	built_buildings.append(new_building)
+	return new_building
 
 func remove_building(building: Building) -> void:
 	building.queue_free()
 	built_buildings.erase(building)
 
-func spawn_unit(unit_data: UnitType) -> void:
+func spawn_unit(unit_data: UnitType) -> Unit:
 	var new_unit :Unit = unit_scene.instantiate()
 	GameStateService.world_manager.units.add_child(new_unit)
 	new_unit.global_position.x = global_position.x
@@ -147,6 +148,7 @@ func spawn_unit(unit_data: UnitType) -> void:
 	new_unit.garrison(self)
 	GameStateService.end_of_turn_actions[new_unit] = true
 	print("new unit appended")
+	return new_unit
 
 #TODO move this somewhere else
 static var starting_buildings := ["granary"]

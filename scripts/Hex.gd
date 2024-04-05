@@ -83,8 +83,7 @@ func update_pos() -> void:
 		return
 	position.x = (q * 128)+(r*64)
 	position.y = r * 96
-	world.astar.add_point(get_instance_id(), position)
-	connect_neighbours()
+	world.astar.add_point(get_instance_id(), global_position)
 	name = "Hex (r %s, q %s)" % [r,q] 
 
 
@@ -115,6 +114,8 @@ func handle_play_click(event: InputEvent) -> void:
 func _on_mouse_entered() -> void:
 	if GameStateService.current_state == GameStateService.game_states.EDITOR:
 		GameStateService.editor_service.move_editor_cursor(self)
+	elif GameStateService.game_service.selecting_target && GameStateService.current_state == GameStateService.game_states.PLAY:
+		GameStateService.game_service.select_target_ui._targeted_hex= self
 
 func get_sextant_clicked(_event: InputEventMouse) -> side_flag:
 	var side_angle: float = rad_to_deg(global_position.angle_to_point(get_global_mouse_position()))+90 # 0 is horizontal right
@@ -134,6 +135,5 @@ func int2bin(value: int) -> String:
 		value = (value >> 1)
 	return out
 
-func connect_neighbours() -> void:
-	for neighbour: Hex in GameStateService.data_service.get_all_neighbouring_hexes(self):
-		world.astar.connect_points(get_instance_id(), neighbour.get_instance_id())
+func _to_string() -> String:
+	return "Hex (r %s, q %s)" % [r,q]

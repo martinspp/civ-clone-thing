@@ -199,8 +199,17 @@ func move_unit(hex_from: Hex, hex_to: Hex) -> bool:
 	return false
 
 func plot_path(hex_from: Hex, hex_to: Hex) -> Array[Hex]:
-
-	return []
+	if !(hex_from && hex_to):
+		return []
+	var hex_path: Array[Hex] = []
+	#print("%s - >%s" % [ hex_from.get_instance_id(),  GameStateService.world_manager.astar.get_point_connections(hex_to.get_instance_id())])
+	#print(GameStateService.world_manager.astar.are_points_connected(hex_from.get_instance_id(), hex_to.get_instance_id()))
+	print(GameStateService.world_manager.astar.get_point_connections(hex_from.get_instance_id()))
+	print(hex_to.get_instance_id())
+	print(GameStateService.world_manager.astar.get_id_path(hex_from.get_instance_id(), hex_to.get_instance_id()))
+	for id:int in GameStateService.world_manager.astar.get_id_path(hex_from.get_instance_id(), hex_to.get_instance_id()):
+		hex_path.append(instance_from_id(id))
+	return hex_path
 
 
 func hex_has_unit(hex: Hex) -> bool:

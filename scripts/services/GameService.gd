@@ -11,10 +11,19 @@ var settlement_ui: SettlementUI
 var unit_ui_scene: PackedScene = load("res://scenes/UI/Play/UnitUI.tscn")
 var unit_ui: UnitUI
 
+var select_target_ui_scene: PackedScene = load("res://scenes/UI/Play/UnitActionSelectionUI.tscn")
+var select_target_ui: UnitActionSelectionUI
+
 static var selected_object: Variant
 
 # Used for the settlement bottom right ui
 static var selected_ui_settlement: Settlement
+
+#region target selection
+static var targeted_object: Variant
+static var selecting_target: bool = false
+signal target_set()
+#endregion
 
 var turn_counter: int = 1
 
@@ -50,6 +59,12 @@ func hex_click_event(hex: Hex, event: InputEvent) -> void:
 
 
 func hex_clicked(hex: Hex, _event: InputEvent) -> void:
+	if selecting_target:
+		targeted_object = hex
+		selecting_target = false
+		target_set.emit()
+		return
+
 	if selected_object is Settlement:
 		return
 	else:
@@ -59,6 +74,11 @@ func unit_clicked(unit: Unit, _event: InputEvent) -> void:
 	selected_object = unit
 
 func settlement_clicked(settlement: Settlement, event: InputEvent) -> void:
+	if selecting_target:
+		targeted_object = settlement
+		selecting_target = false
+		target_set.emit()
+		return
 	if (event as InputEventMouseButton).double_click == false && settlement.settlement_data.owned_player == GameStateService.current_player:
 		if selected_ui_settlement:
 			unselect_settlement()
@@ -123,3 +143,6 @@ func _object_finished_actions(object: Variant) -> void:
 	for obj: Variant in GameStateService.end_of_turn_actions:
 		GameStateService.end_of_turn_actions[obj] = false
 
+func get_target() -> Variant:
+	await target_set
+	return targeted_object

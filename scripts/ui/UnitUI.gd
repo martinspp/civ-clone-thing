@@ -22,11 +22,13 @@ func _set_ui_data(unit : Unit) -> void:
 	damage_label.text = str(unit.unit_data.attack_damage)
 
 func _population_actions_grid(unit: Unit) -> void:
+	for child in actions_grid.get_children():
+		child.queue_free()
 	for action: String in unit.unit_data.actions:
 		var action_button : Button = Button.new()
 		action_button.text = action.capitalize()
 		actions_grid.add_child(action_button)
-		action_button.pressed.connect(UnitActions.callable_dict[action]["func"])
+		action_button.pressed.connect(UnitActions.callable_dict[action]["func"].bindv([unit]))
 
 func unselect() -> void:
 	visible = false
@@ -38,3 +40,13 @@ func select(unit: Unit) -> void:
 		visible = true
 	else:
 		unselect()
+
+static func get_move_target(unit: Unit) -> Variant:
+	GameStateService.game_service.select_target_ui = GameStateService.game_service.select_target_ui_scene.instantiate()
+	GameStateService.world_manager.add_child(GameStateService.game_service.select_target_ui)
+	GameStateService.world_manager.move_child(GameStateService.game_service.select_target_ui, 0)
+	
+	GameStateService.game_service.select_target_ui.source_unit = unit
+	var target :Variant= await GameStateService.game_service.get_target()
+	GameStateService.game_service.select_target_ui.queue_free()
+	return  target

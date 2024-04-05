@@ -12,6 +12,7 @@ class_name WorldManager
 
 @onready var astar := AStar2D.new()
 
+
 var loaded : bool= false
 
 func _ready() -> void:
@@ -28,9 +29,12 @@ func _ready() -> void:
 	
 
 func start_generation() -> void:
+	astar.clear()
 	generate_grid()
 	#apply_on_all_hexes(world_dict, refresh_hex_rivers)
 	generate_rivers()
+	apply_on_all_hexes(connect_neighbours)
+
 	loaded = true
 	
 func hex_clicked(hex: Hex) -> void: 	
@@ -69,7 +73,11 @@ func place_hex(r: int, q: int) -> Hex:
 		hex.rivers = DataService.world_dict["map_data"][r][q]["rivers"]
 	DataService.world_dict["map_data"][r][q]["ref"] = hex
 	return hex
-	
+
+func connect_neighbours(hex: Hex) -> void:
+	for neighbour: Hex in GameStateService.data_service.get_all_neighbouring_hexes(hex):
+		astar.connect_points(hex.get_instance_id(), neighbour.get_instance_id(), true)
+#endregion
 #region hex refreshing
 func refresh_hex(hex: Hex) -> void:
 	hex.set_hex_type_by_string(DataService.world_dict["map_data"][hex.r][hex.q]["hex_type"]) 
