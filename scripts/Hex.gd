@@ -83,7 +83,10 @@ func update_pos() -> void:
 		return
 	position.x = (q * 128)+(r*64)
 	position.y = r * 96
-	world.astar.add_point(get_instance_id(), global_position)
+	var astar_id :int = world.astar.get_available_point_id()
+	world.astar.add_point(astar_id, global_position)
+	set_meta("astar_id", astar_id)
+	world.astar_dict[astar_id] = self
 	name = "Hex (r %s, q %s)" % [r,q] 
 
 

@@ -204,11 +204,11 @@ func plot_path(hex_from: Hex, hex_to: Hex) -> Array[Hex]:
 	var hex_path: Array[Hex] = []
 	#print("%s - >%s" % [ hex_from.get_instance_id(),  GameStateService.world_manager.astar.get_point_connections(hex_to.get_instance_id())])
 	#print(GameStateService.world_manager.astar.are_points_connected(hex_from.get_instance_id(), hex_to.get_instance_id()))
-	print(GameStateService.world_manager.astar.get_point_connections(hex_from.get_instance_id()))
-	print(hex_to.get_instance_id())
-	print(GameStateService.world_manager.astar.get_id_path(hex_from.get_instance_id(), hex_to.get_instance_id()))
-	for id:int in GameStateService.world_manager.astar.get_id_path(hex_from.get_instance_id(), hex_to.get_instance_id()):
-		hex_path.append(instance_from_id(id))
+	print(GameStateService.world_manager.astar.get_point_connections(hex_from.get_meta("astar_id")))
+	#print(hex_to.get_instance_id())
+	print(GameStateService.world_manager.astar.get_id_path(hex_from.get_meta("astar_id"), hex_to.get_meta("astar_id")))
+	for id:int in GameStateService.world_manager.astar.get_id_path(hex_from.get_meta("astar_id"), hex_to.get_meta("astar_id")):
+		hex_path.append(GameStateService.world_manager.astar_dict[id])
 	return hex_path
 
 
