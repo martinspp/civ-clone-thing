@@ -32,10 +32,10 @@ func start_game() -> Dictionary:
 	if data_service.world_dict.has("player_data") && data_service.world_dict["player_data"].has("players"):
 		for player : String in data_service.world_dict["player_data"]["players"]:
 			print("Player name: %s  id: %s " % [data_service.world_dict["player_data"]["players"][player]["player_name"], data_service.world_dict["player_data"]["players"][player]["id"]])
+	if data_service.get_all_players().size() < 1:
+		return {'msg': "Need at least 1 players to start", "success": false}
 	if current_player == null:
-		return {'msg': "Current player is not set", "success": false}
-	if data_service.get_all_players().size() < 2:
-		return {'msg': "Need at least 2 players to start", "success": false}
+		current_player = data_service.get_all_players()[0]
 
 	#clear editor things
 	editor_service.queue_free()

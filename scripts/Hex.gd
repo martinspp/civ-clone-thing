@@ -93,9 +93,9 @@ func update_pos() -> void:
 func set_hex_type_by_string(type: String) -> void:
 	hex_type = load("res://resources/HexTypes/%s.tres" % type)
 	if hex_type.traversable:
-		world.astar.set_point_disabled(get_instance_id(), false)
+		world.astar.set_point_disabled(get_meta("astar_id"), false)
 	else:
-		world.astar.set_point_disabled(get_instance_id(), true)
+		world.astar.set_point_disabled(get_meta("astar_id"), true)
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton:

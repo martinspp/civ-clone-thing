@@ -10,4 +10,4 @@ world_sprite = ExtResource("2_iq1i7")
 cursor_sprite = ExtResource("1_45vxq")
 data_name = "grass"
 settleable = true
-traversable = false
+traversable = true

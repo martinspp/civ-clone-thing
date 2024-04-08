@@ -7,8 +7,8 @@
 script = ExtResource("1_0atjq")
 unit_name = "Warrior"
 health = 100.0
-speed = 1.0
+speed = 2
 sprite = ExtResource("2_dn2xr")
 actions = Array[String](["move", "attack_unit_melee"])
-attack_damage = 0.0
-action_points = 0
+attack_damage = 10.0
+action_points = 6

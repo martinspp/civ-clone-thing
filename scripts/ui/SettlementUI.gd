@@ -6,6 +6,8 @@ class_name SettlementUI
 @export var garrison_container: GridContainer
 @export var settlement_name: Label
 
+signal update_lists()
+
 var _settlement: Settlement
 	
 func _init() -> void:
@@ -15,6 +17,8 @@ func _ready() -> void:
 	PlayEventBus.settlement_selected.connect(_update_settlement)
 	PlayEventBus.settlement_unselected.connect(_update_settlement.bindv([null]))
 	PlayEventBus.start_of_turn.connect(_update_lists)
+	update_lists.connect(_update_lists.bind(0))
+	
 
 func _update_settlement(settlement: Settlement) -> void:
 	if settlement:

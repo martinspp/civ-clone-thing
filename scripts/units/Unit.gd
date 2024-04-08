@@ -20,6 +20,7 @@ var player: Player
 var hex: Hex
 var movement_target_hex: Hex
 
+
 var garrisoned_settlement: Settlement
 
 signal continue_action()
@@ -66,11 +67,35 @@ func garrison(settlement: Settlement) -> void:
 		print("already garrisoned")
 		return
 	garrisoned_settlement = settlement
+	garrisoned_settlement.garrisoned_units.append(self)
 	visible = false
+	#TODO make this less stupid
+	if GameStateService.game_service:
+		GameStateService.game_service.settlement_ui._update_lists(0)
 
 func ungarrsion() -> void:
 	if garrisoned_settlement:
+		garrisoned_settlement.garrisoned_units.remove_at(garrisoned_settlement.garrisoned_units.find(self))
 		garrisoned_settlement = null
 		visible = true
+		GameStateService.game_service.settlement_ui._update_lists(0)
 	else:
 		print("not garrisoned")
+
+func perform_move() -> void:
+	var max_tiles_move :int = unit_data.speed * unit_data.action_points
+	var path := GameStateService.data_service.plot_path(hex, movement_target_hex)
+	print(max_tiles_move)
+	print(path.size())
+	for i in range(path.size()):
+		if !path[i].settlement && garrisoned_settlement:
+			ungarrsion()
+
+		
+		var tween: Tween = get_tree().create_tween()
+		tween.tween_property(self, "global_position", path[i].global_position ,0.25)
+		await tween.finished
+		hex = path[i]
+
+		if path[i] == path.back() && path[i].settlement:
+			garrison(path[i].settlement)

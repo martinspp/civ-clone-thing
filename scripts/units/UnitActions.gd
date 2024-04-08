@@ -16,9 +16,12 @@ static func attack_unit_melee(unit_from: Unit) -> ActionMessage:
 		return ActionMessage.new(false, "Target isn't a unit")
 	
 static func move(unit_from: Unit) -> ActionMessage:
-	print("waiting for continue_action %s " % unit_from.global_position)
 	var target: Variant = await UnitUI.get_move_target(unit_from)
-	print("continue action emitted %s " % target.global_position)
+	if target is Settlement:
+		unit_from.movement_target_hex = target.parent_hex	
+	elif target is Hex:
+		unit_from.movement_target_hex = target
+	unit_from.perform_move()
 	return ActionMessage.new(false, "Not implemented")
 
 

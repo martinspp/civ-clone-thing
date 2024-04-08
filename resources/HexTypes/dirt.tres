@@ -10,3 +10,4 @@ world_sprite = ExtResource("2_epcri")
 cursor_sprite = ExtResource("1_tnfeg")
 data_name = "dirt"
 settleable = true
+traversable = true

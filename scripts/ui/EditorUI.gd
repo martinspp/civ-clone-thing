@@ -50,7 +50,7 @@ func _on_option_button_item_selected(index: int) -> void:
 		settlement.settlement_data.owned_player = null	
 	else:
 		settlement.settlement_data.owned_player = GameStateService.data_service.get_player_by_id(player_option.get_item_id(index))
-	settlement.update_data()
+	settlement.update_ui_data()
 	GameStateService.data_service.update_settlement_data(settlement)
 
 func _close_settlement_data() -> void:

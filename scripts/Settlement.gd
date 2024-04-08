@@ -144,7 +144,6 @@ func spawn_unit(unit_data: UnitType) -> Unit:
 	new_unit.global_position.x = global_position.x
 	new_unit.global_position.y = global_position.y
 	new_unit.unit_data = unit_data
-	garrisoned_units.append(new_unit)
 	new_unit.garrison(self)
 	GameStateService.end_of_turn_actions[new_unit] = true
 	print("new unit appended")
