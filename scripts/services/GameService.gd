@@ -43,14 +43,15 @@ func _ready() -> void:
 	unit_ui.unselect()
 
 	PlayEventBus.hex_clicked.connect(hex_click_event)
+	PlayEventBus.hex_alt_clicked.connect(hex_alt_clicked)
 	PlayEventBus.settlement_unhighlighted.connect(unfocus_settlement)
 	PlayEventBus.object_finished_end_turn_action.connect(_object_finished_actions)
 	
 
 func hex_click_event(hex: Hex, event: InputEvent) -> void:
+		
 	if hex.units.size() > 0:
 		unit_clicked(hex.units[0], event)
-		
 	elif hex.settlement:
 		settlement_clicked(hex.settlement, event)
 		
@@ -60,9 +61,7 @@ func hex_click_event(hex: Hex, event: InputEvent) -> void:
 
 func hex_clicked(hex: Hex, _event: InputEvent) -> void:
 	if selecting_target:
-		targeted_object = hex
-		selecting_target = false
-		target_set.emit()
+		handle_targeting(hex, _event)
 		return
 	unselect_settlement()
 
@@ -71,15 +70,20 @@ func hex_clicked(hex: Hex, _event: InputEvent) -> void:
 	else:
 		selected_object = hex
 
+func hex_alt_clicked(hex: Hex, _event: InputEvent) -> void:
+	if selecting_target:
+		handle_targeting(null, _event)
+
+
 func unit_clicked(unit: Unit, _event: InputEvent) -> void:
-	selected_object = unit
+	PlayEventBus.unit_selected.emit(unit)
+
 
 func settlement_clicked(settlement: Settlement, event: InputEvent) -> void:
 	if selecting_target:
-		targeted_object = settlement
-		selecting_target = false
-		target_set.emit()
+		handle_targeting(settlement, event)
 		return
+
 	if (event as InputEventMouseButton).double_click == false && settlement.settlement_data.owned_player == GameStateService.current_player:
 		if selected_ui_settlement:
 			unselect_settlement()
@@ -87,14 +91,20 @@ func settlement_clicked(settlement: Settlement, event: InputEvent) -> void:
 	
 
 	if (event as InputEventMouseButton).double_click == true && settlement.settlement_data.owned_player == GameStateService.current_player:
+		return
 		# Something else is already selected, should defocus
-		if selected_object != null && (selected_object != settlement) && selected_object is Settlement:
-			unfocus_settlement()
-			focus_settlement(settlement)
-		elif selected_object == settlement:
-			return
-		else:
-			focus_settlement(settlement)
+		#if selected_object != null && (selected_object != settlement) && selected_object is Settlement:
+		#	unfocus_settlement()
+		#	focus_settlement(settlement)
+		#elif selected_object == settlement:
+		#	return
+		#else:
+		#	focus_settlement(settlement)
+
+func handle_targeting(target: Variant, event: InputEvent) -> void:
+	targeted_object = target
+	selecting_target = false
+	target_set.emit()
 
 #region focusing
 func focus_settlement(settlement: Settlement) -> void:

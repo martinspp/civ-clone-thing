@@ -12,6 +12,7 @@ signal object_finished_end_turn_action(object: Variant)
 
 #region clicking events
 signal hex_clicked(clicked_hex: Hex, event: InputEvent)
+signal hex_alt_clicked(clicked_hex: Hex, event: InputEvent)
 signal settlement_clicked(settlement: Settlement, event: InputEvent)
 #endregion
 

@@ -107,12 +107,14 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 func handle_editor_click(event: InputEvent) -> void:
 	if event.button_index == MOUSE_BUTTON_LEFT && event.pressed == true:
 		GameStateService.editor_service.hex_clicked(self, event)
-	if event.button_index == MOUSE_BUTTON_RIGHT && event.pressed == true:
+	elif event.button_index == MOUSE_BUTTON_RIGHT && event.pressed == true:
 		GameStateService.editor_service.hex_alt_clicked(self, event)
 		
 func handle_play_click(event: InputEvent) -> void:
 	if event.button_index == 1 && event.pressed == true:
-		PlayEventBus.emit_signal("hex_clicked",self,event)
+		PlayEventBus.hex_clicked.emit(self,event)
+	elif event.button_index == 2 && event.pressed == true:
+		PlayEventBus.hex_alt_clicked.emit(self,event)
 	
 func _on_mouse_entered() -> void:
 	if GameStateService.current_state == GameStateService.game_states.EDITOR:

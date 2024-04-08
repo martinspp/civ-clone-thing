@@ -2,7 +2,6 @@ extends Area2D
 
 class_name Settlement
 
-@onready var selected_ui: Control = %SelectedUI
 @onready var world_ui: Control = %WorldUI
 
 @onready var settlement_data: SettlementData = SettlementData.new()
@@ -11,29 +10,24 @@ class_name Settlement
 #region settlement_name_label
 var settlement_name_label: String:
 	get:
-		return settlement_name_label
+		return %SettlementNameLabel.text
 	set(value):
-		%SettlementNameLabel.text = value
-		%SettlementNameLabel_Copy.text = value		
-		settlement_name_label = value
+		%SettlementNameLabel.text = value		
 #endregion
 #region settlement_growth_label
 var settlement_growth_label: String:
 	get:
-		return settlement_growth_label
+		return %GrowthLabel.text
 	set(value):
 		%GrowthLabel.text = value
-		%GrowthLabel_Copy.text = value
-		settlement_growth_label = value
+		
 #endregion
 #region settlement_pop_label
 var settlement_pop_label: String:
 	get:
-		return settlement_pop_label
+		return %PopulationLabel.text
 	set(value):
 		%PopulationLabel.text = value
-		%PopulationLabel_Copy.text = value
-		settlement_pop_label = value
 #endregion
 
 @onready var built_buildings: Array[Building] = []
@@ -49,18 +43,12 @@ static var starting_units :Array[String]= ["warrior"]
 
 @export var unit_scene : PackedScene
 # Used to flip the ui when settlement is focused
-var selected: bool:
-	get:
-		return selected
-	set(value):
-		selected_ui.visible = value
-		world_ui.visible = !value
+var selected: bool
 
 func _ready() -> void:
 	GameStateService.end_of_turn_actions[self] = false
 	settlement_name_label = settlement_data.settlement_name
 	parent_hex.settlement = self
-	selected_ui.visible = false
 	settlement_data.connect("data_updated",update_ui_data)
 	settlement_data.ref = self
 	PlayEventBus.player_list_updated.connect(update_ui_data)
@@ -96,10 +84,8 @@ func update_ui_data() -> void:
 
 	if settlement_data.owned_player:
 		%SettlementNameLabel.modulate = settlement_data.owned_player.color
-		%SettlementNameLabel_Copy.modulate = settlement_data.owned_player.color
 	else:
 		%SettlementNameLabel.modulate = Color.BLACK
-		%SettlementNameLabel_Copy.modulate = Color.BLACK
 	
 	settlement_growth_label = str(0)
 	settlement_pop_label = str(settlement_data.pop)
@@ -176,29 +162,9 @@ func build_available_productions() -> void:
 	#TODO Check buildings
 	#TODO remove built/obsolete buildings
 	# Add starting things
-
-	#clearing current lists
-	for n: Node in %Units.get_children() + %Buildings.get_children():
-		if n is Label:
-			continue
-		else:
-			n.queue_free()
 	
 	available_buildings = starting_buildings.duplicate(true)
 	available_units = starting_units.duplicate(true)
 
 	for b: Building in built_buildings:
 		available_buildings.erase(b.building_data.building_name.to_lower())
-
-	for b: String in available_buildings:
-		var new_button: Button = Button.new()
-		new_button.text = b.capitalize()
-		%Buildings.add_child(new_button)
-		new_button.pressed.connect(start_production.bind(b))
-
-
-	for u: String in available_units:
-		var new_button: Button = Button.new()
-		new_button.text = u.capitalize()
-		%Units.add_child(new_button)
-		new_button.pressed.connect(start_production.bind(u))

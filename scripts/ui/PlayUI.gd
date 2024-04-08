@@ -30,10 +30,12 @@ func _end_turn_button() -> void:
 
 
 func _highlight_settlement(settlement: Settlement) -> void:
-	GameStateService.camera.focus_settlement(settlement.global_position,Vector2(2,2))
+	#GameStateService.camera.focus_settlement(settlement.global_position,Vector2(2,2))
+	pass
 
 func _unhighlight_settlement() -> void:
-	GameStateService.camera.unfocus_settlement()
+	#GameStateService.camera.unfocus_settlement()
+	pass
 
 func _update_turn_counter(new_turn_number: int) -> void:
 	round_value_label.text = str(new_turn_number)

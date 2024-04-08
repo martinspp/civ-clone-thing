@@ -14,28 +14,28 @@ func _ready() -> void:
 	GameStateService.camera = self
 
 func _process(delta: float) -> void:
-	if !is_focusing:
-		if Input.is_action_pressed("ui_down"):
-			self.position.y += camera_speed * delta
-		if Input.is_action_pressed("ui_up"):
-			self.position.y -= camera_speed * delta
-		if Input.is_action_pressed("ui_left"):
-			self.position.x -= camera_speed * delta
-		if Input.is_action_pressed("ui_right"):
-			self.position.x += camera_speed * delta
+	#if !is_focusing:
+	if Input.is_action_pressed("ui_down"):
+		self.position.y += camera_speed * delta
+	if Input.is_action_pressed("ui_up"):
+		self.position.y -= camera_speed * delta
+	if Input.is_action_pressed("ui_left"):
+		self.position.x -= camera_speed * delta
+	if Input.is_action_pressed("ui_right"):
+		self.position.x += camera_speed * delta
 
-		if Input.is_action_just_pressed('move_map'):
-			pan_point = get_global_mouse_position()
-		if Input.is_action_pressed('move_map') && pan_point:
-			self.global_position.x = (global_position.x+pan_point.x) - get_global_mouse_position().x
-			self.global_position.y = (global_position.y+pan_point.y) - get_global_mouse_position().y
-		if Input.is_action_just_released("move_map"):
-			pan_point = null
+	if Input.is_action_just_pressed('move_map'):
+		pan_point = get_global_mouse_position()
+	if Input.is_action_pressed('move_map') && pan_point:
+		self.global_position.x = (global_position.x+pan_point.x) - get_global_mouse_position().x
+		self.global_position.y = (global_position.y+pan_point.y) - get_global_mouse_position().y
+	if Input.is_action_just_released("move_map"):
+		pan_point = null
 
-		if Input.is_action_just_released("zoom_in"):
-			zoom += step_zoom
-		if Input.is_action_just_released("zoom_out"):
-			zoom -= step_zoom
+	if Input.is_action_just_released("zoom_in"):
+		zoom += step_zoom
+	if Input.is_action_just_released("zoom_out"):
+		zoom -= step_zoom
 	zoom = clamp(zoom,min_zoom,max_zoom)
 	
 var start_focus_point: Vector2
