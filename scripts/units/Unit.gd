@@ -102,3 +102,4 @@ func perform_move() -> void:
 	
 	path.back().units.append(self)
 	path[0].units.erase(self)
+	GameStateService.data_service.move_unit(path[0],path.back())

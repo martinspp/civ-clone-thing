@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://coieytpvwdpo8"]
+[gd_scene load_steps=7 format=3 uid="uid://coieytpvwdpo8"]
 
 [ext_resource type="Script" path="res://scripts/ui/SettlementUI.gd" id="1_wpaio"]
 [ext_resource type="Texture2D" uid="uid://dmvr0u8jlmyt7" path="res://sprites/objects/settlement/woodRing.png" id="2_onurx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fif1u"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ndh38"]
 font_size = 10
@@ -28,8 +30,8 @@ garrison_seperator = NodePath("VBoxContainer/PanelContainer/HBoxContainer/Garris
 garrison_section_container = NodePath("VBoxContainer/PanelContainer/HBoxContainer/GarrisonSectionContainer")
 garrison_container = NodePath("VBoxContainer/PanelContainer/HBoxContainer/GarrisonSectionContainer/GarrisonContainer")
 progress_panel = NodePath("VBoxContainer/Progress")
-progress_bar = NodePath("VBoxContainer/Progress/Progress")
-progress_label = NodePath("VBoxContainer/Progress/Label")
+progress_bar = NodePath("VBoxContainer/Progress/Progress2")
+progress_label = NodePath("VBoxContainer/Progress/Progress2/Label")
 
 [node name="VBoxContainer" type="FlowContainer" parent="."]
 layout_mode = 1
@@ -38,7 +40,7 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -192.0
+offset_left = -230.0
 offset_top = -94.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -46,18 +48,31 @@ alignment = 2
 
 [node name="Progress" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fif1u")
 
-[node name="Progress" type="ProgressBar" parent="VBoxContainer/Progress"]
+[node name="Progress2" type="ProgressBar" parent="VBoxContainer/Progress"]
+custom_minimum_size = Vector2(0, 17.705)
 layout_mode = 2
-value = 50.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 6.05
+max_value = 1.0
 show_percentage = false
 
-[node name="Label" type="Label" parent="VBoxContainer/Progress"]
-layout_mode = 2
-text = "Placeholder"
+[node name="Label" type="Label" parent="VBoxContainer/Progress/Progress2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Placeholder
+"
+horizontal_alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 8
 metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer"]
