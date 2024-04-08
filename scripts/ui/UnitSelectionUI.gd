@@ -4,6 +4,7 @@ class_name UnitActionSelectionUI
 
 @export var target_sprite: Sprite2D
 @export var line: Line2D
+var type: String
 
 var source_unit: Unit:
 	get:

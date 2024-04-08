@@ -41,8 +41,9 @@ func select(unit: Unit) -> void:
 	else:
 		unselect()
 
-static func get_move_target(unit: Unit) -> Variant:
+static func get_target(unit: Unit, type: String) -> Variant:
 	GameStateService.game_service.select_target_ui = GameStateService.game_service.select_target_ui_scene.instantiate()
+	GameStateService.game_service.select_target_ui.type = type
 	GameStateService.world_manager.add_child(GameStateService.game_service.select_target_ui)
 	GameStateService.world_manager.move_child(GameStateService.game_service.select_target_ui, 0)
 	

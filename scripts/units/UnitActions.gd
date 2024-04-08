@@ -8,7 +8,7 @@ static var callable_dict := {
 }
 
 static func attack_unit_melee(unit_from: Unit) -> ActionMessage:
-	var target: Variant = await UnitUI.get_move_target(unit_from)
+	var target: Variant = await UnitUI.get_target(unit_from, "melee")
 	if target is Unit:
 		target.unit_data.health -= unit_from.unit_data.attack_damage
 		return ActionMessage.new(true, "")
@@ -16,7 +16,7 @@ static func attack_unit_melee(unit_from: Unit) -> ActionMessage:
 		return ActionMessage.new(false, "Target isn't a unit")
 	
 static func move(unit_from: Unit) -> ActionMessage:
-	var target: Variant = await UnitUI.get_move_target(unit_from)
+	var target: Variant = await UnitUI.get_target(unit_from, "path")
 	if target is Settlement:
 		unit_from.movement_target_hex = target.parent_hex	
 	elif target is Hex:
