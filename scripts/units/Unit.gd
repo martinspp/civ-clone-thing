@@ -99,3 +99,6 @@ func perform_move() -> void:
 
 		if path[i] == path.back() && path[i].settlement:
 			garrison(path[i].settlement)
+	
+	path.back().units.append(self)
+	path[0].units.erase(self)

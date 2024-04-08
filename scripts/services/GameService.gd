@@ -50,15 +50,14 @@ func _ready() -> void:
 
 func hex_click_event(hex: Hex, event: InputEvent) -> void:
 		
-	if hex.units.size() > 0:
-		unit_clicked(hex.units[0], event)
-	elif hex.settlement:
+	if hex.settlement:
 		settlement_clicked(hex.settlement, event)
-		
+	elif hex.units.size() > 0:
+		unit_clicked(hex.units[0], event)	
 	else:
 		hex_clicked(hex, event)
 
-
+#region hex clicked event
 func hex_clicked(hex: Hex, _event: InputEvent) -> void:
 	if selecting_target:
 		handle_targeting(hex, _event)
@@ -73,7 +72,7 @@ func hex_clicked(hex: Hex, _event: InputEvent) -> void:
 func hex_alt_clicked(hex: Hex, _event: InputEvent) -> void:
 	if selecting_target:
 		handle_targeting(null, _event)
-
+#endregion
 
 func unit_clicked(unit: Unit, _event: InputEvent) -> void:
 	PlayEventBus.unit_selected.emit(unit)
@@ -101,7 +100,7 @@ func settlement_clicked(settlement: Settlement, event: InputEvent) -> void:
 		#else:
 		#	focus_settlement(settlement)
 
-func handle_targeting(target: Variant, event: InputEvent) -> void:
+func handle_targeting(target: Variant, _vent: InputEvent) -> void:
 	targeted_object = target
 	selecting_target = false
 	target_set.emit()
