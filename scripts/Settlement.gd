@@ -39,8 +39,13 @@ var settlement_pop_label: String:
 @onready var built_buildings: Array[Building] = []
 @onready var garrisoned_units: Array[Unit] = []
 
-@onready var available_buildings: Array[BuildingData] = []
-@onready var available_units: Array[UnitType] = []
+#TODO move this somewhere else
+static var starting_buildings : Array[String]= ["granary"]
+static var starting_units :Array[String]= ["warrior"]
+
+
+@onready var available_buildings: Array[String] = []
+@onready var available_units: Array[String] = []
 
 @export var unit_scene : PackedScene
 # Used to flip the ui when settlement is focused
@@ -64,6 +69,9 @@ func _ready() -> void:
 	PlayEventBus.end_of_turn.connect(_end_of_turn_actions)
 	%StopProduction.pressed.connect(stop_production)
 	spawn_unit(ResourceRegistry.get_unit_type_by_name("warrior")).hex = parent_hex
+
+	
+	build_available_productions()
 
 func _exit_tree() -> void:
 	parent_hex.settlement = null
@@ -108,7 +116,7 @@ func update_ui_state() -> void:
 	pass
 
 func _start_of_turn_actions(_turn: int) -> void:
-	build_available_lists()
+	build_available_productions()
 
 func _end_of_turn_actions() -> void:
 	# Finish production
@@ -149,21 +157,21 @@ func spawn_unit(unit_data: UnitType) -> Unit:
 	print("new unit appended")
 	return new_unit
 
-#TODO move this somewhere else
-static var starting_buildings := ["granary"]
-static var starting_units := ["warrior"]
 
-func start_production(building_name: String) -> void:
-	settlement_data.update_production_progress(building_name, 0.0)
-	settlement_data.current_production = building_name
+func start_production(production_name: String) -> void:
+	production_name = production_name.to_lower()
+	settlement_data.update_production_progress(production_name, 0.0)
+	settlement_data.current_production = production_name
 	update_ui_data()
+	GameStateService.game_service.settlement_ui.update_lists.emit()
 
 func stop_production() -> void:
 	settlement_data.current_production = ""
 	update_ui_data()
+	GameStateService.game_service.settlement_ui.update_lists.emit()
 
 
-func build_available_lists() -> void:
+func build_available_productions() -> void:
 	#TODO Check researches
 	#TODO Check buildings
 	#TODO remove built/obsolete buildings
@@ -176,20 +184,20 @@ func build_available_lists() -> void:
 		else:
 			n.queue_free()
 	
-	var building_list := starting_buildings.duplicate(true)
-	var unit_list := starting_units.duplicate(true)
+	available_buildings = starting_buildings.duplicate(true)
+	available_units = starting_units.duplicate(true)
 
 	for b: Building in built_buildings:
-		building_list.erase(b.building_data.building_name.to_lower())
+		available_buildings.erase(b.building_data.building_name.to_lower())
 
-	for b: String in building_list:
+	for b: String in available_buildings:
 		var new_button: Button = Button.new()
 		new_button.text = b.capitalize()
 		%Buildings.add_child(new_button)
 		new_button.pressed.connect(start_production.bind(b))
 
 
-	for u: String in unit_list:
+	for u: String in available_units:
 		var new_button: Button = Button.new()
 		new_button.text = u.capitalize()
 		%Units.add_child(new_button)

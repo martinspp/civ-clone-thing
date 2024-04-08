@@ -64,6 +64,7 @@ func hex_clicked(hex: Hex, _event: InputEvent) -> void:
 		selecting_target = false
 		target_set.emit()
 		return
+	unselect_settlement()
 
 	if selected_object is Settlement:
 		return

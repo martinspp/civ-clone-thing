@@ -31,7 +31,7 @@ var _needs_rebuild: bool = true
 func _ready() -> void:
 	GameStateService.game_service.selecting_target = true
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	target_sprite.global_position = get_global_mouse_position()
 	if _needs_rebuild:
 		_build_path()

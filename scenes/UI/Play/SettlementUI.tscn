@@ -12,7 +12,7 @@ font_size = 10
 [sub_resource type="LabelSettings" id="LabelSettings_oxt7x"]
 font_size = 10
 
-[node name="SettlementUI" type="Control" node_paths=PackedStringArray("buildings_list_container", "garrison_container", "settlement_name")]
+[node name="SettlementUI" type="Control" node_paths=PackedStringArray("buildings_list_container", "units_list_container", "settlement_name", "garrison_seperator", "garrison_section_container", "garrison_container", "progress_panel", "progress_bar", "progress_label")]
 layout_mode = 3
 anchors_preset = 12
 anchor_top = 1.0
@@ -21,85 +21,132 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("1_wpaio")
-buildings_list_container = NodePath("PanelContainer/HBoxContainer/VBoxContainer/ScrollContainer/BuildingsListContainer")
-garrison_container = NodePath("PanelContainer/HBoxContainer/GarrisonSectionContainer/GarrisonContainer")
-settlement_name = NodePath("PanelContainer/HBoxContainer/VBoxContainer2/SettlementName")
+buildings_list_container = NodePath("VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer/ScrollContainer/BuildingsListContainer")
+units_list_container = NodePath("VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3/ScrollContainer/UnitsListContainer")
+settlement_name = NodePath("VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer2/SettlementName")
+garrison_seperator = NodePath("VBoxContainer/PanelContainer/HBoxContainer/GarrisonSectionSeperator")
+garrison_section_container = NodePath("VBoxContainer/PanelContainer/HBoxContainer/GarrisonSectionContainer")
+garrison_container = NodePath("VBoxContainer/PanelContainer/HBoxContainer/GarrisonSectionContainer/GarrisonContainer")
+progress_panel = NodePath("VBoxContainer/Progress")
+progress_bar = NodePath("VBoxContainer/Progress/Progress")
+progress_label = NodePath("VBoxContainer/Progress/Label")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="VBoxContainer" type="FlowContainer" parent="."]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -144.0
-offset_top = -89.0
+offset_left = -192.0
+offset_top = -94.0
 grow_horizontal = 0
 grow_vertical = 0
-metadata/_edit_use_anchors_ = true
+alignment = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+[node name="Progress" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="VSeparator4" type="VSeparator" parent="PanelContainer/HBoxContainer"]
+[node name="Progress" type="ProgressBar" parent="VBoxContainer/Progress"]
+layout_mode = 2
+value = 50.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="VBoxContainer/Progress"]
+layout_mode = 2
+text = "Placeholder"
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="VSeparator4" type="VSeparator" parent="VBoxContainer/PanelContainer/HBoxContainer"]
 auto_translate_mode = 1
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Buildings"
 label_settings = SubResource("LabelSettings_ndh38")
 horizontal_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="BuildingsListContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer/ScrollContainer"]
+[node name="BuildingsListContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="VSeparator2" type="VSeparator" parent="PanelContainer/HBoxContainer"]
+[node name="VSeparator5" type="VSeparator" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+auto_translate_mode = 1
 layout_mode = 2
 
-[node name="GarrisonSectionContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+auto_translate_mode = 1
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/GarrisonSectionContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "Units"
+label_settings = SubResource("LabelSettings_ndh38")
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="UnitsListContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer3/ScrollContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="GarrisonSectionSeperator" type="VSeparator" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="GarrisonSectionContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer/GarrisonSectionContainer"]
 layout_mode = 2
 text = "Garrison"
 label_settings = SubResource("LabelSettings_7wlkl")
 horizontal_alignment = 1
 
-[node name="GarrisonContainer" type="GridContainer" parent="PanelContainer/HBoxContainer/GarrisonSectionContainer"]
+[node name="GarrisonContainer" type="GridContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/GarrisonSectionContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-columns = 3
+columns = 2
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="SettlementName" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer2"]
+[node name="SettlementName" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 text = "settlement"
 label_settings = SubResource("LabelSettings_oxt7x")
 horizontal_alignment = 1
 
-[node name="SettlementSprite" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer2"]
+[node name="SettlementSprite" type="TextureRect" parent="VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 8
 texture = ExtResource("2_onurx")
 
-[node name="VSeparator3" type="VSeparator" parent="PanelContainer/HBoxContainer"]
+[node name="VSeparator3" type="VSeparator" parent="VBoxContainer/PanelContainer/HBoxContainer"]
 auto_translate_mode = 1
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
