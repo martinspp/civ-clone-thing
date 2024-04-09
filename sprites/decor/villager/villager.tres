@@ -26,7 +26,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("1_lcj1x")
 }],
-"loop": false,
+"loop": true,
 "name": &"idle",
 "speed": 5.0
 }, {
