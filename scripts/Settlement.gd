@@ -14,21 +14,6 @@ var settlement_name_label: String:
 	set(value):
 		%SettlementNameLabel.text = value		
 #endregion
-#region settlement_growth_label
-var settlement_growth_label: String:
-	get:
-		return %GrowthLabel.text
-	set(value):
-		%GrowthLabel.text = value
-		
-#endregion
-#region settlement_pop_label
-var settlement_pop_label: String:
-	get:
-		return %PopulationLabel.text
-	set(value):
-		%PopulationLabel.text = value
-#endregion
 
 @onready var built_buildings: Array[Building] = []
 @onready var garrisoned_units: Array[Unit] = []
@@ -56,8 +41,8 @@ func _ready() -> void:
 	PlayEventBus.start_of_turn.connect(_start_of_turn_actions)
 	PlayEventBus.end_of_turn.connect(_end_of_turn_actions)
 	%StopProduction.pressed.connect(stop_production)
-	spawn_unit(ResourceRegistry.get_unit_type_by_name("warrior")).hex = parent_hex
 
+	spawn_unit(ResourceRegistry.get_unit_type_by_name("warrior")).hex = parent_hex
 	
 	build_available_productions()
 
@@ -71,7 +56,7 @@ func _on_exit_pressed() -> void:
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	# does not handle the zoom in on double click, that is handled by double click on hex
 	if event is InputEventMouseButton:
-		if event.button_index == 1 && event.pressed == true:
+		if event.button_index == MOUSE_BUTTON_LEFT && event.pressed == true:
 			if GameStateService.current_state == GameStateService.game_states.PLAY:
 				PlayEventBus.settlement_clicked.emit(self,event)
 
@@ -87,8 +72,8 @@ func update_ui_data() -> void:
 	else:
 		%SettlementNameLabel.modulate = Color.BLACK
 	
-	settlement_growth_label = str(0)
-	settlement_pop_label = str(settlement_data.pop)
+	%GrowthLabel.text = str(0)
+	%PopulationLabel.text = str(settlement_data.pop)
 
 	if settlement_data.current_production != "":
 		%ProductionContainer.visible = true

@@ -87,7 +87,7 @@ func get_neighbouring_hex(hex: Hex, side: Hex.side_flag) -> Hex:
 func get_all_neighbouring_hexes(hex: Hex) -> Array[Hex]:
 	var neighbours : Array[Hex] = []
 	for i: int in Hex.side_flag.values():
-		var neighbour := get_neighbouring_hex(hex,i)
+		var neighbour :Hex= get_neighbouring_hex(hex,i)
 		if neighbour:
 			neighbours.append(neighbour)
 	return neighbours

@@ -1,19 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqrax0qwe1dq3"]
+[gd_scene load_steps=5 format=3 uid="uid://cqrax0qwe1dq3"]
 
 [ext_resource type="Script" path="res://scripts/Settlement.gd" id="1_cq04i"]
 [ext_resource type="PackedScene" uid="uid://c3ks0spf6nsc8" path="res://scenes/unit.tscn" id="2_gt3mk"]
 [ext_resource type="Texture2D" uid="uid://dmvr0u8jlmyt7" path="res://sprites/objects/settlement/woodRing.png" id="2_vg2h3"]
+[ext_resource type="PackedScene" uid="uid://c2aa4sgtmlk1m" path="res://scenes/Decor/Villager.tscn" id="4_jkyyu"]
 
 [node name="Settlement" type="Area2D"]
 script = ExtResource("1_cq04i")
 unit_scene = ExtResource("2_gt3mk")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Village" type="Sprite2D" parent="Sprites"]
 position = Vector2(1.90735e-06, 2.38419e-07)
 scale = Vector2(1.21538, 1.21538)
 texture = ExtResource("2_vg2h3")
 
+[node name="Villagers" type="Node2D" parent="Sprites"]
+
+[node name="Villager" parent="Sprites/Villagers" instance=ExtResource("4_jkyyu")]
+position = Vector2(13, -3)
+animation = &"walkR"
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
 polygon = PackedVector2Array(-40, -26, 0, -46, 40, -26, 40, 27, 0, 46, -40, 26)
 
 [node name="SettlementUI" type="Control" parent="."]
