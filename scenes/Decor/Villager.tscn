@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://scenes/Decor/Villager.gd" id="2_adv22"]
 
 [node name="Villager" type="AnimatedSprite2D"]
+y_sort_enabled = true
 sprite_frames = ExtResource("1_dohse")
 animation = &"walkL"
 script = ExtResource("2_adv22")

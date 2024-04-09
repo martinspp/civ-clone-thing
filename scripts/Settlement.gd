@@ -44,6 +44,8 @@ func _ready() -> void:
 
 	spawn_unit(ResourceRegistry.get_unit_type_by_name("warrior")).hex = parent_hex
 	
+	$Sprites.spawn_villagers(5)
+
 	build_available_productions()
 
 func _exit_tree() -> void:
