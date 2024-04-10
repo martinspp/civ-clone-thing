@@ -50,6 +50,7 @@ var hex_type: HexType:
 		hex_type = value
 		if value:
 			sprite.texture = hex_type.world_sprite
+			$Decor.update_hex_type_decor(value.data_name)
 		else:
 			hex_type = load("res://resources/HexTypes/delete.tres")
 

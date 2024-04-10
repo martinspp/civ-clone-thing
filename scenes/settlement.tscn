@@ -10,14 +10,14 @@
 script = ExtResource("1_cq04i")
 unit_scene = ExtResource("2_gt3mk")
 
-[node name="Sprites" type="Node2D" parent="." node_paths=PackedStringArray("settlement")]
+[node name="SettlementDecor" type="Node2D" parent="." node_paths=PackedStringArray("settlement")]
 script = ExtResource("3_ib2kq")
 settlement = NodePath("..")
 villager_scene = ExtResource("4_jkyyu")
 
-[node name="Villagers" type="Node2D" parent="Sprites"]
+[node name="Villagers" type="Node2D" parent="SettlementDecor"]
 
-[node name="Village" type="Sprite2D" parent="Sprites"]
+[node name="Village" type="Sprite2D" parent="SettlementDecor"]
 visible = false
 position = Vector2(4.54747e-13, 5.68434e-14)
 scale = Vector2(1.21538, 1.21538)
