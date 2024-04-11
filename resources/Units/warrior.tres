@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_0atjq")
-unit_name = "Warrior"
+unit_name = "warrior"
 health = 100.0
 speed = 2
 sprite = ExtResource("2_dn2xr")

@@ -37,6 +37,6 @@ func spawn_wave() -> void:
 		wave.position = get_random_point()
 
 func get_random_point() -> Vector2:
-	var r: float= 65 * sqrt(randf_range(0,1))
+	var r: float= 60 * sqrt(randf_range(0,1))
 	var theta: float = randf_range(0,1) * 2 * PI
 	return Vector2(r * cos(theta), r * sin(theta))

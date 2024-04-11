@@ -4,7 +4,10 @@ class_name SettlementData
 
 var id := randi()
 var owned_player: Player 
+
 @export var settlement_name: String = "New City"
+@export var base_food :float = 0
+var food: float
 @export var pop: int = 0
 @export var pop_progress: float = 0.0
 @export var influence_range: int = 1
@@ -15,7 +18,18 @@ var current_production: String = ""
 
 var ref: Settlement
 
+static var starting_buildings : Array[String]= ["granary"]
+static var starting_units :Array[String]= ["warrior"]
+
+var available_buildings: Array[String] = []
+var available_units: Array[String] = []
+
 signal data_updated()
+
+func _init() -> void:
+	food = base_food
+	available_buildings = starting_buildings.duplicate(true)
+	available_units = starting_units.duplicate(true)
 
 func serialize() -> Dictionary:
 	var player_id: int

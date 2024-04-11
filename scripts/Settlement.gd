@@ -18,14 +18,6 @@ var settlement_name_label: String:
 @onready var built_buildings: Array[Building] = []
 @onready var garrisoned_units: Array[Unit] = []
 
-#TODO move this somewhere else
-static var starting_buildings : Array[String]= ["granary"]
-static var starting_units :Array[String]= ["warrior"]
-
-
-@onready var available_buildings: Array[String] = []
-@onready var available_units: Array[String] = []
-
 @export var unit_scene : PackedScene
 
 # Used to flip the ui when settlement is focused, probably can be removed
@@ -147,12 +139,19 @@ func stop_production() -> void:
 
 func build_available_productions() -> void:
 	#TODO Check researches
-	#TODO Check buildings
 	#TODO remove built/obsolete buildings
-	# Add starting things
 	
-	available_buildings = starting_buildings.duplicate(true)
-	available_units = starting_units.duplicate(true)
+	# Add starting things
+	settlement_data.available_buildings = settlement_data.starting_buildings.duplicate(true)
+	settlement_data.available_units = settlement_data.starting_units.duplicate(true)
 
+	#Check buildings
 	for b: Building in built_buildings:
-		available_buildings.erase(b.building_data.building_name.to_lower())
+		for modifier: Dictionary in b.building_data.building_modifiers:
+			BuildingModifiers.modifier_dict[modifier]["func"].callv([self, b.building_data.building_modifiers[modifier]])
+	
+	for b: Building in built_buildings:
+		settlement_data.available_buildings.erase(b.building_data.building_name.to_lower())
+
+
+	
