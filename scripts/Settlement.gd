@@ -34,7 +34,7 @@ func _ready() -> void:
 	PlayEventBus.start_of_turn.connect(_start_of_turn_actions)
 	PlayEventBus.end_of_turn.connect(_end_of_turn_actions)
 	%StopProduction.pressed.connect(stop_production)
-	build_available_productions()
+	calculate_building_unlocks()
 
 	#test stuff remove later
 	spawn_unit(ResourceRegistry.get_unit_type_by_name("warrior")).hex = parent_hex	
@@ -82,7 +82,7 @@ func update_ui_state() -> void:
 	pass
 
 func _start_of_turn_actions(_turn: int) -> void:
-	build_available_productions()
+	calculate_building_unlocks()
 
 func _end_of_turn_actions() -> void:
 	# Finish production
@@ -104,6 +104,7 @@ func add_building(building_data: BuildingData) -> Building:
 	print("built building " + building_data.building_name)
 	var new_building :Building = Building.new()
 	new_building.building_data = building_data
+	print(new_building.building_data.building_modifiers)
 	add_child(new_building)
 	built_buildings.append(new_building)
 	return new_building
@@ -137,7 +138,7 @@ func stop_production() -> void:
 	GameStateService.game_service.settlement_ui.update_lists.emit()
 
 
-func build_available_productions() -> void:
+func calculate_building_unlocks() -> void:
 	#TODO Check researches
 	#TODO remove built/obsolete buildings
 	
@@ -147,8 +148,11 @@ func build_available_productions() -> void:
 
 	#Check buildings
 	for b: Building in built_buildings:
-		for modifier: Dictionary in b.building_data.building_modifiers:
-			BuildingModifiers.modifier_dict[modifier]["func"].callv([self, b.building_data.building_modifiers[modifier]])
+		for modifier: String in b.building_data.building_modifiers:
+			var function: Callable = BuildingModifiers.modifier_dict[modifier]["func"]
+			function.call(self, b.building_data.building_modifiers[modifier])
+			#print(modifier)
+
 	
 	for b: Building in built_buildings:
 		settlement_data.available_buildings.erase(b.building_data.building_name.to_lower())

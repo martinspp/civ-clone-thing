@@ -5,4 +5,7 @@
 [resource]
 script = ExtResource("1_4hoih")
 building_name = "granary"
-building_modifiers = Array[Dictionary]([{}, {}])
+building_modifiers = {
+"food_modifier": 2.0,
+"unlock_building": "barracks"
+}

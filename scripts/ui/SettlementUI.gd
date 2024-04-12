@@ -75,7 +75,7 @@ func _populate_buildings_list() -> void:
 	for child in buildings_list_container.get_children():
 		child.queue_free()
 
-	for building_type in _settlement.available_buildings:
+	for building_type: String in _settlement.settlement_data.available_buildings:
 		var new_button: Button = Button.new()
 		new_button.text = building_type.capitalize()
 		buildings_list_container.add_child(new_button)
@@ -89,7 +89,7 @@ func _populate_buildings_list() -> void:
 func _populate_units_list() -> void:
 	for child in units_list_container.get_children():
 		child.queue_free()
-	for unit_name in _settlement.available_units:
+	for unit_name: String in _settlement.settlement_data.available_units:
 		var new_button: Button = Button.new()
 		new_button.text = unit_name.capitalize()
 		units_list_container.add_child(new_button)
