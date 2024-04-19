@@ -11,7 +11,7 @@ var source_unit: Unit:
 		return source_unit
 	set(value):
 		source_unit = value
-		_source_hex = value.hex
+		_source_hex = value.parent_hex
 
 var _source_hex: Hex
 var _last_targeted_hex: Hex

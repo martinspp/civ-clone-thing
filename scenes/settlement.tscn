@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cqrax0qwe1dq3"]
+[gd_scene load_steps=7 format=3 uid="uid://cqrax0qwe1dq3"]
 
 [ext_resource type="Script" path="res://scripts/Settlement.gd" id="1_cq04i"]
 [ext_resource type="PackedScene" uid="uid://c3ks0spf6nsc8" path="res://scenes/unit.tscn" id="2_gt3mk"]
 [ext_resource type="Texture2D" uid="uid://dmvr0u8jlmyt7" path="res://sprites/objects/settlement/woodRing.png" id="2_vg2h3"]
 [ext_resource type="Script" path="res://scripts/decor/SettlementDecor.gd" id="3_ib2kq"]
 [ext_resource type="PackedScene" uid="uid://c2aa4sgtmlk1m" path="res://scenes/Decor/Villager.tscn" id="4_jkyyu"]
+[ext_resource type="PackedScene" uid="uid://c7ay77gh48egq" path="res://scenes/fow_revealer.tscn" id="6_kdb7s"]
 
 [node name="Settlement" type="Area2D"]
 script = ExtResource("1_cq04i")
@@ -131,5 +132,8 @@ unique_name_in_owner = true
 auto_translate_mode = 1
 layout_mode = 2
 text = "0"
+
+[node name="FowRevealer" parent="." instance=ExtResource("6_kdb7s")]
+fow_range = 3
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

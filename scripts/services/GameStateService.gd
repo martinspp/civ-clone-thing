@@ -3,10 +3,10 @@ extends Node
 enum game_states {EDITOR, PLAY}
 @onready var current_state : game_states= game_states.EDITOR
 var editor_service: EditorService
-var data_service: DataService
-var world_manager: WorldManager
-var game_service: GameService
-var camera: CameraController
+var data_service:   DataService
+var world_manager:  WorldManager
+var game_service:   GameService
+var camera:         CameraController
 
 var settlement_registy: Array[Settlement]
 #var player_registry: Array[Player]

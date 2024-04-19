@@ -96,6 +96,19 @@ item_1/text = "💾Save"
 item_2/text = "🔄Load"
 item_3/text = " ▶️ Start Game"
 
+[node name="test" type="ItemList" parent="Panel/VBoxContainer/FlowContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+allow_reselect = true
+allow_search = false
+auto_height = true
+text_overrun_behavior = 0
+item_count = 3
+item_0/text = "off"
+item_1/text = "ring"
+item_2/text = "spiral"
+
 [node name="HSeparator" type="HSeparator" parent="Panel/VBoxContainer"]
 visible = false
 layout_mode = 2
@@ -143,6 +156,7 @@ layout_mode = 2
 [connection signal="item_clicked" from="Panel/VBoxContainer/FlowContainer/units" to="." method="_on_units_item_clicked"]
 [connection signal="item_clicked" from="Panel/VBoxContainer/FlowContainer/other" to="." method="_on_other_item_clicked"]
 [connection signal="item_clicked" from="Panel/VBoxContainer/FlowContainer/actions" to="." method="_on_actions_item_clicked"]
+[connection signal="item_clicked" from="Panel/VBoxContainer/FlowContainer/test" to="." method="_on_test_item_clicked"]
 [connection signal="pressed" from="Panel/VBoxContainer/settlement_data/Button" to="." method="_close_settlement_data"]
 [connection signal="text_submitted" from="Panel/VBoxContainer/settlement_data/VBoxContainer/s_name" to="." method="_on_s_name_text_submitted"]
 [connection signal="item_selected" from="Panel/VBoxContainer/settlement_data/VBoxContainer3/OptionButton" to="." method="_on_option_button_item_selected"]

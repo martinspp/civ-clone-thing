@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7ay77gh48egq"]
+
+[ext_resource type="Script" path="res://scripts/field_of_view/FowRevealer.gd" id="1_ykdxi"]
+
+[node name="FowRevealer" type="Node2D" groups=["FowRevealers"]]
+script = ExtResource("1_ykdxi")

@@ -5,6 +5,7 @@ class_name EditorService
 @export var settlement_scene: PackedScene
 @export var editor_ui_scene: PackedScene
 @export var player_menu_scene: PackedScene
+@export var debug_lines: Line2D
 
 var editor_ui: EditorUI
 var player_menu: PlayerMenu
@@ -48,6 +49,12 @@ func hex_clicked(hex: Hex, event: InputEvent) -> void:
 		pass
 	elif selected_type == "hex":
 		GameStateService.data_service.update_hex_type(hex, selected_subtype)
+	elif selected_type == "test" && selected_subtype == "ring":
+		highlight_hexes(GameStateService.data_service._axial_to_hex_array((Axial.ring(hex.axial,2))))
+	elif selected_type == "test" && selected_subtype == "spiral":
+		highlight_hexes(GameStateService.data_service._axial_to_hex_array((Axial.spiral(hex.axial,2))))
+		
+
 		
 
 func hex_alt_clicked(hex: Hex, event: InputEvent) -> void:
@@ -66,3 +73,7 @@ func _exit_tree() -> void:
 	editor_ui.queue_free()
 	
 	
+func highlight_hexes(hexes: Array[Hex]) -> void:
+	debug_lines.clear_points()
+	for hex in hexes:
+		debug_lines.add_point(hex.global_position)

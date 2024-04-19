@@ -17,7 +17,7 @@ var unit_data: UnitType:
 @export var sprite_2d: Sprite2D
 
 var player: Player
-var hex: Hex
+var parent_hex: Hex
 var movement_target_hex: Hex
 
 
@@ -84,7 +84,7 @@ func ungarrsion() -> void:
 
 func perform_move() -> void:
 	var max_tiles_move :int = unit_data.speed * unit_data.action_points
-	var path := GameStateService.data_service.plot_path(hex, movement_target_hex)
+	var path := GameStateService.data_service.plot_path(parent_hex, movement_target_hex)
 	print(max_tiles_move)
 	print(path.size())
 	for i in range(path.size()):
@@ -95,7 +95,7 @@ func perform_move() -> void:
 		var tween: Tween = get_tree().create_tween()
 		tween.tween_property(self, "global_position", path[i].global_position ,0.25)
 		await tween.finished
-		hex = path[i]
+		parent_hex = path[i]
 
 		if path[i] == path.back() && path[i].settlement:
 			garrison(path[i].settlement)

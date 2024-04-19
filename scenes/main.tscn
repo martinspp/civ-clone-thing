@@ -17,6 +17,10 @@ script = ExtResource("1_o5rck")
 hex_scene = ExtResource("2_f1kye")
 settlement_scene = ExtResource("7_puklf")
 
+[node name="DebugLines" type="Line2D" parent="World"]
+z_index = 50
+position = Vector2(153, 1)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1613, 586)
 position_smoothing_speed = 1.0
@@ -25,11 +29,12 @@ script = ExtResource("3_45lbt")
 [node name="DataService" type="Node" parent="."]
 script = ExtResource("5_83y7l")
 
-[node name="EditorService" type="Node" parent="."]
+[node name="EditorService" type="Node" parent="." node_paths=PackedStringArray("debug_lines")]
 script = ExtResource("6_s2usr")
 hex_scene = ExtResource("6_blydh")
 settlement_scene = ExtResource("7_puklf")
 editor_ui_scene = ExtResource("8_274qo")
 player_menu_scene = ExtResource("9_d08qs")
+debug_lines = NodePath("../World/DebugLines")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

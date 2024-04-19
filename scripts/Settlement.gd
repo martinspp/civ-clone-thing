@@ -37,7 +37,7 @@ func _ready() -> void:
 	calculate_building_unlocks()
 
 	#test stuff remove later
-	spawn_unit(ResourceRegistry.get_unit_type_by_name("warrior")).hex = parent_hex	
+	spawn_unit(ResourceRegistry.get_unit_type_by_name("warrior")).parent_hex = parent_hex	
 	$SettlementDecor.spawn_villagers(5)
 
 
@@ -90,7 +90,7 @@ func _end_of_turn_actions() -> void:
 		if settlement_data.update_production_progress(settlement_data.current_production, 0.5) >= 1.0:
 			var produced : Variant = ResourceRegistry.get_building_or_unit_by_name(settlement_data.current_production)
 			if produced is UnitType:
-				spawn_unit(produced).hex = parent_hex
+				spawn_unit(produced).parent_hex = parent_hex
 			elif produced is BuildingData:
 				add_building(produced)
 			else:

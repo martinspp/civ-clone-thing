@@ -3,6 +3,7 @@ extends Node2D
 class_name HexCursor
 
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var line: Line2D = $Line2D
 #var hex_type: HexType
 
 static var cursor_settings := {
@@ -13,6 +14,9 @@ static var cursor_settings := {
 		"transform" :Transform2D(0.0, Vector2.ONE, 0, Vector2(1.215,1.215)),
 		"color": Color(1,1,1,0.5)},
 	"action":{
+		"transform": Transform2D(0.0, Vector2(1.969,1.969), 0, Vector2(0,23.027)),
+		"color": Color.WHITE},
+	"test":{
 		"transform": Transform2D(0.0, Vector2(1.969,1.969), 0, Vector2(0,23.027)),
 		"color": Color.WHITE}
 }
@@ -55,8 +59,10 @@ func set_cursor_type(type: String, subtype: String) -> void:
 			sprite.texture = (load("res://resources/HexTypes/delete.tres") as HexType).cursor_sprite
 			return
 		sprite.texture = loaded
+	elif type == "test":
+		sprite.texture = (load("res://resources/HexTypes/delete.tres") as HexType).cursor_sprite
 	else:
 		sprite.texture = (load("res://resources/HexTypes/delete.tres") as HexType).cursor_sprite
-	
+
 	
 	

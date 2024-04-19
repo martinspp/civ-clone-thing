@@ -5,6 +5,7 @@ class_name PlayUI
 @export var round_value_label: Label
 @export var gold_value_label: Label
 
+@export var open_research_button: Button
 @export var end_turn_button: Button
 
 

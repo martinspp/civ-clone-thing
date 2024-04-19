@@ -2,7 +2,7 @@ extends Node2D
 
 class_name HexDecor
 
-@onready var decor_count :int = randi_range(5,10)
+@onready var decor_count :int = randi_range(2,5)
 @export var bush_grass: Texture2D
 @export var water_wave: Texture2D
 func _ready() -> void:

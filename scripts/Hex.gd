@@ -63,18 +63,23 @@ static var world: WorldManager
 var settlement: Settlement
 @onready var units: Array[Unit] = []
 
+@onready var axial: Axial = Axial.new(0,0)
+
+var r:int:
+	get:
+		return axial.r
+	set(val):
+		axial.r = val
+		update_pos()
+
 var q:int:
 	get:
-		return q
+		return axial.q
 	set(val):
-		q = val
+		axial.q = val
 		update_pos()
-var r :int:
-	get:
-		return r
-	set(val):
-		r = val
-		update_pos()
+
+@onready var fow_visible: bool = false
 
 func delete() -> void:
 	queue_free()
@@ -84,19 +89,20 @@ func update_pos() -> void:
 		return
 	position.x = (q * 128)+(r*64)
 	position.y = r * 96
-	var astar_id :int = world.astar.get_available_point_id()
-	world.astar.add_point(astar_id, global_position)
-	set_meta("astar_id", astar_id)
-	world.astar_dict[astar_id] = self
 	name = "Hex (r %s, q %s)" % [r,q] 
-
+	if world:
+		var astar_id :int = world.astar.get_available_point_id()
+		set_meta("astar_id", astar_id)
+		world.astar.add_point(astar_id, global_position)
+		world.astar_dict[astar_id] = self
 
 func set_hex_type_by_string(type: String) -> void:
 	hex_type = load("res://resources/HexTypes/%s.tres" % type)
-	if hex_type.traversable:
-		world.astar.set_point_disabled(get_meta("astar_id"), false)
-	else:
-		world.astar.set_point_disabled(get_meta("astar_id"), true)
+	if world:
+		if hex_type.traversable:
+			world.astar.set_point_disabled(get_meta("astar_id"), false)
+		else:
+			world.astar.set_point_disabled(get_meta("astar_id"), true)
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton:

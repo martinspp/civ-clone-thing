@@ -102,6 +102,18 @@ func _on_other_item_clicked(index:int, _at_position:Vector2, _mouse_button_index
 		_:
 			print("unkown other item")
 
+func _on_test_item_clicked(index:int, _at_position:Vector2, _mouse_button_index:int) -> void:
+	unhighlight_lists()
+	match index:
+		0:
+			type_changed.emit("action","select")
+		1:
+			type_changed.emit("test","ring")
+		2:
+			type_changed.emit("test","spiral")
+		_:
+			print("unkown other test item")
+
 
 func _on_units_item_clicked(index:int, _at_position:Vector2, _mouse_button_index:int) -> void:
 	unhighlight_lists()

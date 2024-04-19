@@ -4,6 +4,7 @@ extends Node
 class_name DataService
 
 static var world_dict: Dictionary
+#[r,q]
 var axial_direction_vectors := [
 	[-1,1],[0,1],[1,0],
 	[1,-1],[0,-1],[-1,0]]
@@ -91,6 +92,16 @@ func get_all_neighbouring_hexes(hex: Hex) -> Array[Hex]:
 		if neighbour:
 			neighbours.append(neighbour)
 	return neighbours
+
+func _axial_to_hex(axial: Axial) -> Hex:
+	return world_dict['map_data'][axial.r][axial.q]['ref']
+
+func _axial_to_hex_array(axial: Array[Axial]) -> Array[Hex]:
+	var result: Array[Hex] = []
+	for i in axial:
+		if world_dict['map_data'][i.r][i.q].has('ref'):
+			result.append(world_dict['map_data'][i.r][i.q]['ref'])
+	return result
 
 #endregion
 #region settlement
