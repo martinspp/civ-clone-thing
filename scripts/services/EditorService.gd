@@ -50,9 +50,11 @@ func hex_clicked(hex: Hex, event: InputEvent) -> void:
 	elif selected_type == "hex":
 		GameStateService.data_service.update_hex_type(hex, selected_subtype)
 	elif selected_type == "test" && selected_subtype == "ring":
-		highlight_hexes(GameStateService.data_service._axial_to_hex_array((Axial.ring(hex.axial,2))))
+		debug_lines.closed = true
+		highlight_hexes(GameStateService.data_service._axial_to_hex_array((Axial.ring(hex.axial,5))))
 	elif selected_type == "test" && selected_subtype == "spiral":
-		highlight_hexes(GameStateService.data_service._axial_to_hex_array((Axial.spiral(hex.axial,2))))
+		debug_lines.closed = false
+		highlight_hexes(GameStateService.data_service._axial_to_hex_array((Axial.spiral(hex.axial,10))))
 		
 
 		

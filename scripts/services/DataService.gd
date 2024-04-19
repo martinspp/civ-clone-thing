@@ -99,7 +99,9 @@ func _axial_to_hex(axial: Axial) -> Hex:
 func _axial_to_hex_array(axial: Array[Axial]) -> Array[Hex]:
 	var result: Array[Hex] = []
 	for i in axial:
-		if world_dict['map_data'][i.r][i.q].has('ref'):
+		if i.r >= world_dict['map_data'].size() || i.r < 0:
+			continue
+		if world_dict['map_data'][i.r][i.q] && world_dict['map_data'][i.r][i.q].has('ref'):
 			result.append(world_dict['map_data'][i.r][i.q]['ref'])
 	return result
 

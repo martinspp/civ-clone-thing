@@ -41,7 +41,7 @@ static func add_s(axial1: Axial, axial2: Axial) -> Axial:
 
 static func ring(center: Axial, radius: int) -> Array[Axial]:
 	var results: Array[Axial] = []
-	var turtle: Axial = center.add(Axial.dirs[0].scale(radius))
+	var turtle: Axial = center.add(Axial.dirs[4].scale(radius))
 
 	for side in range(0,6):
 		for side_hex in range(radius):
@@ -53,5 +53,5 @@ static func ring(center: Axial, radius: int) -> Array[Axial]:
 static func spiral(center: Axial, radius: int) -> Array[Axial]:
 	var results : Array[Axial] = [center]
 	for k in range(radius):
-		results.append_array(ring(center, k))
+		results.append_array(ring(center, k+1))
 	return results
