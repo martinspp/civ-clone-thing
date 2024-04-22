@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpk2kjbckwl24"]
+
+[ext_resource type="Script" path="res://scripts/field_of_view/FowHider.gd" id="1_1yyl7"]
+
+[node name="FowHider" type="Node2D" groups=["FowHiders"]]
+script = ExtResource("1_1yyl7")

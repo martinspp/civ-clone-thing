@@ -137,6 +137,7 @@ func add_river(hex: Hex, side: Hex.side_flag) -> void:
 	river_line.default_color = Color.LIGHT_BLUE
 	river_line.add_point(Hex.border_set[Hex.border_pairs[Hex.get_side_index(side)][0]])
 	river_line.add_point(Hex.border_set[Hex.border_pairs[Hex.get_side_index(side)][1]])
+	river_line.add_to_group("FowHidersSingle")
 	rivers.add_child(river_line)
 	
 func place_decor(decor_data: Dictionary, r: int, q: int) -> void:

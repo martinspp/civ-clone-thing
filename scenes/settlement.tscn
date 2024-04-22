@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/decor/SettlementDecor.gd" id="3_ib2kq"]
 [ext_resource type="PackedScene" uid="uid://01lli7uh8tcx" path="res://scenes/Utilities/hex_highlighter.tscn" id="3_q7dbo"]
 [ext_resource type="PackedScene" uid="uid://c2aa4sgtmlk1m" path="res://scenes/Decor/Villager.tscn" id="4_jkyyu"]
-[ext_resource type="PackedScene" uid="uid://c7ay77gh48egq" path="res://scenes/fow_revealer.tscn" id="6_kdb7s"]
+[ext_resource type="PackedScene" uid="uid://c7ay77gh48egq" path="res://scenes/field_of_view/fow_revealer.tscn" id="6_kdb7s"]
 
 [node name="Settlement" type="Area2D" node_paths=PackedStringArray("hex_highlighter")]
 z_index = 1

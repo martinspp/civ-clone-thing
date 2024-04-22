@@ -74,8 +74,10 @@ func update_ui_data() -> void:
 
 	if settlement_data.owned_player:
 		%SettlementNameLabel.modulate = settlement_data.owned_player.color
+		hex_highlighter.higlight_color = Color(settlement_data.owned_player.color, 0.2)
 	else:
 		%SettlementNameLabel.modulate = Color.BLACK
+		hex_highlighter.higlight_color = Color(Color.BLACK, 0.2)
 	
 	%GrowthLabel.text = str(0)
 	%PopulationLabel.text = str(settlement_data.pop)
@@ -86,7 +88,7 @@ func update_ui_data() -> void:
 		%ProductionBar.value = settlement_data.get_production_progress(settlement_data.current_production)
 	else:
 		%ProductionContainer.visible = false
-	hex_highlighter.higlight_color = Color(settlement_data.owned_player.color, 0.2)
+	
 	influenced_hexes = GameStateService.data_service._axial_to_hex_array(Axial.spiral(parent_hex.axial, 1))
 
 func update_ui_state() -> void:

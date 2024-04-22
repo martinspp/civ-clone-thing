@@ -41,6 +41,9 @@ func start_game() -> Dictionary:
 	editor_service.queue_free()
 	editor_service = null
 	current_state = game_states.PLAY
+	#Hide for Fow
+
+	FowHider.hide_all()
 
 	#add game stuff
 	game_service = GameService.new()
