@@ -18,7 +18,10 @@ static var cursor_settings := {
 		"color": Color.WHITE},
 	"test":{
 		"transform": Transform2D(0.0, Vector2(1.969,1.969), 0, Vector2(0,23.027)),
-		"color": Color.WHITE}
+		"color": Color.WHITE},
+	"unit":{
+		"transform" :Transform2D(0.0, Vector2.ONE, 0, Vector2(1.215,1.215)),
+		"color": Color(1,1,1,0.5)},
 }
 
 var q : int = int(INF) :
