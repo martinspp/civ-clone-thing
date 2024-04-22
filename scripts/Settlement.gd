@@ -43,13 +43,12 @@ func _ready() -> void:
 	%StopProduction.pressed.connect(stop_production)
 	calculate_building_unlocks()
 	
-	influenced_hexes = GameStateService.data_service._axial_to_hex_array(Axial.spiral(parent_hex.axial, 1))
 
 
 	#test stuff remove later
 	spawn_unit(ResourceRegistry.get_unit_type_by_name("warrior")).parent_hex = parent_hex	
 	$SettlementDecor.spawn_villagers(5)
-
+	$FowRevealer.set_revealing(3)
 
 func _exit_tree() -> void:
 	parent_hex.settlement = null
@@ -88,13 +87,15 @@ func update_ui_data() -> void:
 		%ProductionBar.value = settlement_data.get_production_progress(settlement_data.current_production)
 	else:
 		%ProductionContainer.visible = false
-	
 	influenced_hexes = GameStateService.data_service._axial_to_hex_array(Axial.spiral(parent_hex.axial, 1))
+	
 
 func update_ui_state() -> void:
 	pass
 
 func _start_of_turn_actions(_turn: int) -> void:
+	$FowRevealer.set_revealing(3)
+	influenced_hexes = GameStateService.data_service._axial_to_hex_array(Axial.spiral(parent_hex.axial, 1))
 	calculate_building_unlocks()
 
 func _end_of_turn_actions() -> void:

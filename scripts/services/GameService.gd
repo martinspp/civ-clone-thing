@@ -46,6 +46,7 @@ func _ready() -> void:
 	PlayEventBus.hex_alt_clicked.connect(hex_alt_clicked)
 	PlayEventBus.settlement_unhighlighted.connect(unfocus_settlement)
 	PlayEventBus.object_finished_end_turn_action.connect(_object_finished_actions)
+	PlayEventBus.start_of_turn.connect(_start_of_turn_actions)
 	
 
 func hex_click_event(hex: Hex, event: InputEvent) -> void:
@@ -157,3 +158,5 @@ func _object_finished_actions(object: Variant) -> void:
 func get_target() -> Variant:
 	await target_set
 	return targeted_object
+func _start_of_turn_actions(turn: int) -> void:
+	FowRevealer.reveal_revealed_hexes()

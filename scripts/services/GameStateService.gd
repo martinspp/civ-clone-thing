@@ -44,6 +44,7 @@ func start_game() -> Dictionary:
 	#Hide for Fow
 
 	FowHider.hide_all()
+	FowRevealer.reveal_revealed_hexes()
 
 	#add game stuff
 	game_service = GameService.new()
