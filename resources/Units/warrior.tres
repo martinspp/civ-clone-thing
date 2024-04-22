@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="UnitType" load_steps=3 format=3 uid="uid://lb8x0f3xqm7s"]
 
-[ext_resource type="Script" path="res://resources/Units/UnitType.gd" id="1_0atjq"]
-[ext_resource type="Texture2D" uid="uid://f58jlja3fu0l" path="res://icon.svg" id="2_dn2xr"]
+[ext_resource type="Script" path="res://resources/Units/UnitType.gd" id="1_20oyn"]
+[ext_resource type="Texture2D" uid="uid://f58jlja3fu0l" path="res://icon.svg" id="2_pfnjd"]
 
 [resource]
-script = ExtResource("1_0atjq")
+script = ExtResource("1_20oyn")
 unit_name = "warrior"
 health = 100.0
 speed = 2
-sprite = ExtResource("2_dn2xr")
+sprite = ExtResource("2_pfnjd")
 actions = Array[String](["move", "attack_unit_melee"])
 attack_damage = 10.0
 action_points = 6

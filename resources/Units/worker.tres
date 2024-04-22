@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UnitType" load_steps=3 format=3 uid="uid://d0wfaadyk0dwk"]
+
+[ext_resource type="Script" path="res://resources/Units/UnitType.gd" id="1_p7rj0"]
+[ext_resource type="Texture2D" uid="uid://f58jlja3fu0l" path="res://icon.svg" id="2_rp7e3"]
+
+[resource]
+script = ExtResource("1_p7rj0")
+unit_name = "worker"
+health = 10.0
+speed = 1
+sprite = ExtResource("2_rp7e3")
+actions = Array[String](["move", "improve_hex"])
+attack_damage = 0.0
+action_points = 0

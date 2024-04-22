@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MapResource" load_steps=3 format=3 uid="uid://dqvgi7o82ldvb"]
+
+[ext_resource type="Script" path="res://resources/MapResources/MapResourceData.gd" id="1_wtvyf"]
+[ext_resource type="Texture2D" uid="uid://cxeejmkssw7n1" path="res://sprites/objects/map_resources/rockStone.png" id="2_m6oe1"]
+
+[resource]
+script = ExtResource("1_wtvyf")
+map_resource_name = "stone"
+world_sprite = ExtResource("2_m6oe1")
+ui_sprite = ExtResource("2_m6oe1")

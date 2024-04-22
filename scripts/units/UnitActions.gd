@@ -4,7 +4,9 @@ class_name UnitActions
 
 static var callable_dict := {
 	"attack_unit_melee" = {"func": attack_unit_melee, "targeted": true},
-	"move" = {"func":move, "targeted": true}
+	"move" = {"func":move, "targeted": true},
+	"settle" = {"func":settle, "targeted": true},
+	"improve_hex" = {"func":improve_hex, "targeted": true}
 }
 
 static func attack_unit_melee(unit_from: Unit) -> ActionMessage:
@@ -22,6 +24,12 @@ static func move(unit_from: Unit) -> ActionMessage:
 	elif target is Hex:
 		unit_from.movement_target_hex = target
 	unit_from.perform_move()
+	return ActionMessage.new(true, "")
+
+static func settle(unit_from: Unit) -> ActionMessage:
+	return ActionMessage.new(false, "Not implemented")
+
+static func improve_hex(unit_from: Unit) -> ActionMessage:
 	return ActionMessage.new(false, "Not implemented")
 
 
