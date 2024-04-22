@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3 uid="uid://ce3ngdtgeryr7"]
+[gd_resource type="Resource" script_class="BuildingData" load_steps=3 format=3 uid="uid://ce3ngdtgeryr7"]
 
 [ext_resource type="Script" path="res://resources/Buildings/BuildingData.gd" id="1_4hoih"]
+[ext_resource type="Texture2D" uid="uid://cts0cdpn07xxq" path="res://sprites/decor/buildings/granary_export.png" id="1_ch6tq"]
 
 [resource]
 script = ExtResource("1_4hoih")
 building_name = "granary"
+building_sprite = ExtResource("1_ch6tq")
 building_modifiers = {
 "food_modifier": 2.0,
 "unlock_building": "barracks"

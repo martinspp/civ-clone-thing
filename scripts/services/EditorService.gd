@@ -78,4 +78,6 @@ func _exit_tree() -> void:
 func highlight_hexes(hexes: Array[Hex]) -> void:
 	debug_lines.clear_points()
 	for hex in hexes:
+		#if hex.hex_type.data_name == "water":
+		#	continue
 		debug_lines.add_point(hex.global_position)

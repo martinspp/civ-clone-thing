@@ -6,6 +6,13 @@ class_name Settlement
 
 @onready var settlement_data: SettlementData = SettlementData.new()
 @onready var parent_hex: Hex = get_parent() as Hex
+var influenced_hexes: Array[Hex]:
+	get:
+		return influenced_hexes
+	set(value):
+		influenced_hexes = value
+		hex_highlighter.update_hexes(value)
+
 
 #region settlement_name_label
 var settlement_name_label: String:
@@ -19,7 +26,7 @@ var settlement_name_label: String:
 @onready var garrisoned_units: Array[Unit] = []
 
 @export var unit_scene : PackedScene
-
+@export var hex_highlighter: HexHighlighter
 # Used to flip the ui when settlement is focused, probably can be removed
 var selected: bool
 
@@ -35,6 +42,9 @@ func _ready() -> void:
 	PlayEventBus.end_of_turn.connect(_end_of_turn_actions)
 	%StopProduction.pressed.connect(stop_production)
 	calculate_building_unlocks()
+	
+	influenced_hexes = GameStateService.data_service._axial_to_hex_array(Axial.spiral(parent_hex.axial, 1))
+
 
 	#test stuff remove later
 	spawn_unit(ResourceRegistry.get_unit_type_by_name("warrior")).parent_hex = parent_hex	
@@ -76,7 +86,8 @@ func update_ui_data() -> void:
 		%ProductionBar.value = settlement_data.get_production_progress(settlement_data.current_production)
 	else:
 		%ProductionContainer.visible = false
-
+	hex_highlighter.higlight_color = Color(settlement_data.owned_player.color, 0.2)
+	influenced_hexes = GameStateService.data_service._axial_to_hex_array(Axial.spiral(parent_hex.axial, 1))
 
 func update_ui_state() -> void:
 	pass
@@ -107,6 +118,7 @@ func add_building(building_data: BuildingData) -> Building:
 	print(new_building.building_data.building_modifiers)
 	add_child(new_building)
 	built_buildings.append(new_building)
+	$SettlementDecor.add_building(building_data)
 	return new_building
 
 func remove_building(building: Building) -> void:

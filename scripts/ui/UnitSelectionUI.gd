@@ -44,9 +44,9 @@ func _build_path() -> void:
 	var hex_path := GameStateService.data_service.plot_path(_source_hex, _targeted_hex)
 	line.clear_points()
 	for hex in hex_path:
-		print("%s %s" % [hex.q, hex.r])
+		#print("%s %s" % [hex.q, hex.r])
 		line.add_point(hex.global_position)
-	print(line.get_point_count())
+	#print(line.get_point_count())
 
 
 

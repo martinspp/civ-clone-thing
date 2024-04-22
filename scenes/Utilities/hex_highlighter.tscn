@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://01lli7uh8tcx"]
+
+[ext_resource type="Script" path="res://scenes/Utilities/hex_highlighter.gd" id="1_0p77n"]
+[ext_resource type="Texture2D" uid="uid://i7iitcfhk6kp" path="res://sprites/hex/mask.png" id="2_bdmur"]
+
+[node name="HexHighlighter" type="Node2D"]
+script = ExtResource("1_0p77n")
+higlight_color = null
+hex_texture = ExtResource("2_bdmur")

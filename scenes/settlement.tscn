@@ -1,22 +1,32 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqrax0qwe1dq3"]
+[gd_scene load_steps=8 format=3 uid="uid://cqrax0qwe1dq3"]
 
 [ext_resource type="Script" path="res://scripts/Settlement.gd" id="1_cq04i"]
 [ext_resource type="PackedScene" uid="uid://c3ks0spf6nsc8" path="res://scenes/unit.tscn" id="2_gt3mk"]
 [ext_resource type="Texture2D" uid="uid://dmvr0u8jlmyt7" path="res://sprites/objects/settlement/woodRing.png" id="2_vg2h3"]
 [ext_resource type="Script" path="res://scripts/decor/SettlementDecor.gd" id="3_ib2kq"]
+[ext_resource type="PackedScene" uid="uid://01lli7uh8tcx" path="res://scenes/Utilities/hex_highlighter.tscn" id="3_q7dbo"]
 [ext_resource type="PackedScene" uid="uid://c2aa4sgtmlk1m" path="res://scenes/Decor/Villager.tscn" id="4_jkyyu"]
 [ext_resource type="PackedScene" uid="uid://c7ay77gh48egq" path="res://scenes/fow_revealer.tscn" id="6_kdb7s"]
 
-[node name="Settlement" type="Area2D"]
+[node name="Settlement" type="Area2D" node_paths=PackedStringArray("hex_highlighter")]
+z_index = 1
 script = ExtResource("1_cq04i")
 unit_scene = ExtResource("2_gt3mk")
+hex_highlighter = NodePath("HexHighlighter")
+
+[node name="HexHighlighter" parent="." instance=ExtResource("3_q7dbo")]
 
 [node name="SettlementDecor" type="Node2D" parent="." node_paths=PackedStringArray("settlement")]
+y_sort_enabled = true
 script = ExtResource("3_ib2kq")
 settlement = NodePath("..")
 villager_scene = ExtResource("4_jkyyu")
 
 [node name="Villagers" type="Node2D" parent="SettlementDecor"]
+y_sort_enabled = true
+
+[node name="Buildings" type="Node2D" parent="SettlementDecor"]
+y_sort_enabled = true
 
 [node name="Village" type="Sprite2D" parent="SettlementDecor"]
 visible = false
