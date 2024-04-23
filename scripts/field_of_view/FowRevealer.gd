@@ -13,15 +13,15 @@ func _ready() -> void:
 	#update_revealed_hexes(3)
 	pass
 
-func set_revealing(range: int) -> void: 
-	revealing_hexes = update_revealed_hexes(range)
+func set_revealing(reveal_range: int) -> void: 
+	revealing_hexes = update_revealed_hexes(reveal_range)
 
-func update_revealed_hexes(range: int) -> Array[Hex]:
+func update_revealed_hexes(reveal_range: int) -> Array[Hex]:
 	if parent_object is Hex:
-		return GameStateService.data_service._axial_to_hex_array(Axial.spiral(parent_object.axial, range))
+		return GameStateService.data_service._axial_to_hex_array(Axial.spiral(parent_object.axial, reveal_range))
 	# god, i need a better thing for this wtf am i doing
 	elif parent_object.get_parent() is Hex:
-		return GameStateService.data_service._axial_to_hex_array(Axial.spiral(parent_object.get_parent().axial, range))
+		return GameStateService.data_service._axial_to_hex_array(Axial.spiral(parent_object.get_parent().axial, reveal_range))
 	else:
 		return []
 
