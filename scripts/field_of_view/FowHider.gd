@@ -8,6 +8,9 @@ func reveal() -> void:
 
 static func hide_all() -> void:
 	var hiders :Array[Node] = GameStateService.get_tree().get_nodes_in_group("FowHiders")
+
+	#for objects that get generated without FowHider but still need to be hidden (rivers)
+	#Revealing needs to be checked by object basis
 	var hiders_single :Array[Node] = GameStateService.get_tree().get_nodes_in_group("FowHidersSingle")
 
 	for hider in hiders:
