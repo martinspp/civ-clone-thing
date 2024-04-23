@@ -19,7 +19,7 @@ func set_revealing(range: int) -> void:
 func update_revealed_hexes(range: int) -> Array[Hex]:
 	if parent_object is Hex:
 		return GameStateService.data_service._axial_to_hex_array(Axial.spiral(parent_object.axial, range))
-	# god need a better thing for this wtf am i doing
+	# god, i need a better thing for this wtf am i doing
 	elif parent_object.get_parent() is Hex:
 		return GameStateService.data_service._axial_to_hex_array(Axial.spiral(parent_object.get_parent().axial, range))
 	else:

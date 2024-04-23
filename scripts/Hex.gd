@@ -79,8 +79,6 @@ var q:int:
 		axial.q = val
 		update_pos()
 
-@onready var fow_visible: bool = false
-
 func delete() -> void:
 	queue_free()
 
