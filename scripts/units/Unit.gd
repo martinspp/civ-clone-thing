@@ -99,7 +99,10 @@ func perform_move() -> void:
 
 		if path[i] == path.back() && path[i].settlement:
 			garrison(path[i].settlement)
+		$FowRevealer.set_revealing(3)
+		FowRevealer.reveal_revealed_hexes()
 	
-	path.back().units.append(self)
-	path[0].units.erase(self)
-	GameStateService.data_service.move_unit(path[0],path.back())
+	if path.back():
+		path.back().units.append(self)
+		path[0].units.erase(self)
+		GameStateService.data_service.move_unit(path[0],path.back())
