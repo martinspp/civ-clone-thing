@@ -12,3 +12,4 @@ sprite = ExtResource("2_rp7e3")
 actions = Array[String](["move", "improve_hex"])
 attack_damage = 0.0
 action_points = 0
+fow_range = 0

@@ -11,4 +11,6 @@ speed = 2
 sprite = ExtResource("2_pfnjd")
 actions = Array[String](["move", "attack_unit_melee"])
 attack_damage = 10.0
-action_points = 6
+action_points = 1
+movement_points = 2
+fow_range = 2

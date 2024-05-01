@@ -2,7 +2,7 @@ extends Node2D
 
 class_name FowRevealer
 
-@export var fow_range: int
+@onready var fow_range: int = 0 
 
 @onready var parent_object: Variant = get_parent()
 @onready var revealing_hexes: Array[Hex] = []
@@ -10,11 +10,18 @@ class_name FowRevealer
 static var all_revealed_hexes: Array[Hex] = []
 
 func _ready() -> void:
-	#update_revealed_hexes(3)
 	pass
 
-func set_revealing(reveal_range: int) -> void: 
-	revealing_hexes = _update_revealed_hexes(reveal_range)
+# Updates the ranged based on parent type
+func update_range() -> void:
+	if parent_object is Unit:
+		fow_range = parent_object.unit_data.fow_range
+	elif parent_object is Settlement:
+		fow_range = 3
+
+
+func update_revealing() -> void:
+	revealing_hexes = _update_revealed_hexes(fow_range)
 
 func _update_revealed_hexes(reveal_range: int) -> Array[Hex]:
 	if parent_object is Hex:

@@ -5,8 +5,7 @@ class_name FowHider
 func reveal() -> void:
 	get_parent().visible = true
 	if get_parent() is Hex:
-		var hex :Hex = get_parent()
-		
+		get_parent().update_pathing()
 	#TODO check if is hex and has a river
 
 static func hide_all() -> void:

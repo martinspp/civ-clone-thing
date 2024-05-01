@@ -8,11 +8,7 @@ var unit_data: UnitType:
 	set(value):
 		sprite_2d.texture = value.sprite
 		unit_data = value
-		#if unit_data == null:
-		#	unit_data = value.new()
-		#else:
-		#	unit_data = value
-
+		$FowRevealer.update_range()
 
 @export var sprite_2d: Sprite2D
 
@@ -99,7 +95,7 @@ func perform_move() -> void:
 
 		if path[i] == path.back() && path[i].settlement:
 			garrison(path[i].settlement)
-		$FowRevealer.set_revealing(3)
+		$FowRevealer.update_revealing()
 		FowRevealer.reveal_revealed_hexes()
 	
 	if path.back():

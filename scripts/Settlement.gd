@@ -48,7 +48,8 @@ func _ready() -> void:
 	#test stuff remove later
 	spawn_unit(ResourceRegistry.get_unit_type_by_name("warrior")).parent_hex = parent_hex	
 	$SettlementDecor.spawn_villagers(5)
-	$FowRevealer.set_revealing(3)
+	$FowRevealer.fow_range = 3
+	$FowRevealer.update_revealing()
 
 func _exit_tree() -> void:
 	parent_hex.settlement = null
@@ -94,7 +95,8 @@ func update_ui_state() -> void:
 	pass
 
 func _start_of_turn_actions(_turn: int) -> void:
-	$FowRevealer.set_revealing(3)
+	$FowRevealer.update_range()
+	$FowRevealer.update_revealing()
 	influenced_hexes = GameStateService.data_service._axial_to_hex_array(Axial.spiral(parent_hex.axial, 1))
 	calculate_building_unlocks()
 
