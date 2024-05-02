@@ -25,6 +25,10 @@ GameStateService="*res://scripts/services/GameStateService.gd"
 
 gdscript/warnings/untyped_declaration=2
 
+[dotnet]
+
+project/assembly_name="civ"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/worldmap_builder/plugin.cfg")
