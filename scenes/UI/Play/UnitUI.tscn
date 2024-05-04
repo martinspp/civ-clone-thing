@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://f58jlja3fu0l" path="res://icon.svg" id="1_ck7hx"]
 [ext_resource type="Script" path="res://scripts/ui/UnitUI.gd" id="1_p54cy"]
 
-[node name="UnitUI" type="Control" node_paths=PackedStringArray("thumbnail", "unit_name_label", "health_label", "action_points_label", "damage_label", "actions_grid")]
+[node name="UnitUI" type="Control" node_paths=PackedStringArray("thumbnail", "unit_name_label", "health_label", "action_points_label", "movement_points_label", "damage_label", "actions_grid")]
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
@@ -14,6 +14,7 @@ thumbnail = NodePath("Panel/HBoxContainer/TextureRect")
 unit_name_label = NodePath("Panel/HBoxContainer/VBoxContainer/Label")
 health_label = NodePath("Panel/HBoxContainer/VBoxContainer/Health")
 action_points_label = NodePath("Panel/HBoxContainer/VBoxContainer/AP")
+movement_points_label = NodePath("Panel/HBoxContainer/VBoxContainer/Move")
 damage_label = NodePath("Panel/HBoxContainer/VBoxContainer/Damage")
 actions_grid = NodePath("Panel/HBoxContainer/ActionsGrid")
 
@@ -54,6 +55,12 @@ horizontal_alignment = 1
 auto_translate_mode = 1
 layout_mode = 2
 text = "AP: 2/2"
+horizontal_alignment = 1
+
+[node name="Move" type="Label" parent="Panel/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "Move: 2/2"
 horizontal_alignment = 1
 
 [node name="Damage" type="Label" parent="Panel/HBoxContainer/VBoxContainer"]

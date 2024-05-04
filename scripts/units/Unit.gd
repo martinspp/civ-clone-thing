@@ -8,6 +8,9 @@ var unit_data: UnitType:
 	set(value):
 		sprite_2d.texture = value.sprite
 		unit_data = value
+		health = unit_data.max_health
+		action_points = unit_data.max_action_points
+		movement_points = unit_data.max_movement_points
 		$FowRevealer.update_range()
 
 @export var sprite_2d: Sprite2D
@@ -16,6 +19,11 @@ var player: Player
 var parent_hex: Hex
 var movement_target_hex: Hex
 
+#region unit_data
+var health: float
+var action_points : int 
+var movement_points: int 
+#endregion
 
 var garrisoned_settlement: Settlement
 
@@ -36,9 +44,10 @@ func perform_action(action: String,target: Variant) -> void:
 func serialize() -> Dictionary:
 	var dict := {}
 	dict["unit_type"] = unit_data.unit_name
-	dict["health"] = unit_data.health
+	dict["health"] = health
 	dict["owner_id"] = player.id
-	dict["action_points"] = unit_data.action_points
+	dict["action_points"] = action_points
+	dict["movement_points"] = movement_points
 	return dict
 
 func deserialize(data: Dictionary) -> void:
@@ -52,7 +61,9 @@ func _on_input_event(_viewport:Node, event:InputEvent, _shape_idx:int) -> void:
 		PlayEventBus.unit_selected.emit(Unit)
 
 func _start_of_turn_actions(turn_number: int) -> void:
-	pass
+	movement_points = unit_data.max_movement_points
+	action_points = unit_data.max_action_points
+	
 
 func _end_of_turn_actions() -> void:
 	#TODO continue set walk action if AP points allow it
@@ -79,15 +90,20 @@ func ungarrsion() -> void:
 		print("not garrisoned")
 
 func perform_move() -> void:
-	var max_tiles_move :int = unit_data.speed * unit_data.action_points
+	#var max_tiles_move :int = unit_data.speed * unit_data.action_points
 	var path := GameStateService.data_service.plot_path(parent_hex, movement_target_hex)
-	print(max_tiles_move)
-	print(path.size())
+	var landed_hex: Hex
+	
 	for i in range(path.size()):
+		if i == 0:
+			continue
+		if movement_points <= 0:
+			break
+		movement_points -= 1
+
 		if !path[i].settlement && garrisoned_settlement:
 			ungarrsion()
 
-		
 		var tween: Tween = get_tree().create_tween()
 		tween.tween_property(self, "global_position", path[i].global_position ,0.25)
 		await tween.finished
@@ -97,8 +113,13 @@ func perform_move() -> void:
 			garrison(path[i].settlement)
 		$FowRevealer.update_revealing()
 		FowRevealer.reveal_revealed_hexes()
+
+		PlayEventBus.unit_update_ui.emit(self)
+
+		
+		landed_hex = path[i]
 	
-	if path.back():
-		path.back().units.append(self)
+	if landed_hex:
+		landed_hex.units.append(self)
 		path[0].units.erase(self)
-		GameStateService.data_service.move_unit(path[0],path.back())
+		GameStateService.data_service.move_unit(path[0],landed_hex)

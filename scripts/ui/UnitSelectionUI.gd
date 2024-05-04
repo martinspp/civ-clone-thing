@@ -38,17 +38,18 @@ func _process(_delta: float) -> void:
 		_build_path()
 
 func _build_path() -> void:
+	var max_path: int = source_unit.movement_points
 	_needs_rebuild = false
 	if !(_source_hex && _targeted_hex):
 		return
 	var hex_path := GameStateService.data_service.plot_path(_source_hex, _targeted_hex)
 	line.clear_points()
-	for hex in hex_path:
+	for i in range(hex_path.size()):
 		#print("%s %s" % [hex.q, hex.r])
-		line.add_point(hex.global_position)
+		if i > max_path:
+			break
+		line.add_point(hex_path[i].global_position)
 	#print(line.get_point_count())
-
-
 
 func _exit_tree() -> void:
 	GameStateService.game_service.selecting_target = false	

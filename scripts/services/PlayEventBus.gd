@@ -19,6 +19,7 @@ signal settlement_clicked(settlement: Settlement, event: InputEvent)
 #region unit
 signal unit_selected(unit: Unit)
 signal unit_unselected()
+signal unit_update_ui(unit: Unit)
 #endregion
 
 #region settlement

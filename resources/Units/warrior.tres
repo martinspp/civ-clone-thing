@@ -6,11 +6,11 @@
 [resource]
 script = ExtResource("1_20oyn")
 unit_name = "warrior"
-health = 100.0
+max_health = 100.0
 speed = 2
 sprite = ExtResource("2_pfnjd")
 actions = Array[String](["move", "attack_unit_melee"])
 attack_damage = 10.0
-action_points = 1
-movement_points = 2
+max_action_points = 5
+max_movement_points = 2
 fow_range = 2

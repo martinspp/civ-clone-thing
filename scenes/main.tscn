@@ -19,6 +19,7 @@ settlement_scene = ExtResource("7_puklf")
 
 [node name="DebugLines" type="Line2D" parent="World"]
 z_index = 50
+points = PackedVector2Array(166, 1340)
 closed = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
