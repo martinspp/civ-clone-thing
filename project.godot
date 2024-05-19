@@ -36,6 +36,7 @@ enabled=PackedStringArray("res://addons/worldmap_builder/plugin.cfg")
 [file_customization]
 
 folder_colors={
+"res://resources/": "red",
 "res://scenes/": "orange",
 "res://scripts/services/": "green"
 }

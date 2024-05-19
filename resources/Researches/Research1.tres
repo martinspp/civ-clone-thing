@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ResearchData" load_steps=2 format=3 uid="uid://br63l734wokkc"]
+
+[ext_resource type="Script" path="res://resources/Researches/ResearchData.gd" id="1_3cgl5"]
+
+[resource]
+script = ExtResource("1_3cgl5")
+research_name = "research1"

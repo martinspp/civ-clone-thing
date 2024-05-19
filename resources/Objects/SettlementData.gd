@@ -3,7 +3,12 @@ extends Resource
 class_name SettlementData
 
 var id := randi()
-var owned_player: Player 
+var owned_player: Player:
+	get:
+		return owned_player
+	set(value):
+		owned_player = value
+		ref.update_ui_data()
 
 @export var settlement_name: String = "New City"
 @export var base_food :float = 0
@@ -18,8 +23,8 @@ var current_production: String = ""
 
 var ref: Settlement
 
-static var starting_buildings : Array[String]= ["granary"]
-static var starting_units :Array[String]= ["warrior"]
+var starting_buildings : Array[String]= ["granary"]
+var starting_units :Array[String]= ["warrior", "settler"]
 
 var available_buildings: Array[String] = []
 var available_units: Array[String] = []
@@ -65,14 +70,16 @@ func deserialize(data: Dictionary) -> void:
 		
 	data_updated.emit()
 
-func get_production_progress(name: String) -> float:
+func get_production_progress(name_input: String) -> float:
+	var name: String = name_input.to_lower()
 	if production_dict.has(name):
 		return production_dict[name]
 	else:
 		return 0.0
 
 ## returns new production progress, return should always be handled
-func update_production_progress(name: String, progress: float) -> float:
+func update_production_progress(name_input: String, progress: float) -> float:
+	var name: String = name_input.to_lower()
 	if get_production_progress(name) == 0.0:
 		production_dict[name] = progress
 	else:

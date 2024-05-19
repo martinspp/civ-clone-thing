@@ -46,7 +46,7 @@ func _ready() -> void:
 
 
 	#test stuff remove later
-	spawn_unit(ResourceRegistry.get_unit_type_by_name("warrior")).parent_hex = parent_hex	
+	spawn_unit(ResourceRegistry.get_unit_type_by_name("warrior")).parent_hex = parent_hex
 	$SettlementDecor.spawn_villagers(5)
 	$FowRevealer.fow_range = 3
 	$FowRevealer.update_revealing()
@@ -69,7 +69,7 @@ func update_ui_data() -> void:
 	settlement_name_label = settlement_data.settlement_name
 
 	# Check if owned player still exists
-	if !GameStateService.data_service.is_player_exist(settlement_data.owned_player):
+	if !GameStateService.data_service.is_player_exist(settlement_data.owned_player) && settlement_data.owned_player:
 		settlement_data.owned_player = null
 
 	if settlement_data.owned_player:
@@ -124,6 +124,7 @@ func add_building(building_data: BuildingData) -> Building:
 	add_child(new_building)
 	built_buildings.append(new_building)
 	$SettlementDecor.add_building(building_data)
+	calculate_building_unlocks()
 	return new_building
 
 func remove_building(building: Building) -> void:
@@ -133,6 +134,7 @@ func remove_building(building: Building) -> void:
 func spawn_unit(unit_data: UnitType) -> Unit:
 	var new_unit :Unit = unit_scene.instantiate()
 	GameStateService.world_manager.units.add_child(new_unit)
+	new_unit.player = settlement_data.owned_player
 	new_unit.global_position.x = global_position.x
 	new_unit.global_position.y = global_position.y
 	new_unit.unit_data = unit_data

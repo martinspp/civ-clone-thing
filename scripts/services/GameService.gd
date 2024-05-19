@@ -84,7 +84,8 @@ func settlement_clicked(settlement: Settlement, event: InputEvent) -> void:
 	if selecting_target:
 		handle_targeting(settlement, event)
 		return
-
+	print(settlement.settlement_data.owned_player)
+	print(GameStateService.current_player)
 	if (event as InputEventMouseButton).double_click == false && settlement.settlement_data.owned_player == GameStateService.current_player:
 		if selected_ui_settlement:
 			unselect_settlement()

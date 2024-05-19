@@ -6,10 +6,11 @@
 [resource]
 script = ExtResource("1_p7rj0")
 unit_name = "worker"
-health = 10.0
+max_health = 0.0
 speed = 1
 sprite = ExtResource("2_rp7e3")
 actions = Array[String](["move", "improve_hex"])
 attack_damage = 0.0
-action_points = 0
+max_action_points = 0
+max_movement_points = 0
 fow_range = 0

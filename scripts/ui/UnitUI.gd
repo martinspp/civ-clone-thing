@@ -23,7 +23,7 @@ func _set_ui_data(unit: Unit) -> void:
 	health_label.text = "Health: " + str(unit.health) + " / " + str(unit.unit_data.max_health)
 	action_points_label.text = "Action: " + str(unit.action_points) + " / " + str(unit.unit_data.max_action_points)
 	movement_points_label.text = "Move: " + str(unit.movement_points) + " / " + str(unit.unit_data.max_movement_points)
-	damage_label.text = str(unit.unit_data.attack_damage)
+	damage_label.text = "Damage:" + str(currrent_unit.unit_data.attack_damage)
 
 func _update_current_unit_data() -> void:
 	if currrent_unit:
@@ -32,7 +32,7 @@ func _update_current_unit_data() -> void:
 		health_label.text = "Health: " + str(currrent_unit.health) + " / " + str(currrent_unit.unit_data.max_health)
 		action_points_label.text = "Action: " + str(currrent_unit.action_points) + " / " + str(currrent_unit.unit_data.max_action_points)
 		movement_points_label.text = "Move: " + str(currrent_unit.movement_points) + " / " + str(currrent_unit.unit_data.max_movement_points)
-		damage_label.text = str(currrent_unit.unit_data.attack_damage)
+		damage_label.text = "Damage:" + str(currrent_unit.unit_data.attack_damage)
 
 func _population_actions_grid(unit: Unit) -> void:
 	for child in actions_grid.get_children():

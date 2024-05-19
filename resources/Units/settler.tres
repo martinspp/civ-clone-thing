@@ -6,9 +6,11 @@
 [resource]
 script = ExtResource("1_chuow")
 unit_name = "settler"
-health = 10.0
+max_health = 20.0
 speed = 2
 sprite = ExtResource("2_v6eku")
 actions = Array[String](["move", "settle"])
 attack_damage = 0.0
-action_points = 0
+max_action_points = 0
+max_movement_points = 3
+fow_range = 2

@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://x2i4oeitw66y"]
+
+[ext_resource type="Script" path="res://scripts/ui/ResearchUI.gd" id="1_n8m6f"]
+[ext_resource type="Script" path="res://addons/worldmap_builder/nodes/worldmap_view.gd" id="2_avlv2"]
+[ext_resource type="Script" path="res://addons/worldmap_builder/nodes/worldmap_graph.gd" id="3_b125t"]
+[ext_resource type="Resource" uid="uid://dme42drdh1fdw" path="res://resources/Researches/Research2.tres" id="4_asqa5"]
+[ext_resource type="Script" path="res://addons/worldmap_builder/resource_types/worldmap_node_data.gd" id="4_dyt66"]
+[ext_resource type="Script" path="res://addons/worldmap_builder/nodes/worldmap_path.gd" id="5_4vl1b"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cvykb"]
+size = Vector2(5, 5)
+
+[sub_resource type="Resource" id="Resource_ujcaw"]
+script = ExtResource("4_dyt66")
+id = &"research2"
+texture = SubResource("PlaceholderTexture2D_cvykb")
+color = Color(1, 1, 1, 1)
+name = "Research2"
+desc = "Research2"
+size_tier = 0
+cost = 1
+tags = Array[StringName]([])
+data = Array[Resource]([ExtResource("4_asqa5")])
+
+[node name="ResearchUI" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n8m6f")
+metadata/_edit_lock_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical_scroll_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_lock_ = true
+
+[node name="WorldmapView" type="Control" parent="ScrollContainer/MarginContainer" node_paths=PackedStringArray("initial_item")]
+custom_minimum_size = Vector2(268, 4)
+layout_mode = 2
+script = ExtResource("2_avlv2")
+initial_item = NodePath("WorldmapGraph")
+
+[node name="WorldmapGraph" type="Node2D" parent="ScrollContainer/MarginContainer/WorldmapView"]
+script = ExtResource("3_b125t")
+node_count = 2
+node_0/data = SubResource("Resource_ujcaw")
+node_0/position = Vector2(1.14692, 3.33673)
+node_1/data = SubResource("Resource_ujcaw")
+node_1/position = Vector2(268.02, 1.31659)
+connection_count = 1
+connection_0/nodes = Vector2i(0, 1)
+
+[node name="WorldmapPath" type="Node2D" parent="ScrollContainer/MarginContainer/WorldmapView"]
+script = ExtResource("5_4vl1b")
+start = Vector2(nan, nan)
+end = Vector2(nan, nan)
+handle_1 = Vector2(nan, nan)
+handle_2 = Vector2(nan, nan)
+node_count = 0

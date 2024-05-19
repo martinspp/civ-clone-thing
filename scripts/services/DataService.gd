@@ -110,19 +110,23 @@ func _axial_to_hex_array(axial: Array[Axial]) -> Array[Hex]:
 
 #endregion
 #region settlement
-func add_settlement(hex: Hex, settlement: Settlement) -> void:
+func add_settlement(hex: Hex, settlement: Settlement) -> Settlement:
 	if world_dict["map_data"][hex.r][hex.q].has("settlement"):
 		print("Already has settlement")
-		return
+		return null
 	if hex.hex_type.settleable == true:
 		if settlement == null:
 			world_dict["map_data"][hex.r][hex.q]["settlement"] = SettlementData.default_data()
 		else:
 			world_dict["map_data"][hex.r][hex.q]["settlement"]['ref'] = settlement
 			world_dict["map_data"][hex.r][hex.q]["settlement"] = settlement.settlement_data.serialize()	
+		GameStateService.world_manager.refresh_hex_settlement(hex)
+		return world_dict["map_data"][hex.r][hex.q]["settlement"]['ref']
 	else:
 		print("Cant settle on %s" % hex.hex_type.data_name)
-	GameStateService.world_manager.refresh_hex_settlement(hex)
+		GameStateService.world_manager.refresh_hex_settlement(hex)
+		return null
+
 
 func remove_settlement(hex: Hex) -> void:
 	if world_dict["map_data"][hex.r][hex.q].has("settlement"):

@@ -34,6 +34,8 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	target_sprite.global_position = get_global_mouse_position()
+	if !source_unit:
+		return
 	if _needs_rebuild:
 		_build_path()
 

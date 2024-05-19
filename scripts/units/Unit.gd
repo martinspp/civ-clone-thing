@@ -15,7 +15,7 @@ var unit_data: UnitType:
 
 @export var sprite_2d: Sprite2D
 
-var player: Player
+var player : Player
 var parent_hex: Hex
 var movement_target_hex: Hex
 
@@ -123,3 +123,5 @@ func perform_move() -> void:
 		landed_hex.units.append(self)
 		path[0].units.erase(self)
 		GameStateService.data_service.move_unit(path[0],landed_hex)
+func _exit_tree() -> void:
+	GameStateService.end_of_turn_actions.erase(self)
